@@ -1,0 +1,16 @@
+alembic==1.13.2
+email-validator==2.2.0
+fastapi==0.111.1
+joblib==1.4.2
+passlib[bcrypt]==1.7.4
+psycopg[binary]==3.1.19
+pydantic-settings==2.3.4
+python-dotenv==1.0.1
+python-jose==3.3.0
+python-multipart==0.0.9
+scikit-learn==1.5.1
+sqlalchemy==2.0.31
+supabase==2.5.1
+uvicorn==0.30.1
+ruff==0.5.5
+pytest==8.2.2

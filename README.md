@@ -1,4 +1,11 @@
-# VetCare – Pet Healthcare Platform
+# VetiCare – AI-Powered Pet Healthcare Platform
+
+## Backend foundation
+
+The FastAPI backend lives in [`backend/`](backend/README.md). Sprint 1 exposes
+`GET /` and `GET /health`; interactive API documentation is available at
+`/docs` while the service is running. See the [backend README](backend/README.md)
+for setup, checks, and the clean-architecture folder map.
 
 ##  Problem Statement
 Rural and remote areas often lack immediate access to quality veterinary care, resulting in poor health outcomes for pets and livestock. Pet owners struggle to find nearby clinics, maintain proper health records, and access critical healthcare resources efficiently.
