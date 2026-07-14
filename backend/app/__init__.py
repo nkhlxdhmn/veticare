@@ -1,1 +1,3 @@
-# VetiCare Backend Application Package
+"""
+AI and Machine Learning package.
+"""

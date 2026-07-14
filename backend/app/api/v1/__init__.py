@@ -1,1 +1,3 @@
-# VetiCare API v1 Routers
+"""
+V1 API package marker.
+"""

@@ -1,7 +1,12 @@
-from typing import Any, Optional
+from typing import Any, Optional, List
 from uuid import UUID
 from datetime import datetime
 from pydantic import BaseModel, Field, ConfigDict
+
+class PredictionRequest(BaseModel):
+    pet_id: UUID = Field(..., description="UUID of the pet for which the prediction is being made")
+    symptoms: List[str] = Field(..., min_length=1, description="List of symptoms observed in the pet")
+
 
 class PredictionBase(BaseModel):
     # Any allows lists (e.g. ['fever']) or dictionary lists (with severities)
@@ -11,6 +16,12 @@ class PredictionBase(BaseModel):
     dangerous: bool = Field(False, description="Flag indicating if the predicted disease is dangerous/critical")
     model_version: str = Field(..., max_length=50, description="Version tag of the ML model performing inference")
     processing_time_ms: int = Field(..., ge=0, description="Inference runtime execution latency in milliseconds")
+
+class PredictionResultResponse(BaseModel):
+    predicted_disease: str
+    confidence: float
+    dangerous: bool
+    recommendation: str
 
 class PredictionCreate(PredictionBase):
     pass
@@ -30,3 +41,10 @@ class PredictionResponse(PredictionBase):
     updated_at: datetime = Field(..., description="Prediction last update timestamp")
 
     model_config = ConfigDict(from_attributes=True)
+
+class PredictionHistoryItem(BaseModel):
+    id: UUID
+    date: datetime
+    pet_name: str
+    predicted_disease: str
+    confidence: float

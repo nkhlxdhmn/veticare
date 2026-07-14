@@ -27,6 +27,14 @@ class Vaccination(Base, TimestampMixin):
         String(100), 
         nullable=False
     )
+    dose_number: Mapped[Optional[int]] = mapped_column(
+        Integer,
+        nullable=True
+    )
+    batch_number: Mapped[Optional[str]] = mapped_column(
+        String(100),
+        nullable=True
+    )
     date_administered: Mapped[date] = mapped_column(
         Date, 
         nullable=False

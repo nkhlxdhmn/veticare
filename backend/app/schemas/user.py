@@ -25,6 +25,19 @@ class UserBase(BaseModel):
 class UserCreate(UserBase):
     password: str = Field(..., min_length=8, description="Plain text password (will be hashed by backend)")
 
+    @field_validator("password")
+    @classmethod
+    def validate_password_strength(cls, v: str) -> str:
+        if not re.search(r"[A-Z]", v):
+            raise ValueError("Password must contain at least one uppercase letter")
+        if not re.search(r"[a-z]", v):
+            raise ValueError("Password must contain at least one lowercase letter")
+        if not re.search(r"\d", v):
+            raise ValueError("Password must contain at least one digit")
+        if not re.search(r"[!@#$%^&*(),.?\":{}|<>]", v):
+            raise ValueError("Password must contain at least one special character")
+        return v
+
 class UserUpdate(BaseModel):
     email: Optional[EmailStr] = Field(None, description="Updated email address")
     username: Optional[str] = Field(None, min_length=3, max_length=30, description="Updated username")

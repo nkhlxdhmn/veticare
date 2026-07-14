@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  # PHP/Apache Frontend Service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: veticare-frontend
+    ports:
+      - "8080:80" # Expose Apache server on port 8080
+    volumes:
+      - ./frontend:/var/www/html
+    depends_on:
+      - backend
+      - db
+    networks:
+      - veticare-net
+
+  # FastAPI Backend Service (Placeholder)
+  backend:
+    build: ./backend
+    container_name: veticare-backend
+    # ... more configuration will be added here
+
+  # PostgreSQL Database Service (Placeholder)
+  db:
+    image: postgres:14-alpine
+    container_name: veticare-db
+    # ... more configuration will be added here
+
+networks:
+  veticare-net:
+    driver: bridge
