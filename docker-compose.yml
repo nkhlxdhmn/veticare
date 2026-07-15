@@ -1,34 +1,48 @@
 version: '3.8'
 
 services:
-  # PHP/Apache Frontend Service
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-veticare}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-veticare}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - ENVIRONMENT=production
+      - DATABASE_URL=postgresql+psycopg://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-veticare}
+      - SECRET_KEY=${SECRET_KEY:-change-me-in-production}
+      - CORS_ORIGINS=["http://localhost", "http://localhost:3000"]
+    ports:
+      - "8000:8000"
+
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: veticare-frontend
+    restart: always
     ports:
-      - "8080:80" # Expose Apache server on port 8080
-    volumes:
-      - ./frontend:/var/www/html
+      - "80:80"
     depends_on:
       - backend
-      - db
-    networks:
-      - veticare-net
 
-  # FastAPI Backend Service (Placeholder)
-  backend:
-    build: ./backend
-    container_name: veticare-backend
-    # ... more configuration will be added here
-
-  # PostgreSQL Database Service (Placeholder)
-  db:
-    image: postgres:14-alpine
-    container_name: veticare-db
-    # ... more configuration will be added here
-
-networks:
-  veticare-net:
-    driver: bridge
+volumes:
+  pgdata:

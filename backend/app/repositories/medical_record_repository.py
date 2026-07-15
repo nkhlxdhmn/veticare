@@ -19,7 +19,13 @@ class MedicalRecordRepository:
 
     async def get_all_for_pet(self, db: AsyncSession, pet_id: UUID, skip: int, limit: int) -> List[MedicalRecord]:
         """Retrieve all medical records for a specific pet with pagination."""
-        query = select(MedicalRecord).where(MedicalRecord.pet_id == pet_id).order_by(MedicalRecord.visit_date.desc())
+        from sqlalchemy.orm import selectinload
+        query = (
+            select(MedicalRecord)
+            .options(selectinload(MedicalRecord.pet))
+            .where(MedicalRecord.pet_id == pet_id)
+            .order_by(MedicalRecord.visit_date.desc())
+        )
         result = await db.execute(query.offset(skip).limit(limit))
         return list(result.scalars().all())
 

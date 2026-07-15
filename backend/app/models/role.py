@@ -9,4 +9,5 @@ class UserRole(StrEnum):
     PET_OWNER = "pet_owner"
     VETERINARIAN = "veterinarian"
     CLINIC_ADMIN = "clinic_admin"
+    NGO_ADMIN = "ngo_admin"
     SUPER_ADMIN = "super_admin"

@@ -1,27 +1,13 @@
-import api from '../lib/axios';
-
-export const AuthService = {
-  login: async (credentials: Record<string, any>) => {
-    const { data } = await api.post('/auth/login', credentials);
-    return data;
-  },
-  register: async (userData: Record<string, any>) => {
-    const { data } = await api.post('/auth/register', userData);
-    return data;
-  },
-  getProfile: async () => {
-    const { data } = await api.get('/auth/me');
-    return data;
-  }
-};
-
-export const PetService = {
-  getAll: async () => {
-    const { data } = await api.get('/pets');
-    return data;
-  },
-  getById: async (id: string) => {
-    const { data } = await api.get(`/pets/${id}`);
-    return data;
-  }
-};
+/**
+ * Service barrel. Re-exports all API services from a single entry point.
+ */
+export { authService } from './auth.service';
+export { petService } from './pet.service';
+export { vaccinationService } from './vaccination.service';
+export { medicalRecordService } from './medical-record.service';
+export { predictionService } from './prediction.service';
+export { notificationService } from './notification.service';
+export { appointmentService } from './appointment.service';
+export { ngoService } from './ngo.service';
+export { healthCentreService } from './health-centre.service';
+export { rescueRequestService } from './rescue-request.service';

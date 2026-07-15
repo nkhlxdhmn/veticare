@@ -5,8 +5,11 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { useAuth } from '@/store/AuthContext';
-import { AuthService } from '@/services';
+import { authService } from '@/services/auth.service';
+import { toast } from '@/hooks/use-toast';
 import { Loader2 } from 'lucide-react';
+import type { AxiosError } from 'axios';
+import type { ApiError } from '@/types';
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
@@ -18,31 +21,32 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     setError('');
-    
+
     const formData = new FormData(e.currentTarget);
-    const email = formData.get('email') as string;
+    const email = (formData.get('email') as string).trim();
     const password = formData.get('password') as string;
 
+    if (!email || !password) {
+      setError('Please provide both email and password.');
+      setLoading(false);
+      return;
+    }
+
     try {
-      // Stub for actual API call, for now we will simulate success 
-      // if credentials are not empty
-      if (!email || !password) {
-        throw new Error("Please provide email and password");
-      }
-      
-      // Simulate API delay
-      await new Promise(r => setTimeout(r, 1000));
-      
-      // const data = await AuthService.login({ email, password });
-      const mockData = {
-        access_token: 'mock-jwt-token-12345',
-        user: { id: 1, email, name: 'John Doe', role: 'user' }
-      };
-      
-      login(mockData.access_token, mockData.user);
+      const tokens = await authService.login(email, password);
+      await login(tokens.access_token, tokens.refresh_token);
+      toast({ title: 'Welcome back!', variant: 'success' });
       navigate('/dashboard');
-    } catch (err: any) {
-      setError(err.message || 'Invalid credentials');
+    } catch (err) {
+      const axiosErr = err as AxiosError<ApiError>;
+      const detail = axiosErr.response?.data?.detail;
+      if (typeof detail === 'string') {
+        setError(detail);
+      } else if (axiosErr.request && !axiosErr.response) {
+        setError('Unable to reach the server. Please check your connection.');
+      } else {
+        setError('Invalid credentials. Please try again.');
+      }
     } finally {
       setLoading(false);
     }
@@ -58,7 +62,7 @@ export default function Login() {
         <div className="relative z-20 mt-auto">
           <blockquote className="space-y-2">
             <p className="text-lg">
-              &ldquo;VetiCare has completely changed how I manage my pets' health. The AI predictions alerted me early to a condition I would have missed.&rdquo;
+              &ldquo;VetiCare has completely changed how I manage my pets&apos; health. The AI predictions alerted me early to a condition I would have missed.&rdquo;
             </p>
             <footer className="text-sm">Sofia Davis</footer>
           </blockquote>
@@ -70,62 +74,50 @@ export default function Login() {
             <CardHeader className="space-y-1">
               <CardTitle className="text-2xl font-bold">Welcome back</CardTitle>
               <CardDescription>
-                Enter your email to login to your account
+                Enter your email to sign in to your account
               </CardDescription>
             </CardHeader>
             <CardContent>
               {error && (
-                <div className="mb-4 p-3 rounded-md bg-destructive/15 text-destructive text-sm font-medium">
+                <div className="mb-4 p-3 rounded-md bg-destructive/15 text-destructive text-sm font-medium" role="alert">
                   {error}
                 </div>
               )}
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4" noValidate>
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input 
-                    id="email" 
-                    name="email" 
-                    type="email" 
-                    placeholder="m@example.com" 
-                    required 
+                  <Label htmlFor="login-email">Email</Label>
+                  <Input
+                    id="login-email"
+                    name="email"
+                    type="email"
+                    placeholder="you@example.com"
+                    autoComplete="email"
+                    required
+                    disabled={loading}
                   />
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <Label htmlFor="password">Password</Label>
-                    <Link to="/forgot-password" className="text-sm text-muted-foreground hover:text-primary">
-                      Forgot password?
-                    </Link>
+                    <Label htmlFor="login-password">Password</Label>
                   </div>
-                  <Input 
-                    id="password" 
-                    name="password" 
-                    type="password" 
-                    required 
+                  <Input
+                    id="login-password"
+                    name="password"
+                    type="password"
+                    autoComplete="current-password"
+                    required
+                    disabled={loading}
                   />
                 </div>
                 <Button className="w-full" type="submit" disabled={loading}>
-                  {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+                  {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                   Sign In
                 </Button>
               </form>
-              <div className="relative mt-6">
-                <div className="absolute inset-0 flex items-center">
-                  <span className="w-full border-t" />
-                </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-background px-2 text-muted-foreground">
-                    Or continue with
-                  </span>
-                </div>
-              </div>
-              <Button variant="outline" className="w-full mt-6" type="button" disabled>
-                Google
-              </Button>
             </CardContent>
             <CardFooter>
               <div className="text-sm text-center w-full text-muted-foreground">
-                Don't have an account?{' '}
+                Don&apos;t have an account?{' '}
                 <Link to="/register" className="text-primary hover:underline font-medium">
                   Sign up
                 </Link>

@@ -1,18 +1,14 @@
-"""Authentication routes for registration, login, refresh, and logout."""
-
-from uuid import UUID
+"""Authentication routes for registration, login, refresh, logout, and profile."""
 
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.api.deps import get_auth_service, get_current_user, get_db, get_notification_service
+from app.api.deps import get_auth_service, get_current_user, get_db
 from app.models.user import User
 from app.schemas.auth import RefreshTokenRequest, TokenPairResponse
-from app.schemas.notification import NotificationResponse, UnreadCountResponse
-from app.schemas.user import UserCreate, UserResponse
+from app.schemas.user import UserCreate, UserResponse, UserUpdate
 from app.services.auth_service import AuthService
-from app.services.notification_service import NotificationService
 
 router = APIRouter()
 
@@ -94,61 +90,24 @@ async def read_users_me(current_user: User = Depends(get_current_user)):
     return current_user
 
 
-@router.get("/notifications", response_model=list[NotificationResponse])
-async def list_notifications(
+@router.put("/me", response_model=UserResponse)
+async def update_profile(
+    user_in: UserUpdate,
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user),
-    notification_service: NotificationService = Depends(get_notification_service),
 ):
-    """List recent in-app notifications for the current user."""
-    notifications = await notification_service.list_for_user(
-        db=db,
-        user_id=current_user.id,
-        limit=20,
-    )
-    return [
-        {
-            "id": str(notification.id),
-            "title": notification.title,
-            "message": notification.message,
-            "notification_type": notification.notification_type,
-            "payload": notification.payload,
-            "is_read": notification.is_read,
-            "read_at": notification.read_at,
-            "created_at": notification.created_at,
-        }
-        for notification in notifications
-    ]
-
-
-@router.post("/notifications/{notification_id}/read")
-async def mark_notification_read(
-    notification_id: str,
-    db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user),
-    notification_service: NotificationService = Depends(get_notification_service),
-):
-    """Mark a notification as read for the current user."""
-    notification_uuid = UUID(notification_id)
-    notification = await notification_service.mark_read(
-        db=db,
-        notification_id=notification_uuid,
-        user_id=current_user.id,
-    )
-    if not notification:
+    """Update the current authenticated user's profile."""
+    update_data = user_in.model_dump(exclude_unset=True)
+    if not update_data:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Notification not found",
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="No fields to update",
         )
-    return {"message": "Notification marked as read"}
 
+    for field, value in update_data.items():
+        setattr(current_user, field, value)
 
-@router.get("/notifications/unread-count", response_model=UnreadCountResponse)
-async def unread_notification_count(
-    db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(get_current_user),
-    notification_service: NotificationService = Depends(get_notification_service),
-):
-    """Return the number of unread in-app notifications."""
-    count = await notification_service.unread_count(db=db, user_id=current_user.id)
-    return {"count": count}
+    db.add(current_user)
+    await db.commit()
+    await db.refresh(current_user)
+    return current_user

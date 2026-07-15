@@ -10,23 +10,32 @@ class MedicalRecordBase(BaseModel):
     medicines: Optional[str] = Field(None, description="List of prescribed medicines")
     doctor_name: Optional[str] = Field(None, max_length=100, description="Name of the attending veterinarian")
     clinic_name: Optional[str] = Field(None, max_length=150, description="Name of the clinic")
-    notes: Optional[str] = Field(None, description="Additional notes from the visit")
+    pet_id: UUID
+    veterinarian_id: Optional[UUID] = None
+    appointment_id: Optional[UUID] = None
+    visit_date: date
+    diagnosis: str = Field(..., max_length=255)
+    treatment: Optional[str] = None
+    prescription: Optional[str] = None
+    medicines: Optional[str] = None
+    next_visit: Optional[date] = None
+    notes: Optional[str] = None
 
 class MedicalRecordCreate(MedicalRecordBase):
-    pet_id: UUID = Field(..., description="The pet to which this record belongs")
+    pass
 
 class MedicalRecordUpdate(BaseModel):
-    visit_date: Optional[date] = Field(None, description="Updated visit date")
-    diagnosis: Optional[str] = Field(None, min_length=1, max_length=255, description="Updated diagnosis")
-    treatment: Optional[str] = Field(None, description="Updated treatment plan")
-    medicines: Optional[str] = Field(None, description="Updated list of medicines")
-    doctor_name: Optional[str] = Field(None, max_length=100, description="Updated doctor's name")
-    clinic_name: Optional[str] = Field(None, max_length=150, description="Updated clinic name")
-    notes: Optional[str] = Field(None, description="Updated notes")
+    veterinarian_id: Optional[UUID] = None
+    visit_date: Optional[date] = None
+    diagnosis: Optional[str] = Field(None, max_length=255)
+    treatment: Optional[str] = None
+    prescription: Optional[str] = None
+    medicines: Optional[str] = None
+    next_visit: Optional[date] = None
+    notes: Optional[str] = None
 
 class MedicalRecordResponse(MedicalRecordBase):
     id: UUID = Field(..., description="Medical record UUID")
-    pet_id: UUID = Field(..., description="Associated pet UUID")
     created_at: datetime = Field(..., description="Record creation timestamp")
     updated_at: datetime = Field(..., description="Record last update timestamp")
 

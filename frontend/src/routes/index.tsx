@@ -1,37 +1,80 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import PublicLayout from '../layouts/PublicLayout';
-import AuthenticatedLayout from '../layouts/AuthenticatedLayout';
-import AdminLayout from '../layouts/AdminLayout';
-import { useAuth } from '../store/AuthContext';
+import PublicLayout from '@/layouts/PublicLayout';
+import AuthenticatedLayout from '@/layouts/AuthenticatedLayout';
+import AdminLayout from '@/layouts/AdminLayout';
+import { useAuth } from '@/store/AuthContext';
+import { Loader2 } from 'lucide-react';
 
-import Landing from '../pages/Landing';
-import Login from '../pages/auth/Login';
-import Register from '../pages/auth/Register';
-import Dashboard from '../pages/Dashboard';
-import Pets from '../pages/pets/Pets';
-import PredictionFlow from '../pages/predictions/PredictionFlow';
+// Lazy imports would be better for code-splitting, but keeping
+// static imports to match the existing pattern.
+import Landing from '@/pages/Landing';
+import Login from '@/pages/auth/Login';
+import Register from '@/pages/auth/Register';
+import Dashboard from '@/pages/Dashboard';
+import Pets from '@/pages/pets/Pets';
+import PetDetail from '@/pages/pets/PetDetail';
+import PredictionFlow from '@/pages/predictions/PredictionFlow';
+import MedicalRecords from '@/pages/medical-records/MedicalRecords';
+import Vaccinations from '@/pages/vaccinations/Vaccinations';
+import Appointments from '@/pages/appointments/Appointments';
+import Profile from '@/pages/profile/Profile';
+import SettingsPage from '@/pages/settings/Settings';
+import Notifications from '@/pages/notifications/Notifications';
+import NotFound from '@/pages/errors/NotFound';
 
-// Stub pages
-const Placeholder = ({ title }: { title: string }) => (
-  <div className="flex h-full flex-col items-center justify-center rounded-lg border border-dashed shadow-sm p-12">
-    <h2 className="text-2xl font-bold tracking-tight">{title}</h2>
-    <p className="text-muted-foreground mt-2">This page is under construction.</p>
-  </div>
-);
+import NGODirectory from '@/pages/ngos/NGODirectory';
+import NGODetails from '@/pages/ngos/NGODetails';
+import RescueRequestForm from '@/pages/ngos/RescueRequestForm';
+import ClinicDirectory from '@/pages/clinics/ClinicDirectory';
+import ClinicDetails from '@/pages/clinics/ClinicDetails';
 
-const ProtectedRoute = ({ children, requireAdmin = false }: { children: React.ReactNode, requireAdmin?: boolean }) => {
-  const { isAuthenticated, user } = useAuth();
-  
+/** Redirect to login if not authenticated, show loading while checking. */
+function ProtectedRoute({
+  children,
+  requireAdmin = false,
+}: {
+  children: React.ReactNode;
+  requireAdmin?: boolean;
+}) {
+  const { isAuthenticated, isLoading, user } = useAuth();
+
+  if (isLoading) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-accent" />
+      </div>
+    );
+  }
+
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   }
-  
-  if (requireAdmin && user?.role !== 'admin') {
+
+  if (requireAdmin && user?.role !== 'super_admin' && user?.role !== 'clinic_admin') {
     return <Navigate to="/dashboard" replace />;
   }
 
   return <>{children}</>;
-};
+}
+
+/** Redirect to dashboard if already authenticated. */
+function GuestOnly({ children }: { children: React.ReactNode }) {
+  const { isAuthenticated, isLoading } = useAuth();
+
+  if (isLoading) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-accent" />
+      </div>
+    );
+  }
+
+  if (isAuthenticated) {
+    return <Navigate to="/dashboard" replace />;
+  }
+
+  return <>{children}</>;
+}
 
 export function AppRoutes() {
   return (
@@ -39,38 +82,62 @@ export function AppRoutes() {
       {/* Public Routes */}
       <Route element={<PublicLayout />}>
         <Route path="/" element={<Landing />} />
-        <Route path="/about" element={<Placeholder title="About Us" />} />
-        <Route path="/contact" element={<Placeholder title="Contact" />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route
+          path="/login"
+          element={
+            <GuestOnly>
+              <Login />
+            </GuestOnly>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <GuestOnly>
+              <Register />
+            </GuestOnly>
+          }
+        />
       </Route>
 
       {/* Authenticated Routes */}
-      <Route element={<ProtectedRoute><AuthenticatedLayout /></ProtectedRoute>}>
+      <Route
+        element={
+          <ProtectedRoute>
+            <AuthenticatedLayout />
+          </ProtectedRoute>
+        }
+      >
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/pets" element={<Pets />} />
-        <Route path="/pets/new" element={<Placeholder title="Add Pet" />} />
-        <Route path="/pets/:id" element={<Placeholder title="Pet Details" />} />
+        <Route path="/pets/:id" element={<PetDetail />} />
         <Route path="/predictions" element={<PredictionFlow />} />
-        <Route path="/vaccinations" element={<Placeholder title="Vaccinations" />} />
-        <Route path="/medical-records" element={<Placeholder title="Medical Records" />} />
-        <Route path="/profile" element={<Placeholder title="Profile" />} />
-        <Route path="/settings" element={<Placeholder title="Settings" />} />
+        <Route path="/vaccinations" element={<Vaccinations />} />
+        <Route path="/medical-records" element={<MedicalRecords />} />
+        <Route path="/appointments" element={<Appointments />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/notifications" element={<Notifications />} />
+        <Route path="/ngos" element={<NGODirectory />} />
+        <Route path="/ngos/:id" element={<NGODetails />} />
+        <Route path="/rescue-request" element={<RescueRequestForm />} />
+        <Route path="/clinics" element={<ClinicDirectory />} />
+        <Route path="/clinics/:id" element={<ClinicDetails />} />
       </Route>
 
       {/* Admin Routes */}
-      <Route element={<ProtectedRoute requireAdmin={true}><AdminLayout /></ProtectedRoute>}>
-        <Route path="/admin" element={<Placeholder title="Admin Dashboard" />} />
-        <Route path="/admin/users" element={<Placeholder title="Manage Users" />} />
-        <Route path="/admin/roles" element={<Placeholder title="Manage Roles" />} />
-        <Route path="/admin/predictions" element={<Placeholder title="Admin Predictions" />} />
-        <Route path="/admin/audit" element={<Placeholder title="Audit Logs" />} />
-        <Route path="/admin/metrics" element={<Placeholder title="System Metrics" />} />
-        <Route path="/admin/notifications" element={<Placeholder title="System Notifications" />} />
+      <Route
+        element={
+          <ProtectedRoute requireAdmin>
+            <AdminLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route path="/admin" element={<Dashboard />} />
       </Route>
-      
-      {/* Fallback */}
-      <Route path="*" element={<Navigate to="/" replace />} />
+
+      {/* 404 */}
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

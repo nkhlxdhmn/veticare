@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
-from app.api.v1 import auth, medical_records, pets, predictions, uploads, vaccinations
+from app.api.v1 import appointments, auth, medical_records, notifications, pets, predictions, uploads, vaccinations, ngos, health_centres, rescue_requests
 from app.core.config import settings
 from app.core.exception_handlers import register_exception_handlers
 from app.core.logging import configure_logging
@@ -28,6 +28,7 @@ app = FastAPI(
         {"name": "Pets", "description": "Pet lifecycle management and ownership checks."},
         {"name": "Predictions", "description": "AI-powered disease predictions and history."},
         {"name": "Vaccinations", "description": "Vaccination scheduling and records."},
+        {"name": "Appointments", "description": "Veterinary clinic appointment scheduling."},
         {"name": "Medical Records", "description": "Veterinary visit and medical record management."},
         {"name": "Uploads", "description": "Storage-backed file upload operations."},
         {"name": "Health", "description": "Service health and readiness probes."},
@@ -88,7 +89,18 @@ app.include_router(
     prefix="/api/v1/medical-records",
     tags=["Medical Records"],
 )
+app.include_router(
+    appointments.router,
+    prefix="/api/v1/appointments",
+    tags=["Appointments"],
+)
 app.include_router(uploads.router, prefix="/api/v1/uploads", tags=["Uploads"])
+app.include_router(
+    notifications.router, prefix="/api/v1/notifications", tags=["Notifications"]
+)
+app.include_router(ngos.router, prefix="/api/v1/ngos", tags=["NGOs"])
+app.include_router(health_centres.router, prefix="/api/v1/clinics", tags=["Health Centres"])
+app.include_router(rescue_requests.router, prefix="/api/v1/rescues", tags=["Rescue Requests"])
 
 
 @app.get("/", response_model=WelcomeResponse, tags=["Root"])

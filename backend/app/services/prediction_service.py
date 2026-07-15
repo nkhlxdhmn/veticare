@@ -47,7 +47,10 @@ class PredictionService:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Pet not found or access denied")
 
         # 2. Run inference using the model loader
-        predicted_disease, confidence, processing_time_ms = model_loader.predict(prediction_in.symptoms)
+        predicted_disease, confidence, processing_time_ms = model_loader.predict(
+            animal_name=pet.species,
+            symptoms=prediction_in.symptoms
+        )
 
         # 3. Get recommendation
         recommendation_data = get_recommendation(predicted_disease)

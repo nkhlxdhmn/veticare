@@ -12,14 +12,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
 # Import target metadata to support autogenerate queries
 from app.models.base import Base
-from app.models.audit_log import AuditLog
-from app.models.contact import Contact
-from app.models.notification import Notification
-from app.models.pet import Pet
-from app.models.prediction import Prediction
-from app.models.refresh_token import RefreshToken
-from app.models.user import User
-from app.models.vaccination import Vaccination
+import app.models  # This imports __init__.py which loads all models
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -36,12 +29,19 @@ def get_url():
     """
     Load database connection string from environment variables or fall back to alembic.ini URL.
     """
-    user = os.getenv("POSTGRES_USER", "postgres")
-    password = os.getenv("POSTGRES_PASSWORD", "postgres")
-    host = os.getenv("POSTGRES_HOST", "localhost")
-    port = os.getenv("POSTGRES_PORT", "5432")
-    db = os.getenv("POSTGRES_DB", "veticare")
-    return os.getenv("DATABASE_URL", f"postgresql://{user}:{password}@{host}:{port}/{db}")
+    from app.config.factory import get_settings
+    settings = get_settings()
+    url_str = str(settings.database_url).strip().strip("'").strip('"')
+    
+    if not url_str:
+        url_str = "postgresql+psycopg://postgres:postgres@localhost:5432/veticare"
+    
+    if url_str.startswith("postgres://"):
+        url_str = url_str.replace("postgres://", "postgresql+psycopg://", 1)
+    elif url_str.startswith("postgresql://"):
+        url_str = url_str.replace("postgresql://", "postgresql+psycopg://", 1)
+        
+    return url_str
 
 def run_migrations_offline() -> None:
     """Run migrations in 'offline' mode.
