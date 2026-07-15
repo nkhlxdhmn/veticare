@@ -1,3 +1,1 @@
-"""
-Database package for session management and model aggregation.
-"""
+"""Application configuration and core utilities."""

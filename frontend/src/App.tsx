@@ -1,14 +1,11 @@
-import { BrowserRouter } from 'react-router-dom';
-import { AppRoutes } from './routes';
-import { Toaster } from '@/components/ui/toaster';
-
-function App() {
-  return (
-    <BrowserRouter>
-      <AppRoutes />
-      <Toaster />
-    </BrowserRouter>
-  );
-}
-
-export default App;
+import { lazy, Suspense } from "react";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { ScrollToTop } from "@/components/ScrollToTop";
+import { AuthProvider } from "@/context/AuthContext";
+import { GuestRoute, ProtectedRoute } from "@/components/auth/RouteGuards";
+const Home = lazy(() => import("@/pages/Home")); const Animals = lazy(() => import("@/pages/Animals")); const AnimalDetails = lazy(() => import("@/pages/AnimalDetails")); const DiseasePrediction = lazy(() => import("@/pages/DiseasePrediction")); const PetRecords = lazy(() => import("@/pages/PetRecords")); const PetDetails = lazy(() => import("@/pages/PetDetails")); const Vaccinations = lazy(() => import("@/pages/Vaccinations")); const CareGuide = lazy(() => import("@/pages/CareGuide")); const NearbyServices = lazy(() => import("@/pages/NearbyServices")); const About = lazy(() => import("@/pages/About")); const Login = lazy(() => import("@/pages/Login")); const Register = lazy(() => import("@/pages/Register")); const ForgotPassword = lazy(() => import("@/pages/ForgotPassword")); const ResetPassword = lazy(() => import("@/pages/ResetPassword")); const VerifyEmail = lazy(() => import("@/pages/VerifyEmail")); const VerifyOTP = lazy(() => import("@/pages/VerifyOTP")); const Profile = lazy(() => import("@/pages/Profile")); const Settings = lazy(() => import("@/pages/Settings")); const Dashboard = lazy(() => import("@/pages/Dashboard")); const NotFound = lazy(() => import("@/pages/NotFound"));
+function RootLayout() { return <div className="flex min-h-screen w-full flex-col bg-background text-textPrimary"><ScrollToTop /><Navbar /><main className="mt-[72px] flex-1"><Suspense fallback={<div className="mx-auto max-w-[1280px] px-6 py-20"><div className="h-8 w-48 animate-pulse bg-gray-100" /><div className="mt-5 h-4 max-w-xl animate-pulse bg-gray-100" /></div>}><Outlet /></Suspense></main><Footer /></div>; }
+const router = createBrowserRouter([{ path: "/", element: <RootLayout />, children: [{ index: true, element: <Home /> }, { path: "animals", element: <Animals /> }, { path: "animals/:id", element: <AnimalDetails /> }, { path: "predictions", element: <DiseasePrediction /> }, { path: "pets", element: <PetRecords /> }, { path: "pets/:id", element: <PetDetails /> }, { path: "vaccinations", element: <Vaccinations /> }, { path: "care-guide", element: <CareGuide /> }, { path: "nearby", element: <NearbyServices /> }, { path: "about", element: <About /> }, { element: <GuestRoute />, children: [{ path: "login", element: <Login /> }, { path: "register", element: <Register /> }, { path: "forgot-password", element: <ForgotPassword /> }, { path: "reset-password", element: <ResetPassword /> }, { path: "verify-email", element: <VerifyEmail /> }, { path: "verify-otp", element: <VerifyOTP /> }] }, { element: <ProtectedRoute />, children: [{ path: "dashboard", element: <Dashboard /> }, { path: "profile", element: <Profile /> }, { path: "settings", element: <Settings /> }] }, { path: "*", element: <NotFound /> }] }]);
+export default function App() { return <AuthProvider><RouterProvider router={router} /></AuthProvider>; }

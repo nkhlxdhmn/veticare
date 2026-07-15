@@ -1,1 +1,1 @@
-# VetiCare API Package
+"""API routing package."""

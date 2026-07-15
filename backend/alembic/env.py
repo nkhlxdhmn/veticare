@@ -1,97 +1,37 @@
-import os
-import sys
+"""Alembic migration environment wired to the application settings."""
+
 from logging.config import fileConfig
 
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
-
 from alembic import context
+from sqlalchemy import engine_from_config, pool
 
-# Add app directory to the system path to allow local imports
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+from app.core.config import get_settings
+from app.core.database import Base
+import app.models  # noqa: F401 - registers every model with Base.metadata
 
-# Import target metadata to support autogenerate queries
-from app.models.base import Base
-import app.models  # This imports __init__.py which loads all models
-
-# this is the Alembic Config object, which provides
-# access to the values within the .ini file in use.
 config = context.config
-
-# Interpret the config file for Python logging.
-# This line sets up loggers basically.
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
+settings = get_settings()
+if not settings.database_url:
+    raise RuntimeError("VETICARE_DATABASE_URL is required to run Alembic")
+config.set_main_option("sqlalchemy.url", settings.database_url.replace("%", "%%"))
 target_metadata = Base.metadata
 
-def get_url():
-    """
-    Load database connection string from environment variables or fall back to alembic.ini URL.
-    """
-    from app.config.factory import get_settings
-    settings = get_settings()
-    url_str = str(settings.database_url).strip().strip("'").strip('"')
-    
-    if not url_str:
-        url_str = "postgresql+psycopg://postgres:postgres@localhost:5432/veticare"
-    
-    if url_str.startswith("postgres://"):
-        url_str = url_str.replace("postgres://", "postgresql+psycopg://", 1)
-    elif url_str.startswith("postgresql://"):
-        url_str = url_str.replace("postgresql://", "postgresql+psycopg://", 1)
-        
-    return url_str
 
 def run_migrations_offline() -> None:
-    """Run migrations in 'offline' mode.
-
-    This configures the context with just a URL
-    and not an Engine, though an Engine is acceptable
-    here as well.  By skipping the Engine creation
-    we don't even need a DBAPI to be available.
-
-    Calls to context.execute() here emit the given string to the
-    script output.
-
-    """
-    url = get_url()
-    context.configure(
-        url=url,
-        target_metadata=target_metadata,
-        literal_binds=True,
-        dialect_opts={"paramstyle": "named"},
-    )
-
+    """Generate SQL without opening a database connection."""
+    context.configure(url=settings.database_url, target_metadata=target_metadata, literal_binds=True, dialect_opts={"paramstyle": "named"})
     with context.begin_transaction():
         context.run_migrations()
 
 
 def run_migrations_online() -> None:
-    """Run migrations in 'online' mode.
-
-    In this scenario we need to create an Engine
-    and associate a connection with the context.
-
-    """
-    configuration = config.get_section(config.config_ini_section, {})
-    configuration["sqlalchemy.url"] = get_url()
-    
-    connectable = engine_from_config(
-        configuration,
-        prefix="sqlalchemy.",
-        poolclass=pool.NullPool,
-    )
-
+    """Run migrations against the configured PostgreSQL database."""
+    connectable = engine_from_config(config.get_section(config.config_ini_section, {}), prefix="sqlalchemy.", poolclass=pool.NullPool)
     with connectable.connect() as connection:
-        context.configure(
-            connection=connection,
-            target_metadata=target_metadata,
-            render_as_batch=True,
-            compare_type=True,
-            compare_server_default=True,
-        )
-
+        context.configure(connection=connection, target_metadata=target_metadata, compare_type=True)
         with context.begin_transaction():
             context.run_migrations()
 

@@ -1,11 +1,24 @@
-# Use the official PHP image with Apache
-FROM php:8.2-apache
+FROM python:3.12-slim AS base
 
-# Install mysqli extension for database connectivity
-RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
 
-# Copy application source code to the Apache web root directory
-COPY . /var/www/html/
+WORKDIR /app
 
-# Expose port 80 for the Apache server
-EXPOSE 80
+RUN addgroup --system appuser && adduser --system --ingroup appuser appuser
+
+COPY backend/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY backend/ .
+COPY dataset/ /app/dataset/
+
+RUN chown -R appuser:appuser /app
+USER appuser
+
+EXPOSE 8000
+
+HEALTHCHECK --interval=30s --timeout=5s --retries=3 \
+    CMD python -c "import httpx; httpx.get('http://localhost:8000/health').raise_for_status()"
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

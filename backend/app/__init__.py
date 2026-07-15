@@ -1,3 +1,1 @@
-"""
-AI and Machine Learning package.
-"""
+"""VetiCare backend application package."""

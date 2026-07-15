@@ -1,5 +1,11 @@
-node_modules/
-.env
-*.log
+.venv/
 __pycache__/
-venv/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.env
+*.joblib
