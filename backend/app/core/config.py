@@ -1,19 +1,5 @@
-"""Application configuration loaded from environment variables."""
+"""Backward-compatible access to environment-aware application settings."""
 
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from app.config.factory import get_settings
 
-
-class Settings(BaseSettings):
-    """Runtime settings for the VetiCare API."""
-
-    app_name: str = "VetiCare API"
-    environment: str = "development"
-
-    model_config = SettingsConfigDict(
-        env_file=".env",
-        env_file_encoding="utf-8",
-        extra="ignore",
-    )
-
-
-settings = Settings()
+settings = get_settings()

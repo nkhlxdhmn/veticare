@@ -13,3 +13,10 @@ class HealthResponse(BaseModel):
     """Response returned by the health-check endpoint."""
 
     status: str
+
+
+class ProbeResponse(BaseModel):
+    """Response returned by liveness and readiness probes."""
+
+    status: str
+    component: str

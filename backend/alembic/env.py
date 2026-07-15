@@ -12,11 +12,14 @@ sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
 # Import target metadata to support autogenerate queries
 from app.models.base import Base
-from app.models.user import User
-from app.models.pet import Pet
-from app.models.vaccination import Vaccination
-from app.models.prediction import Prediction
+from app.models.audit_log import AuditLog
 from app.models.contact import Contact
+from app.models.notification import Notification
+from app.models.pet import Pet
+from app.models.prediction import Prediction
+from app.models.refresh_token import RefreshToken
+from app.models.user import User
+from app.models.vaccination import Vaccination
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -82,7 +85,11 @@ def run_migrations_online() -> None:
 
     with connectable.connect() as connection:
         context.configure(
-            connection=connection, target_metadata=target_metadata
+            connection=connection,
+            target_metadata=target_metadata,
+            render_as_batch=True,
+            compare_type=True,
+            compare_server_default=True,
         )
 
         with context.begin_transaction():

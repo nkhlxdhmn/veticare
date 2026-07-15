@@ -4,7 +4,7 @@ API endpoints for file uploads.
 from uuid import UUID
 from fastapi import APIRouter, Depends, UploadFile, File, Form
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.api.deps import get_db, get_current_user
+from app.api.deps import get_db, get_current_user, get_pet_service, get_storage_service
 from app.models.user import User
 from app.services.storage_service import StorageService
 from app.services.pet_service import PetService
@@ -17,8 +17,8 @@ async def upload_pet_image(
     file: UploadFile = File(...),
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user),
-    storage_service: StorageService = Depends(),
-    pet_service: PetService = Depends(),
+    storage_service: StorageService = Depends(get_storage_service),
+    pet_service: PetService = Depends(get_pet_service),
 ):
     """
     Uploads a profile image for a specific pet.

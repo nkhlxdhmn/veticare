@@ -1,8 +1,11 @@
 import uuid
 from typing import List, Optional
-from sqlalchemy import String, Boolean
+from sqlalchemy import Boolean, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.models.base import Base, TimestampMixin
+from app.models.contact import Contact
+from app.models.pet import Pet
+from app.models.role import UserRole
 
 class User(Base, TimestampMixin):
     """
@@ -41,6 +44,9 @@ class User(Base, TimestampMixin):
         Boolean, 
         default=True, 
         nullable=False
+    )
+    role: Mapped[UserRole] = mapped_column(
+        String(32), default=UserRole.PET_OWNER, nullable=False, index=True
     )
     
     # Relationships
