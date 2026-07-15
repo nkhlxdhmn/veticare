@@ -1,11 +1,14 @@
 """Password hashing and JWT helpers."""
 
+import logging
 from datetime import UTC, datetime, timedelta
 
 from jose import JWTError, jwt
 from passlib.context import CryptContext
 
 from app.core.config import get_settings
+
+logger = logging.getLogger(__name__)
 
 PASSWORD_CONTEXT = CryptContext(schemes=["bcrypt"], deprecated="auto")
 JWT_ALGORITHM = "HS256"
@@ -25,8 +28,9 @@ def create_access_token(subject: str) -> str:
     """Create a signed, short-lived JWT containing only the user subject."""
     settings = get_settings()
     expires_at = datetime.now(UTC) + timedelta(minutes=settings.access_token_expire_minutes)
+    now = datetime.now(UTC)
     return jwt.encode(
-        {"sub": subject, "exp": expires_at},
+        {"sub": subject, "exp": expires_at, "iat": now},
         settings.secret_key.get_secret_value(),
         algorithm=JWT_ALGORITHM,
     )

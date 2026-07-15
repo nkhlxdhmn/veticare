@@ -5,10 +5,12 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.trustedhost import TrustedHostMiddleware
 
 from app.api.router import api_router
 from app.core.config import Settings, get_settings
 from app.core.logging import configure_logging
+from app.core.rate_limit import RateLimitMiddleware
 
 logger = logging.getLogger(__name__)
 
@@ -31,19 +33,24 @@ def create_application() -> FastAPI:
         description="Backend API for the VetiCare platform.",
         version="0.1.0",
         debug=settings.debug,
-        docs_url="/docs",
-        redoc_url="/redoc",
+        docs_url="/docs" if settings.debug else None,
+        redoc_url="/redoc" if settings.debug else None,
         lifespan=lifespan,
     )
     application.state.settings = settings
+
+    application.add_middleware(RateLimitMiddleware)
 
     application.add_middleware(
         CORSMiddleware,
         allow_origins=settings.cors_origins,
         allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
+        allow_methods=["GET", "POST", "PATCH", "DELETE"],
+        allow_headers=["Authorization", "Content-Type"],
     )
+
+    if settings.environment == "production":
+        application.add_middleware(TrustedHostMiddleware, allowed_hosts=["*.vercel.app", "*.onrender.com"])
 
     application.include_router(api_router, prefix=settings.api_v1_prefix)
 

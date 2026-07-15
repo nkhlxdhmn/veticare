@@ -1,5 +1,6 @@
 """SQLAlchemy engine, session, and declarative model base."""
 
+import logging
 from collections.abc import Generator
 from functools import lru_cache
 
@@ -8,6 +9,8 @@ from sqlalchemy.engine import Engine
 from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
 from app.core.config import get_settings
+
+logger = logging.getLogger(__name__)
 
 
 class Base(DeclarativeBase):
@@ -29,6 +32,7 @@ def get_engine() -> Engine:
     )
 
 
+@lru_cache
 def get_session_factory() -> sessionmaker[Session]:
     """Return a session factory bound to the configured engine."""
     return sessionmaker(bind=get_engine(), autoflush=False, expire_on_commit=False)
@@ -40,6 +44,7 @@ def get_db() -> Generator[Session, None, None]:
     try:
         yield session
     except Exception:
+        logger.exception("Session error — rolling back")
         session.rollback()
         raise
     finally:

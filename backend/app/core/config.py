@@ -25,6 +25,11 @@ class Settings(BaseSettings):
     secret_key: SecretStr = SecretStr("development-only-change-me")
     database_url: str | None = None
     access_token_expire_minutes: int = Field(default=30, gt=0, le=1_440)
+    google_places_api_key: SecretStr = SecretStr("")
+    supabase_url: str = ""
+    supabase_publishable_key: str = ""
+    supabase_secret_key: str = ""
+    supabase_jwks_url: str = ""
 
     model_config = SettingsConfigDict(
         env_file=BACKEND_DIRECTORY / ".env",
@@ -38,7 +43,9 @@ class Settings(BaseSettings):
     @field_validator("cors_origins", mode="before")
     @classmethod
     def parse_cors_origins(cls, value: object) -> object:
-        """Accept either a JSON array or a comma-separated environment value."""
+        """Accept a JSON array, a Python list, or a comma-separated string."""
+        if isinstance(value, list):
+            return value
         if not isinstance(value, str):
             return value
         if value.startswith("["):
@@ -53,6 +60,8 @@ class Settings(BaseSettings):
             and self.secret_key.get_secret_value() == "development-only-change-me"
         ):
             raise ValueError("SECRET_KEY must be set to a secure value in production")
+        if not self.supabase_jwks_url and self.supabase_url:
+            self.supabase_jwks_url = f"{self.supabase_url.rstrip('/')}/auth/v1/.well-known/jwks.json"
         return self
 
 
