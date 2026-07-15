@@ -27,6 +27,17 @@ class PredictionRepository:
         """Retrieve a single prediction by its UUID."""
         return await db.get(Prediction, prediction_id)
 
+    async def get_by_id_with_pet(
+        self, db: AsyncSession, prediction_id: UUID
+    ) -> Optional[Prediction]:
+        """Retrieve one prediction and its pet in a single query."""
+        result = await db.execute(
+            select(Prediction)
+            .where(Prediction.id == prediction_id)
+            .options(selectinload(Prediction.pet))
+        )
+        return result.scalar_one_or_none()
+
     async def get_all_for_user(self, db: AsyncSession, owner_id: UUID) -> List[Prediction]:
         """Retrieve all prediction logs for a given user's pets."""
         result = await db.execute(select(Prediction).join(Pet).where(Pet.owner_id == owner_id).options(selectinload(Prediction.pet)))

@@ -15,7 +15,7 @@ class StorageService:
     Handles file validation, uploading, and URL generation.
     """
     def __init__(self):
-        self.client: Client = create_client(settings.SUPABASE_URL, settings.SUPABASE_KEY)
+        self.client: Client = create_client(settings.supabase_url, settings.supabase_key)
 
     def _validate_file(self, file: UploadFile, max_size_mb: int, allowed_types: list[str]):
         """Validates file size and MIME type."""

@@ -5,11 +5,12 @@ from decimal import Decimal
 from sqlalchemy import String, ForeignKey, Date, Numeric, Boolean
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.models.base import Base, TimestampMixin
+from app.models.medical_record import MedicalRecord
+from app.models.prediction import Prediction
+from app.models.vaccination import Vaccination
 
 if TYPE_CHECKING:
     from app.models.user import User
-    from app.models.vaccination import Vaccination
-    from app.models.prediction import Prediction
 
 class Pet(Base, TimestampMixin):
     """
@@ -75,4 +76,9 @@ class Pet(Base, TimestampMixin):
         "Prediction", 
         back_populates="pet", 
         cascade="all, delete-orphan"
+    )
+    medical_records: Mapped[List["MedicalRecord"]] = relationship(
+        "MedicalRecord",
+        back_populates="pet",
+        cascade="all, delete-orphan",
     )
