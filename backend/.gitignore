@@ -3,6 +3,17 @@
 __pycache__/
 *.pyc
 .idea/
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# ML Models
+*.pkl
+*.pickle
+*.joblib
+models/
+artifacts/
+
 .vscode/
 .coverage
 .pytest_cache/
