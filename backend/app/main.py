@@ -1,7 +1,9 @@
 """FastAPI application entry point."""
 
+import json
 import logging
 import time
+import uuid
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Request
@@ -19,19 +21,40 @@ from app.core.rate_limit import RateLimitMiddleware
 logger = logging.getLogger(__name__)
 
 
+def _safe_body(body: bytes) -> str:
+    """Return a sanitised request body string suitable for logging."""
+    if not body:
+        return ""
+    try:
+        obj = json.loads(body)
+        if isinstance(obj, dict):
+            obj = {k: ("****" if "password" in k.lower() else v) for k, v in obj.items()}
+        return json.dumps(obj)
+    except (json.JSONDecodeError, UnicodeDecodeError):
+        return "(non-json body)"
+
+
 class RequestLogMiddleware(BaseHTTPMiddleware):
-    """Log every request with method, path, status, and duration."""
+    """Log every request with method, path, status, duration, and sanitised body."""
 
     async def dispatch(self, request: Request, call_next):
+        body = await request.body()
+        # Restore body so downstream handlers can read it
+        request._body = body
+
         start = time.perf_counter()
         response = await call_next(request)
         elapsed = time.perf_counter() - start
+
+        safe = _safe_body(body)
+        extra = f" body={safe}" if safe else ""
         logger.info(
-            "%s %s %s %.0fms",
+            "%s %s %s %.0fms%s",
             request.method,
             request.url.path,
             response.status_code,
             elapsed * 1000,
+            extra,
         )
         return response
 
@@ -41,7 +64,9 @@ async def lifespan(application: FastAPI):
     """Run startup and shutdown actions around the application lifecycle."""
     settings: Settings = application.state.settings
     configure_logging(debug=settings.debug)
-    logger.info("VetiCare API starting")
+    application.state.startup_ok = True
+    application.state.supabase_ok = False
+    logger.info("VetiCare API starting — environment=%s", settings.environment)
 
     # ── Validate required env vars at startup ────────────────────────
     missing = []
@@ -49,21 +74,37 @@ async def lifespan(application: FastAPI):
         missing.append("VETICARE_SUPABASE_URL")
     if not settings.veticare_supabase_key:
         missing.append("VETICARE_SUPABASE_KEY")
+    if settings.jwt_secret_key.get_secret_value() == "development-only-change-me":
+        missing.append("JWT_SECRET_KEY (still using default)")
     if missing:
         logger.error(
             "Missing required environment variables: %s — auth and data endpoints will fail",
             ", ".join(missing),
         )
+        application.state.startup_ok = False
+
+    # ── Test Supabase connection ──────────────────────────────────────
+    if settings.veticare_supabase_url and settings.veticare_supabase_key:
+        try:
+            from supabase import create_client
+
+            client = create_client(settings.veticare_supabase_url, settings.veticare_supabase_key)
+            client.table("profiles").select("id").limit(1).execute()
+            application.state.supabase_ok = True
+            logger.info("Supabase connection verified")
+        except Exception:
+            logger.exception("Supabase connection failed")
+    else:
+        logger.warning("Supabase credentials not set — skipping connection test")
 
     # ── Log registered routes ────────────────────────────────────────
-    routes = []
+    route_list = []
     for route in application.routes:
         if hasattr(route, "methods") and hasattr(route, "path"):
-            for method in route.methods:
+            for method in sorted(route.methods):
                 if method in ("GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"):
-                    routes.append(f"{method} {route.path}")
-    for r in sorted(routes):
-        logger.info("Route: %s", r)
+                    route_list.append(f"  {method:7s} {route.path}")
+    logger.info("Registered routes (%d):\n%s", len(route_list), "\n".join(sorted(route_list)))
 
     # ── Load ML model ────────────────────────────────────────────────
     try:
@@ -95,14 +136,6 @@ def create_application() -> FastAPI:
     )
     application.state.settings = settings
 
-    # Middleware order: outermost first (Starlette reverses internally,
-    # so the LAST added runs FIRST for incoming requests).
-    #
-    # Correct order for incoming requests:
-    #   TrustedHost -> CORS -> RequestLog -> RateLimit -> Router
-    #
-    # So we add them in reverse: RateLimit first, RequestLog second,
-    # CORS third, TrustedHost last.
     application.add_middleware(RateLimitMiddleware)
     application.add_middleware(RequestLogMiddleware)
     application.add_middleware(
@@ -120,17 +153,39 @@ def create_application() -> FastAPI:
 
     application.include_router(api_router, prefix=settings.api_v1_prefix)
 
-    # ── Global exception handler ────────────────────────────────────
+    # ── Global exception handler with trace_id ───────────────────────
     @application.exception_handler(Exception)
     async def global_exception_handler(request: Request, exc: Exception):
-        logger.exception("Unhandled exception on %s %s", request.method, request.url.path)
-        return JSONResponse(status_code=500, content={"detail": "Internal server error"})
+        trace_id = str(uuid.uuid4())
+        body = await request.body()
+        safe = _safe_body(body)
+        logger.exception(
+            "trace_id=%s unhandled exception on %s %s body=%s",
+            trace_id,
+            request.method,
+            request.url.path,
+            safe,
+        )
+        return JSONResponse(
+            status_code=500,
+            content={
+                "success": False,
+                "message": "Internal server error",
+                "trace_id": trace_id,
+            },
+        )
 
-    # ── Root health endpoint ────────────────────────────────────────
+    # ── Health endpoint ──────────────────────────────────────────────
     @application.get("/health", tags=["health"])
-    async def health_check() -> dict[str, str]:
-        """Return a lightweight service liveness response."""
-        return {"status": "ok"}
+    async def health_check() -> dict:
+        model_status = "loaded" if getattr(application.state, "model", None) is not None else "unavailable"
+        return {
+            "status": "ok",
+            "version": "1.0.0",
+            "database": "connected" if getattr(application.state, "supabase_ok", False) else "unknown",
+            "supabase": "connected" if getattr(application.state, "supabase_ok", False) else "unknown",
+            "model": model_status,
+        }
 
     return application
 

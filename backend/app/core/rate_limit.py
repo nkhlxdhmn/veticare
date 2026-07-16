@@ -20,6 +20,15 @@ _DEFAULT_LIMITS: dict[str, tuple[int, int]] = {
     "/api/v1/services/nearby": (20, 60),
 }
 
+_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "https://veticare-seven.vercel.app",
+    "https://veticare.onrender.com",
+]
+
 
 class RateLimitMiddleware(BaseHTTPMiddleware):
     """Track request counts per client IP with a sliding-window counter."""
@@ -51,6 +60,18 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
         self._hits[key].append(now)
         return False
 
+    def _cors_headers(self, request: Request) -> dict[str, str]:
+        origin = request.headers.get("origin", "")
+        if origin in _ALLOWED_ORIGINS:
+            return {
+                "Access-Control-Allow-Origin": origin,
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Allow-Methods": "*",
+                "Access-Control-Allow-Headers": "*",
+                "Vary": "Origin",
+            }
+        return {}
+
     async def dispatch(self, request: Request, call_next: Callable) -> Response:
         # Never rate-limit CORS preflight requests
         if request.method == "OPTIONS":
@@ -61,10 +82,12 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
         key = f"{self._client_ip(request)}:{path}"
 
         if self._is_rate_limited(key, limit, window):
+            headers = {"Retry-After": str(window)}
+            headers.update(self._cors_headers(request))
             return JSONResponse(
                 status_code=429,
                 content={"detail": "Too many requests. Please try again later."},
-                headers={"Retry-After": str(window)},
+                headers=headers,
             )
 
         return await call_next(request)
