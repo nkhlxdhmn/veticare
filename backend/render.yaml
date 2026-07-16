@@ -26,5 +26,4 @@ services:
         sync: false
       - key: VETICARE_SUPABASE_KEY
         sync: false
-      - key: MODEL_PATH
-        value: dataset/Random1.joblib
+      # MODEL_PATH removed — path is resolved automatically from __file__

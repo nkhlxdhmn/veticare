@@ -5,28 +5,15 @@ from __future__ import annotations
 import csv
 import logging
 from pathlib import Path
-import sys
 
 import joblib
 import pandas as pd
 from sklearn.pipeline import Pipeline
 
-from app.core.config import get_settings
-
 logger = logging.getLogger(__name__)
 
-
-def _log_debug_info(tried_path: Path) -> None:
-    logger.warning("CWD: %s", Path.cwd())
-    logger.warning("__file__: %s", __file__)
-    logger.warning("resolved __file__: %s", Path(__file__).resolve())
-    logger.warning("parents[2]: %s", Path(__file__).resolve().parents[2])
-    logger.warning("tried path: %s", tried_path)
-    logger.warning("tried path exists: %s", tried_path.exists())
-    logger.warning("tried path parent exists: %s", tried_path.parent.exists())
-    if tried_path.parent.exists():
-        logger.warning("contents of %s: %s", tried_path.parent, list(tried_path.parent.iterdir()))
-    logger.warning("sys.path: %s", sys.path)
+_BACKEND_DIR = Path(__file__).resolve().parents[2]
+_DATASET_DIR = _BACKEND_DIR / "dataset"
 
 _FEATURE_COLUMNS = ["AnimalName", "symptoms1", "symptoms2", "symptoms3", "symptoms4", "symptoms5"]
 
@@ -38,17 +25,7 @@ _SUPPORTED_SPECIES: list[str] | None = None
 def _get_dataset_path() -> Path:
     global _DATASET_PATH
     if _DATASET_PATH is None:
-        settings = get_settings()
-        base = Path(__file__).resolve().parents[2]
-        if settings.model_path:
-            p = Path(settings.model_path)
-            if not p.is_absolute():
-                p = base / p
-            _DATASET_PATH = p.parent / "Animal_Disease_dataset.csv"
-        else:
-            _DATASET_PATH = base / "dataset" / "Animal_Disease_dataset.csv"
-        if not _DATASET_PATH.exists():
-            logger.warning("Dataset not found at computed path %s, trying CWD-relative", _DATASET_PATH)
+        _DATASET_PATH = _DATASET_DIR / "Animal_Disease_dataset.csv"
     return _DATASET_PATH
 
 
@@ -95,18 +72,9 @@ def get_supported_species() -> list[str]:
 
 
 def load_model() -> Pipeline:
-    """Load the joblib pipeline from the configured model path."""
-    settings = get_settings()
-    base = Path(__file__).resolve().parents[2]
-    model_path_str = settings.model_path
-    if model_path_str:
-        model_path = Path(model_path_str)
-        if not model_path.is_absolute():
-            model_path = base / model_path_str
-    else:
-        model_path = base / "dataset" / "Random1.joblib"
+    """Load the joblib pipeline from the dataset directory."""
+    model_path = _DATASET_DIR / "Random1.joblib"
     if not model_path.exists():
-        _log_debug_info(model_path)
         raise FileNotFoundError(f"Model file not found at {model_path}")
     logger.info("Loading ML model from %s", model_path)
     model: Pipeline = joblib.load(model_path)
