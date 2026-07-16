@@ -3,24 +3,25 @@
 import logging
 from datetime import UTC, datetime, timedelta
 
+import bcrypt as _bcrypt
 from jose import JWTError, jwt
-from passlib.context import CryptContext
 
 from app.core.config import get_settings
 
 logger = logging.getLogger(__name__)
 
-PASSWORD_CONTEXT = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
 
 def hash_password(password: str) -> str:
     """Hash a password with bcrypt; never store the original password."""
-    return PASSWORD_CONTEXT.hash(password)
+    return _bcrypt.hashpw(password.encode("utf-8"), _bcrypt.gensalt()).decode("utf-8")
 
 
 def verify_password(password: str, hashed_password: str) -> bool:
     """Safely compare a candidate password to its stored bcrypt hash."""
-    return PASSWORD_CONTEXT.verify(password, hashed_password)
+    try:
+        return _bcrypt.checkpw(password.encode("utf-8"), hashed_password.encode("utf-8"))
+    except ValueError:
+        return False
 
 
 def create_access_token(subject: str) -> str:
