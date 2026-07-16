@@ -52,6 +52,10 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
         return False
 
     async def dispatch(self, request: Request, call_next: Callable) -> Response:
+        # Never rate-limit CORS preflight requests
+        if request.method == "OPTIONS":
+            return await call_next(request)
+
         path = request.url.path
         limit, window = _DEFAULT_LIMITS.get(path, self._default_limit)
         key = f"{self._client_ip(request)}:{path}"

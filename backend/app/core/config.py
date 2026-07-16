@@ -15,6 +15,7 @@ class Settings(BaseSettings):
     """Application configuration with safe development defaults."""
 
     app_name: str = "VetiCare API"
+    version: str = "1.0.0"
     environment: Literal["development", "test", "production"] = "development"
     debug: bool = False
     api_v1_prefix: str = "/api/v1"
@@ -31,7 +32,6 @@ class Settings(BaseSettings):
     jwt_secret_key: SecretStr = SecretStr("development-only-change-me")
     jwt_algorithm: str = "HS256"
     access_token_expire_minutes: int = Field(default=30, gt=0, le=1_440)
-    model_path: str = ""
 
     model_config = SettingsConfigDict(
         env_file=BACKEND_DIRECTORY / ".env",
