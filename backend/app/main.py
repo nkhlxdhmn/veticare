@@ -85,7 +85,7 @@ async def lifespan(application: FastAPI):
         missing.append("VETICARE_SUPABASE_URL")
     if not settings.veticare_supabase_key:
         missing.append("VETICARE_SUPABASE_KEY")
-    if settings.jwt_secret_key.get_secret_value() == "development-only-change-me":
+    if settings.environment == "production" and settings.jwt_secret_key.get_secret_value() == "development-only-change-me":
         missing.append("JWT_SECRET_KEY (still using default)")
     if missing:
         msg = "Missing required environment variables: " + ", ".join(missing)
