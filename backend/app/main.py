@@ -6,7 +6,7 @@ import time
 import uuid
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from starlette.middleware.base import BaseHTTPMiddleware
@@ -86,12 +86,13 @@ async def lifespan(application: FastAPI):
     # ── Test Supabase connection ──────────────────────────────────────
     if settings.veticare_supabase_url and settings.veticare_supabase_key:
         try:
-            from supabase import create_client
+            from app.core.supabase import get_supabase_client
 
-            client = create_client(settings.veticare_supabase_url, settings.veticare_supabase_key)
-            client.table("profiles").select("id").limit(1).execute()
+            client = get_supabase_client()
             application.state.supabase_ok = True
-            logger.info("Supabase connection verified")
+            logger.info("Supabase connection verified (service_role key)")
+        except HTTPException as exc:
+            logger.error("Supabase connection failed: %s", exc.detail)
         except Exception:
             logger.exception("Supabase connection failed")
     else:
