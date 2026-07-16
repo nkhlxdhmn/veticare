@@ -55,6 +55,16 @@ async def lifespan(application: FastAPI):
             ", ".join(missing),
         )
 
+    # ── Log registered routes ────────────────────────────────────────
+    routes = []
+    for route in application.routes:
+        if hasattr(route, "methods") and hasattr(route, "path"):
+            for method in route.methods:
+                if method in ("GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"):
+                    routes.append(f"{method} {route.path}")
+    for r in sorted(routes):
+        logger.info("Route: %s", r)
+
     # ── Load ML model ────────────────────────────────────────────────
     try:
         application.state.model = load_model()
@@ -120,12 +130,7 @@ def create_application() -> FastAPI:
     @application.get("/health", tags=["health"])
     async def health_check() -> dict[str, str]:
         """Return a lightweight service liveness response."""
-        model_status = "loaded" if getattr(application.state, "model", None) is not None else "unavailable"
-        return {
-            "status": "ok",
-            "version": "1.0.0",
-            "model": model_status,
-        }
+        return {"status": "ok"}
 
     return application
 
