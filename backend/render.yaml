@@ -14,7 +14,7 @@ services:
       - key: API_V1_PREFIX
         value: /api/v1
       - key: CORS_ORIGINS
-        value: '["https://veticare.vercel.app"]'
+        value: '["https://veticare-seven.vercel.app"]'
       - key: JWT_SECRET_KEY
         generateValue: true
       - key: JWT_ALGORITHM
