@@ -25,10 +25,14 @@ def _get_dataset_path() -> Path:
     global _DATASET_PATH
     if _DATASET_PATH is None:
         settings = get_settings()
+        base = Path(__file__).resolve().parents[2]
         if settings.model_path:
-            _DATASET_PATH = Path(settings.model_path).parent / "Animal_Disease_dataset.csv"
+            p = Path(settings.model_path)
+            if not p.is_absolute():
+                p = base / p
+            _DATASET_PATH = p.parent / "Animal_Disease_dataset.csv"
         else:
-            _DATASET_PATH = Path(__file__).resolve().parents[2] / "dataset" / "Animal_Disease_dataset.csv"
+            _DATASET_PATH = base / "dataset" / "Animal_Disease_dataset.csv"
     return _DATASET_PATH
 
 
@@ -77,11 +81,14 @@ def get_supported_species() -> list[str]:
 def load_model() -> Pipeline:
     """Load the joblib pipeline from the configured model path."""
     settings = get_settings()
+    base = Path(__file__).resolve().parents[2]
     model_path_str = settings.model_path
-    if not model_path_str:
-        model_path = Path(__file__).resolve().parents[2] / "dataset" / "Random1.joblib"
-    else:
+    if model_path_str:
         model_path = Path(model_path_str)
+        if not model_path.is_absolute():
+            model_path = base / model_path_str
+    else:
+        model_path = base / "dataset" / "Random1.joblib"
     if not model_path.exists():
         raise FileNotFoundError(f"Model file not found at {model_path}")
     logger.info("Loading ML model from %s", model_path)
