@@ -3,10 +3,11 @@
 import uuid
 from datetime import date, datetime
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field
 
 
 class PetCreate(BaseModel):
+    species: str | None = Field(default=None, max_length=80)
     animal_id: uuid.UUID | None = None
     name: str = Field(min_length=1, max_length=100)
     breed: str | None = Field(default=None, max_length=100)
@@ -21,6 +22,7 @@ class PetCreate(BaseModel):
 
 
 class PetUpdate(BaseModel):
+    species: str | None = Field(default=None, max_length=80)
     animal_id: uuid.UUID | None = None
     name: str | None = Field(default=None, min_length=1, max_length=100)
     breed: str | None = Field(default=None, max_length=100)
@@ -35,7 +37,6 @@ class PetUpdate(BaseModel):
 
 
 class AnimalBrief(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
 
     id: uuid.UUID
     name: str
@@ -43,11 +44,11 @@ class AnimalBrief(BaseModel):
 
 
 class PetResponse(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
 
     id: uuid.UUID
     owner_id: uuid.UUID
     animal_id: uuid.UUID | None
+    species: str | None = None
     name: str
     breed: str | None
     dob: date | None

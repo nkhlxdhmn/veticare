@@ -1,6 +1,6 @@
 """Request and response schemas."""
 
-from app.schemas.auth import LoginRequest, ProfileResponse, RegisterRequest, TokenResponse
+from app.schemas.auth import LoginRequest, ProfileResponse as AuthProfileResponse, RegisterRequest, TokenResponse
 from app.schemas.care_guide import CareGuideResponse
 from app.schemas.animal import AnimalResponse
 from app.schemas.disease import DiseaseResponse
@@ -23,7 +23,7 @@ __all__ = [
     "PredictionCreate",
     "PredictionResponse",
     "ProfileDetailResponse",
-    "ProfileResponse",
+    "AuthProfileResponse",
     "ProfileUpdate",
     "RegisterRequest",
     "TokenResponse",

@@ -3,11 +3,10 @@
 import uuid
 from datetime import datetime
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel
 
 
 class MLModelResponse(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
 
     id: uuid.UUID
     model_name: str

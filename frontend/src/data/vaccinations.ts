@@ -1,7 +1,0 @@
-export type Vaccination = { id: string; petId: string; petName: string; vaccine: string; dose: string; dateGiven: string; nextDue: string; status: "Completed" | "Upcoming" | "Overdue"; clinic: string; veterinarian: string; notes: string; certificate: string };
-export const vaccinations: Vaccination[] = [
- { id: "v1", petId: "bella", petName: "Bella", vaccine: "Rabies", dose: "1 year booster", dateGiven: "2025-05-12", nextDue: "2026-05-12", status: "Overdue", clinic: "Park Veterinary Clinic", veterinarian: "Dr. Maya Patel", notes: "Book follow-up promptly.", certificate: "Rabies certificate" },
- { id: "v2", petId: "bella", petName: "Bella", vaccine: "DHPP", dose: "Annual booster", dateGiven: "2026-05-12", nextDue: "2027-05-12", status: "Completed", clinic: "Park Veterinary Clinic", veterinarian: "Dr. Maya Patel", notes: "No reaction noted.", certificate: "DHPP certificate" },
- { id: "v3", petId: "milo", petName: "Milo", vaccine: "FVRCP", dose: "Annual booster", dateGiven: "2025-07-20", nextDue: "2026-07-20", status: "Upcoming", clinic: "Park Veterinary Clinic", veterinarian: "Dr. Maya Patel", notes: "Due within the week.", certificate: "FVRCP certificate" },
- { id: "v4", petId: "oscar", petName: "Oscar", vaccine: "Bordetella", dose: "Annual booster", dateGiven: "2026-04-10", nextDue: "2027-04-10", status: "Completed", clinic: "Park Veterinary Clinic", veterinarian: "Dr. Maya Patel", notes: "Required before boarding.", certificate: "Bordetella certificate" },
-];

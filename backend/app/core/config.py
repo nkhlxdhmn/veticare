@@ -21,21 +21,20 @@ class Settings(BaseSettings):
     cors_origins: list[str] = [
         "http://localhost:3000",
         "http://127.0.0.1:3000",
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
     ]
-    secret_key: SecretStr = SecretStr("development-only-change-me")
-    database_url: str | None = None
+
+    veticare_supabase_url: str = ""
+    veticare_supabase_key: str = ""
+    jwt_secret_key: SecretStr = SecretStr("development-only-change-me")
+    jwt_algorithm: str = "HS256"
     access_token_expire_minutes: int = Field(default=30, gt=0, le=1_440)
-    google_places_api_key: SecretStr = SecretStr("")
-    supabase_url: str = ""
-    supabase_publishable_key: str = ""
-    supabase_secret_key: str = ""
-    supabase_jwks_url: str = ""
+    model_path: str = ""
 
     model_config = SettingsConfigDict(
         env_file=BACKEND_DIRECTORY / ".env",
         env_file_encoding="utf-8",
-        env_prefix="VETICARE_",
-        case_sensitive=False,
         extra="ignore",
         validate_default=True,
     )
@@ -57,11 +56,9 @@ class Settings(BaseSettings):
         """Reject the insecure development secret in production."""
         if (
             self.environment == "production"
-            and self.secret_key.get_secret_value() == "development-only-change-me"
+            and self.jwt_secret_key.get_secret_value() == "development-only-change-me"
         ):
-            raise ValueError("SECRET_KEY must be set to a secure value in production")
-        if not self.supabase_jwks_url and self.supabase_url:
-            self.supabase_jwks_url = f"{self.supabase_url.rstrip('/')}/auth/v1/.well-known/jwks.json"
+            raise ValueError("JWT_SECRET_KEY must be set to a secure value in production")
         return self
 
 

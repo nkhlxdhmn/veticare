@@ -11,7 +11,6 @@ from app.core.config import get_settings
 logger = logging.getLogger(__name__)
 
 PASSWORD_CONTEXT = CryptContext(schemes=["bcrypt"], deprecated="auto")
-JWT_ALGORITHM = "HS256"
 
 
 def hash_password(password: str) -> str:
@@ -31,15 +30,15 @@ def create_access_token(subject: str) -> str:
     now = datetime.now(UTC)
     return jwt.encode(
         {"sub": subject, "exp": expires_at, "iat": now},
-        settings.secret_key.get_secret_value(),
-        algorithm=JWT_ALGORITHM,
+        settings.jwt_secret_key.get_secret_value(),
+        algorithm=settings.jwt_algorithm,
     )
 
 
 def decode_access_token(token: str) -> str:
     """Validate a JWT and return its subject or raise JWTError."""
     settings = get_settings()
-    payload = jwt.decode(token, settings.secret_key.get_secret_value(), algorithms=[JWT_ALGORITHM])
+    payload = jwt.decode(token, settings.jwt_secret_key.get_secret_value(), algorithms=[settings.jwt_algorithm])
     subject = payload.get("sub")
     if not isinstance(subject, str):
         raise JWTError("Token has no subject")

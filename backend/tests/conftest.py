@@ -1,84 +1,62 @@
 """Test configuration and shared fixtures."""
 
+from unittest.mock import MagicMock, patch
+
 import pytest
 from fastapi.testclient import TestClient
-from sqlalchemy import create_engine, event
-from sqlalchemy.orm import Session, sessionmaker
+from supabase import Client
 
-from app.core.database import Base
-from app.core.rate_limit import RateLimitMiddleware
+from app.core.supabase import get_supabase_client
 from app.main import app
 
 
-SQLALCHEMY_TEST_DATABASE_URL = "sqlite:///./test.db"
-
-engine = create_engine(
-    SQLALCHEMY_TEST_DATABASE_URL,
-    connect_args={"check_same_thread": False},
-)
-
-
-@event.listens_for(engine, "connect")
-def set_sqlite_pragma(dbapi_connection, connection_record):
-    cursor = dbapi_connection.cursor()
-    cursor.execute("PRAGMA foreign_keys=ON")
-    cursor.close()
-
-
-TestingSessionLocal = sessionmaker(bind=engine, autoflush=False, expire_on_commit=False)
-
-
 @pytest.fixture(autouse=True)
-def setup_database():
-    """Create and drop tables for each test."""
-    RateLimitMiddleware.clear_hits()
-    Base.metadata.create_all(bind=engine)
-    yield
-    Base.metadata.drop_all(bind=engine)
+def mock_supabase():
+    """Replace the real Supabase client with a mock for all tests."""
+    mock_client = MagicMock(spec=Client)
 
+    mock_table_obj = MagicMock()
+    mock_table_obj.select.return_value = mock_table_obj
+    mock_table_obj.insert.return_value = mock_table_obj
+    mock_table_obj.update.return_value = mock_table_obj
+    mock_table_obj.delete.return_value = mock_table_obj
+    mock_table_obj.eq.return_value = mock_table_obj
+    mock_table_obj.neq.return_value = mock_table_obj
+    mock_table_obj.ilike.return_value = mock_table_obj
+    mock_table_obj.order.return_value = mock_table_obj
+    mock_table_obj.range.return_value = mock_table_obj
+    mock_table_obj.limit.return_value = mock_table_obj
+    mock_table_obj.execute.return_value = MagicMock(data=[])
+    mock_client.table.return_value = mock_table_obj
 
-@pytest.fixture
-def session() -> Session:
-    """Provide a transactional database session for tests."""
-    db = TestingSessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
-
-@pytest.fixture
-def client() -> TestClient:
-    """Provide a FastAPI test client with overridden DB dependency."""
-    from app.core.database import get_db
-
-    def override_get_db():
-        db = TestingSessionLocal()
-        try:
-            yield db
-        finally:
-            db.close()
-
-    app.dependency_overrides[get_db] = override_get_db
-    with TestClient(app) as c:
-        yield c
+    app.dependency_overrides[get_supabase_client] = lambda: mock_client
+    yield mock_client
     app.dependency_overrides.clear()
 
 
 @pytest.fixture
-def auth_headers(client: TestClient) -> dict:
+def client() -> TestClient:
+    """Provide a FastAPI test client."""
+    with TestClient(app) as c:
+        yield c
+
+
+@pytest.fixture
+def auth_headers(client: TestClient, mock_supabase) -> dict:
     """Register a test user and return Authorization headers."""
-    client.post(
-        "/api/v1/auth/register",
-        json={
-            "email": "test@example.com",
-            "password": "securepass123",
-            "full_name": "Test User",
-        },
-    )
-    response = client.post(
-        "/api/v1/auth/login",
-        json={"email": "test@example.com", "password": "securepass123"},
-    )
-    token = response.json()["access_token"]
+    from app.utils.security import create_access_token
+
+    test_id = "00000000-0000-0000-0000-000000000001"
+    mock_supabase.table.return_value.execute.return_value = MagicMock(data=[{
+        "id": test_id,
+        "email": "test@example.com",
+        "full_name": "Test User",
+        "hashed_password": "fakehash",
+        "phone": None,
+        "role": "pet_owner",
+        "is_active": True,
+        "created_at": "2025-01-01T00:00:00Z",
+    }])
+
+    token = create_access_token(test_id)
     return {"Authorization": f"Bearer {token}"}

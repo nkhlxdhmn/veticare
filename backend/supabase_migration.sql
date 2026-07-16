@@ -35,8 +35,26 @@ ALTER TABLE prediction_history
 ALTER TABLE prediction_history
   ADD CONSTRAINT ck_prediction_confidence CHECK (confidence >= 0 AND confidence <= 1);
 
--- 8. Verify
+-- 8. Add reminder_enabled to vaccination_records
+ALTER TABLE vaccination_records
+  ADD COLUMN IF NOT EXISTS reminder_enabled BOOLEAN NOT NULL DEFAULT TRUE;
+
+-- 9. Make pet_id nullable and add new prediction fields
+ALTER TABLE prediction_history
+  ADD COLUMN IF NOT EXISTS user_id UUID REFERENCES profiles(id) ON DELETE CASCADE,
+  ADD COLUMN IF NOT EXISTS species VARCHAR(100) NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS breed VARCHAR(100),
+  ADD COLUMN IF NOT EXISTS age INTEGER,
+  ADD COLUMN IF NOT EXISTS gender VARCHAR(20),
+  ADD COLUMN IF NOT EXISTS symptoms JSONB DEFAULT '[]'::jsonb;
+ALTER TABLE prediction_history
+  ALTER COLUMN pet_id DROP NOT NULL;
+
+CREATE INDEX IF NOT EXISTS ix_prediction_history_user_id ON prediction_history(user_id);
+CREATE INDEX IF NOT EXISTS ix_prediction_history_species ON prediction_history(species);
+
+-- 10. Verify
 SELECT table_name, column_name, data_type, is_nullable
 FROM information_schema.columns
-WHERE table_name IN ('profiles', 'pets')
+WHERE table_name IN ('profiles', 'pets', 'prediction_history', 'vaccination_records')
 ORDER BY table_name, ordinal_position;

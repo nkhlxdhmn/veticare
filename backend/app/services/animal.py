@@ -2,17 +2,16 @@
 
 import uuid
 
-from sqlalchemy import select
-from sqlalchemy.orm import Session
-
-from app.models import Animal
+from supabase import Client
 
 
-def get_animals(session: Session, offset: int = 0, limit: int = 20) -> list[Animal]:
+def get_animals(supabase: Client, offset: int = 0, limit: int = 20) -> list[dict]:
     """Return animal species with pagination."""
-    return list(session.scalars(select(Animal).order_by(Animal.name).offset(offset).limit(limit)).unique())
+    result = supabase.table("animals").select("*").order("name").range(offset, offset + limit - 1).execute()
+    return result.data
 
 
-def get_animal_by_id(session: Session, animal_id: uuid.UUID) -> Animal | None:
+def get_animal_by_id(supabase: Client, animal_id: uuid.UUID) -> dict | None:
     """Fetch a single animal by primary key."""
-    return session.get(Animal, animal_id)
+    result = supabase.table("animals").select("*").eq("id", str(animal_id)).execute()
+    return result.data[0] if result.data else None

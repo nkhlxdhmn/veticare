@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <div className="max-w-3xl mx-auto space-y-24 animate-fade-in py-12">
+    <div className="max-w-3xl mx-auto space-y-16 md:space-y-24 animate-fade-in py-10 md:py-16 px-4 md:px-6">
       <div className="space-y-6 text-center">
         <h1 className="text-5xl md:text-7xl font-serif font-medium tracking-tight">The Vision</h1>
         <p className="text-xl md:text-2xl text-textSecondary font-light leading-relaxed">

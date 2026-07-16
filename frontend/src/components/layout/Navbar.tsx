@@ -30,34 +30,34 @@ export function Navbar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-borderLight bg-white/95 backdrop-blur-md">
-      <div className="mx-auto flex h-[72px] w-full max-w-[1280px] items-center justify-between px-6 md:px-12 lg:px-24">
-        <Link to="/" className="shrink-0 text-2xl font-serif font-medium tracking-widest text-textPrimary" aria-label="VetiCare home">VETICARE</Link>
+      <div className="mx-auto flex h-16 md:h-[72px] w-full max-w-[1280px] items-center justify-between px-4 md:px-6 lg:px-12 xl:px-24">
+        <Link to="/" className="shrink-0 text-xl md:text-2xl font-serif font-medium tracking-widest text-textPrimary" aria-label="VetiCare home">VETICARE</Link>
 
-        <nav aria-label="Primary navigation" className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-5 xl:flex">
+        <nav aria-label="Primary navigation" className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-4 md:gap-5 lg:flex">
           {navLinks.map((link) => {
             const active = isActivePath(location.pathname, link.path);
-            return <Link key={link.path} to={link.path} aria-current={active ? "page" : undefined} className={cn("border-b border-transparent py-1 text-sm transition-colors hover:text-textPrimary", active ? "border-textPrimary font-medium text-textPrimary" : "text-textSecondary")}>{link.name}</Link>;
+            return <Link key={link.path} to={link.path} aria-current={active ? "page" : undefined} className={cn("border-b border-transparent py-1 text-xs md:text-sm transition-colors hover:text-textPrimary", active ? "border-textPrimary font-medium text-textPrimary" : "text-textSecondary")}>{link.name}</Link>;
           })}
         </nav>
 
-        <div className="hidden shrink-0 items-center gap-3 xl:flex">
+        <div className="hidden shrink-0 items-center gap-2 md:gap-3 lg:flex">
           {user ? <>
-            <Link to="/dashboard" className="text-sm font-medium text-textSecondary transition-colors hover:text-textPrimary">Dashboard</Link>
-            <Link to="/profile" aria-label="Open profile" className="grid h-9 w-9 place-items-center rounded-full bg-gray-100 text-sm font-medium transition-colors hover:bg-gray-200">{user.name.trim().slice(0, 1).toUpperCase() || "U"}</Link>
-            <button onClick={signOut} className="text-sm text-textSecondary transition-colors hover:text-textPrimary">Logout</button>
+            <Link to="/dashboard" className="hidden md:block text-xs md:text-sm font-medium text-textSecondary transition-colors hover:text-textPrimary">Dashboard</Link>
+            <Link to="/profile" aria-label="Open profile" className="grid h-8 md:h-9 w-8 md:w-9 place-items-center rounded-full bg-gray-100 text-xs md:text-sm font-medium transition-colors hover:bg-gray-200">{user.name.trim().slice(0, 1).toUpperCase() || "U"}</Link>
+            <button onClick={signOut} className="hidden md:block text-xs md:text-sm text-textSecondary transition-colors hover:text-textPrimary">Logout</button>
           </> : <>
-            <Link to="/login" className="text-sm font-medium text-textSecondary transition-colors hover:text-textPrimary">Login</Link>
-            <Link to="/register"><Button size="sm" className="rounded-full px-5">Get started</Button></Link>
+            <Link to="/login" className="hidden md:block text-xs md:text-sm font-medium text-textSecondary transition-colors hover:text-textPrimary">Login</Link>
+            <Link to="/register"><Button size="sm" className="rounded-full px-4 md:px-5">Get started</Button></Link>
           </>}
         </div>
 
-        <button type="button" className="rounded-md p-2 text-textPrimary transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-textPrimary xl:hidden" onClick={() => setIsMobileMenuOpen((open) => !open)} aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"} aria-expanded={isMobileMenuOpen} aria-controls="mobile-navigation">
+        <button type="button" className="rounded-md p-2 text-textPrimary transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-textPrimary lg:hidden" onClick={() => setIsMobileMenuOpen((open) => !open)} aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"} aria-expanded={isMobileMenuOpen} aria-controls="mobile-navigation">
           {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
-      <div id="mobile-navigation" className={cn("absolute left-0 top-[72px] w-full overflow-y-auto border-b border-borderLight bg-white transition-[max-height,opacity] duration-200 xl:hidden", isMobileMenuOpen ? "max-h-[calc(100vh-72px)] opacity-100" : "max-h-0 opacity-0")}>
-        <nav aria-label="Mobile navigation" className="flex flex-col px-6 py-4">
+      <div id="mobile-navigation" className={cn("absolute left-0 top-16 md:top-[72px] w-full overflow-y-auto border-b border-borderLight bg-white transition-[max-height,opacity] duration-200 lg:hidden", isMobileMenuOpen ? "max-h-[calc(100vh-4rem)] md:max-h-[calc(100vh-72px)] opacity-100" : "max-h-0 opacity-0")}>
+        <nav aria-label="Mobile navigation" className="flex flex-col px-4 md:px-6 py-4">
           <Link to="/" className={cn("border-b border-borderLight py-3 text-base", location.pathname === "/" ? "font-medium text-textPrimary" : "text-textSecondary")}>Home</Link>
           {navLinks.map((link) => { const active = isActivePath(location.pathname, link.path); return <Link key={link.path} to={link.path} aria-current={active ? "page" : undefined} className={cn("border-b border-borderLight py-3 text-base", active ? "font-medium text-textPrimary" : "text-textSecondary")}>{link.name}</Link>; })}
           <Link to="/about" className={cn("border-b border-borderLight py-3 text-base", location.pathname === "/about" ? "font-medium text-textPrimary" : "text-textSecondary")}>About</Link>

@@ -26,7 +26,7 @@ export function Section({
 
   return (
     <Component
-      className={cn("py-[120px]", className)}
+      className={cn("py-12 md:py-16 lg:py-20 xl:py-24", className)}
       {...props}
     >
       {content}

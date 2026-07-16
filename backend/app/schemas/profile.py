@@ -3,7 +3,7 @@
 import uuid
 from datetime import datetime
 
-from pydantic import BaseModel, ConfigDict, EmailStr, Field
+from pydantic import BaseModel, EmailStr, Field
 
 
 class ProfileUpdate(BaseModel):
@@ -13,7 +13,6 @@ class ProfileUpdate(BaseModel):
 
 
 class ProfileResponse(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
 
     id: uuid.UUID
     email: EmailStr

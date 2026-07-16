@@ -3,8 +3,16 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --color-bg: 255 255 255;
+    --color-text-primary: 17 17 17;
+    --color-text-secondary: 107 114 128;
+    --color-border: 229 231 235;
+    --color-accent: 22 163 74;
+  }
+
   body {
-    @apply bg-background text-textPrimary font-sans antialiased selection:bg-accentGreen selection:text-white;
+    @apply bg-background text-textPrimary font-sans antialiased selection:bg-accentGreen selection:text-white transition-colors duration-200;
   }
   
   h1, h2, h3, h4, h5, h6 {

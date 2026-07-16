@@ -10,6 +10,7 @@ from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from app.api.router import api_router
 from app.core.config import Settings, get_settings
 from app.core.logging import configure_logging
+from app.core.ml_model import load_model
 from app.core.rate_limit import RateLimitMiddleware
 
 logger = logging.getLogger(__name__)
@@ -21,6 +22,14 @@ async def lifespan(application: FastAPI):
     settings: Settings = application.state.settings
     configure_logging(debug=settings.debug)
     logger.info("VetiCare API starting")
+
+    try:
+        application.state.model = load_model()
+        logger.info("ML model loaded into app.state.model")
+    except FileNotFoundError:
+        logger.warning("ML model not found — prediction endpoint will be unavailable")
+        application.state.model = None
+
     yield
     logger.info("VetiCare API shutting down")
 

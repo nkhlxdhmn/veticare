@@ -2,29 +2,16 @@
 
 import uuid
 
-from sqlalchemy import select
-from sqlalchemy.orm import Session
-
-from app.models import AnimalDisease
+from supabase import Client
 
 
-def get_diseases_by_animal(session: Session, animal_id: uuid.UUID, offset: int = 0, limit: int = 20) -> list[AnimalDisease]:
+def get_diseases_by_animal(supabase: Client, animal_id: uuid.UUID, offset: int = 0, limit: int = 20) -> list[dict]:
     """Return diseases for a specific animal species with pagination."""
-    return list(
-        session.scalars(
-            select(AnimalDisease)
-            .where(AnimalDisease.animal_id == animal_id)
-            .order_by(AnimalDisease.disease_name)
-            .offset(offset)
-            .limit(limit)
-        )
-    )
+    result = supabase.table("animal_diseases").select("*").eq("animal_id", str(animal_id)).order("disease_name").range(offset, offset + limit - 1).execute()
+    return result.data
 
 
-def get_all_diseases(session: Session, offset: int = 0, limit: int = 20) -> list[AnimalDisease]:
+def get_all_diseases(supabase: Client, offset: int = 0, limit: int = 20) -> list[dict]:
     """Return all disease records with pagination."""
-    return list(
-        session.scalars(
-            select(AnimalDisease).order_by(AnimalDisease.disease_name).offset(offset).limit(limit)
-        )
-    )
+    result = supabase.table("animal_diseases").select("*").order("disease_name").range(offset, offset + limit - 1).execute()
+    return result.data

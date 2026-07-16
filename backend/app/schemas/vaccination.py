@@ -3,7 +3,7 @@
 import uuid
 from datetime import date, datetime
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field
 
 
 class VaccinationCreate(BaseModel):
@@ -16,6 +16,7 @@ class VaccinationCreate(BaseModel):
     veterinarian: str | None = Field(default=None, max_length=160)
     certificate_url: str | None = Field(default=None, max_length=2048)
     notes: str | None = None
+    reminder_enabled: bool = True
 
 
 class VaccinationUpdate(BaseModel):
@@ -27,10 +28,10 @@ class VaccinationUpdate(BaseModel):
     veterinarian: str | None = Field(default=None, max_length=160)
     certificate_url: str | None = Field(default=None, max_length=2048)
     notes: str | None = None
+    reminder_enabled: bool | None = None
 
 
 class VaccinationResponse(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
 
     id: uuid.UUID
     pet_id: uuid.UUID
@@ -43,3 +44,4 @@ class VaccinationResponse(BaseModel):
     certificate_url: str | None
     notes: str | None
     created_at: datetime
+    reminder_enabled: bool = True

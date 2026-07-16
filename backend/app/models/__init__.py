@@ -1,5 +1,4 @@
-"""Database and domain models."""
+"""VetiCare data models — Pydantic schemas used in request/response validation.
 
-from app.models.domain import Animal, AnimalDisease, CareGuide, MLModel, Pet, PredictionHistory, Profile, VaccinationRecord
-
-__all__ = ["Animal", "AnimalDisease", "CareGuide", "MLModel", "Pet", "PredictionHistory", "Profile", "VaccinationRecord"]
+See app/schemas/ for all schema definitions.
+"""
