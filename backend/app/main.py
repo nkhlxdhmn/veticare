@@ -22,6 +22,29 @@ from app.core.rate_limit import RateLimitMiddleware
 logger = logging.getLogger(__name__)
 
 
+_REQUEST_BODY_ATTR = "_log_body"
+
+
+class RequestLogMiddleware(BaseHTTPMiddleware):
+    """Log every request with method, path, status, duration. Does NOT read the body."""
+
+    async def dispatch(self, request: Request, call_next):
+        start = time.perf_counter()
+        response = await call_next(request)
+        elapsed = time.perf_counter() - start
+        body = getattr(request, _REQUEST_BODY_ATTR, None)
+        extra = f" body={body}" if body else ""
+        logger.info(
+            "%s %s %s %.0fms%s",
+            request.method,
+            request.url.path,
+            response.status_code,
+            elapsed * 1000,
+            extra,
+        )
+        return response
+
+
 def _safe_body(body: bytes) -> str:
     """Return a sanitised request body string suitable for logging."""
     if not body:
@@ -39,30 +62,6 @@ _REQUIRED_ENV_VARS = [
     "VETICARE_SUPABASE_URL",
     "VETICARE_SUPABASE_KEY",
 ]
-
-
-class RequestLogMiddleware(BaseHTTPMiddleware):
-    """Log every request with method, path, status, duration, and sanitised body."""
-
-    async def dispatch(self, request: Request, call_next):
-        body = await request.body()
-        request._body = body
-
-        start = time.perf_counter()
-        response = await call_next(request)
-        elapsed = time.perf_counter() - start
-
-        safe = _safe_body(body)
-        extra = f" body={safe}" if safe else ""
-        logger.info(
-            "%s %s %s %.0fms%s",
-            request.method,
-            request.url.path,
-            response.status_code,
-            elapsed * 1000,
-            extra,
-        )
-        return response
 
 
 @asynccontextmanager
@@ -166,14 +165,11 @@ def create_application() -> FastAPI:
     @application.exception_handler(Exception)
     async def global_exception_handler(request: Request, exc: Exception):
         trace_id = str(uuid.uuid4())
-        body = await request.body()
-        safe = _safe_body(body)
         logger.exception(
-            "trace_id=%s unhandled exception on %s %s body=%s",
+            "trace_id=%s unhandled exception on %s %s",
             trace_id,
             request.method,
             request.url.path,
-            safe,
         )
         return JSONResponse(
             status_code=500,
