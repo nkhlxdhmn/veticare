@@ -28,7 +28,7 @@ def _get_dataset_path() -> Path:
         if settings.model_path:
             _DATASET_PATH = Path(settings.model_path).parent / "Animal_Disease_dataset.csv"
         else:
-            _DATASET_PATH = Path(__file__).resolve().parents[3] / "dataset" / "Animal_Disease_dataset.csv"
+            _DATASET_PATH = Path(__file__).resolve().parents[2] / "dataset" / "Animal_Disease_dataset.csv"
     return _DATASET_PATH
 
 
@@ -79,7 +79,7 @@ def load_model() -> Pipeline:
     settings = get_settings()
     model_path_str = settings.model_path
     if not model_path_str:
-        model_path = Path(__file__).resolve().parents[3] / "dataset" / "Random1.joblib"
+        model_path = Path(__file__).resolve().parents[2] / "dataset" / "Random1.joblib"
     else:
         model_path = Path(model_path_str)
     if not model_path.exists():
