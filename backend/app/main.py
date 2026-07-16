@@ -2,6 +2,7 @@
 
 import json
 import logging
+import os
 import time
 import uuid
 from contextlib import asynccontextmanager
@@ -34,12 +35,17 @@ def _safe_body(body: bytes) -> str:
         return "(non-json body)"
 
 
+_REQUIRED_ENV_VARS = [
+    "VETICARE_SUPABASE_URL",
+    "VETICARE_SUPABASE_KEY",
+]
+
+
 class RequestLogMiddleware(BaseHTTPMiddleware):
     """Log every request with method, path, status, duration, and sanitised body."""
 
     async def dispatch(self, request: Request, call_next):
         body = await request.body()
-        # Restore body so downstream handlers can read it
         request._body = body
 
         start = time.perf_counter()
@@ -64,11 +70,16 @@ async def lifespan(application: FastAPI):
     """Run startup and shutdown actions around the application lifecycle."""
     settings: Settings = application.state.settings
     configure_logging(debug=settings.debug)
-    application.state.startup_ok = True
-    application.state.supabase_ok = False
     logger.info("VetiCare API starting — environment=%s", settings.environment)
 
-    # ── Validate required env vars at startup ────────────────────────
+    # ── Print env var names (not values) ────────────────────────────
+    for var in _REQUIRED_ENV_VARS:
+        val = os.environ.get(var, "")
+        logger.info("  %s %s", "✓" if val else "✗", var)
+    jwt_status = "✗ (still using default)" if settings.jwt_secret_key.get_secret_value() == "development-only-change-me" else "✓"
+    logger.info("  %s JWT_SECRET_KEY", jwt_status)
+
+    # ── Validate required env vars at startup; abort if missing ─────
     missing = []
     if not settings.veticare_supabase_url:
         missing.append("VETICARE_SUPABASE_URL")
@@ -77,26 +88,23 @@ async def lifespan(application: FastAPI):
     if settings.jwt_secret_key.get_secret_value() == "development-only-change-me":
         missing.append("JWT_SECRET_KEY (still using default)")
     if missing:
-        logger.error(
-            "Missing required environment variables: %s — auth and data endpoints will fail",
-            ", ".join(missing),
-        )
-        application.state.startup_ok = False
+        msg = "Missing required environment variables: " + ", ".join(missing)
+        logger.critical(msg)
+        raise RuntimeError(msg)
 
     # ── Test Supabase connection ──────────────────────────────────────
-    if settings.veticare_supabase_url and settings.veticare_supabase_key:
-        try:
-            from app.core.supabase import get_supabase_client
+    try:
+        from app.core.supabase import get_supabase_client
 
-            client = get_supabase_client()
-            application.state.supabase_ok = True
-            logger.info("Supabase connection verified (service_role key)")
-        except HTTPException as exc:
-            logger.error("Supabase connection failed: %s", exc.detail)
-        except Exception:
-            logger.exception("Supabase connection failed")
-    else:
-        logger.warning("Supabase credentials not set — skipping connection test")
+        client = get_supabase_client()
+        application.state.supabase_ok = True
+        logger.info("Supabase connection verified (service_role key)")
+    except RuntimeError as e:
+        logger.critical("Supabase connection failed: %s", e)
+        raise
+    except Exception:
+        logger.exception("Supabase connection failed with unexpected error")
+        raise RuntimeError("Supabase connection failed — see logs above")
 
     # ── Log registered routes ────────────────────────────────────────
     route_list = []
@@ -187,6 +195,24 @@ def create_application() -> FastAPI:
             "supabase": "connected" if getattr(application.state, "supabase_ok", False) else "unknown",
             "model": model_status,
         }
+
+    # ── Debug: Supabase status ───────────────────────────────────────
+    @application.get("/debug/supabase", tags=["debug"])
+    async def debug_supabase() -> dict:
+        from app.core.supabase import verify_supabase
+
+        return verify_supabase()
+
+    # ── Debug: Environment variable names ────────────────────────────
+    @application.get("/debug/env", tags=["debug"])
+    async def debug_env() -> dict:
+        statuses = {}
+        for var in sorted(_REQUIRED_ENV_VARS):
+            statuses[var] = "set" if os.environ.get(var) else "missing"
+        statuses["JWT_SECRET_KEY"] = "set (default)" if settings.jwt_secret_key.get_secret_value() == "development-only-change-me" else "set (custom)"
+        statuses["ENVIRONMENT"] = settings.environment
+        statuses["DEBUG"] = str(settings.debug)
+        return statuses
 
     return application
 

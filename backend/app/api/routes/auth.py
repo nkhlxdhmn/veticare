@@ -19,34 +19,22 @@ router = APIRouter(prefix="/auth", tags=["authentication"])
 @router.post("/register", response_model=TokenResponse, status_code=status.HTTP_201_CREATED)
 def register(request: RegisterRequest, supabase: SupabaseClient) -> TokenResponse:
     """Register an account and return its first access token."""
-    try:
-        if get_profile_by_email(supabase, str(request.email)):
-            raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Email is already registered")
-        profile = register_profile(supabase, request)
-        return TokenResponse(access_token=create_access_token(str(profile["id"])))
-    except HTTPException:
-        raise
-    except Exception:
-        logger.exception("Register failed for %s", request.email)
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Registration failed")
+    if get_profile_by_email(supabase, str(request.email)):
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Email is already registered")
+    profile = register_profile(supabase, request)
+    return TokenResponse(access_token=create_access_token(str(profile["id"])))
 
 
 def issue_token(email: str, password: str, supabase) -> TokenResponse:
     """Authenticate a profile without revealing whether email or password failed."""
-    try:
-        profile = authenticate_profile(supabase, email, password)
-        if not profile:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Incorrect email or password",
-                headers={"WWW-Authenticate": "Bearer"},
-            )
-        return TokenResponse(access_token=create_access_token(str(profile["id"])))
-    except HTTPException:
-        raise
-    except Exception:
-        logger.exception("Login failed for %s", email)
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Login failed")
+    profile = authenticate_profile(supabase, email, password)
+    if not profile:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect email or password",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    return TokenResponse(access_token=create_access_token(str(profile["id"])))
 
 
 @router.post("/login", response_model=TokenResponse)
@@ -67,8 +55,4 @@ def oauth_token(
 @router.get("/me", response_model=ProfileResponse)
 def read_current_user(current_user: CurrentUser) -> dict:
     """Return the currently authenticated profile."""
-    try:
-        return current_user
-    except Exception:
-        logger.exception("Failed to retrieve current user profile")
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Failed to retrieve profile")
+    return current_user
