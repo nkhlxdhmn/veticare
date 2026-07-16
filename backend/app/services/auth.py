@@ -1,11 +1,14 @@
 """Authentication business logic."""
 
+import logging
 import uuid
 
 from supabase import Client
 
 from app.schemas.auth import RegisterRequest
 from app.utils.security import hash_password, verify_password
+
+logger = logging.getLogger(__name__)
 
 
 def get_profile_by_email(supabase: Client, email: str) -> dict | None:
@@ -23,8 +26,12 @@ def register_profile(supabase: Client, request: RegisterRequest) -> dict:
         "full_name": request.full_name.strip(),
         "phone": request.phone,
     }
-    result = supabase.table("profiles").insert(data).execute()
-    return result.data[0]
+    try:
+        result = supabase.table("profiles").insert(data).execute()
+        return result.data[0]
+    except Exception:
+        logger.exception("Supabase INSERT failed. Email=%s", request.email)
+        raise
 
 
 def authenticate_profile(supabase: Client, email: str, password: str) -> dict | None:
