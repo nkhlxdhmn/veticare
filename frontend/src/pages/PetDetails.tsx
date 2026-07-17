@@ -47,8 +47,8 @@ export default function PetDetails() {
       <section className="mt-10 md:mt-12">
         <h2 className="text-2xl md:text-3xl">Quick information</h2>
         <div className="mt-6 grid grid-cols-2 gap-x-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-          {facts.map(([label, value]) => (
-            <div className="border-t border-borderLight py-4" key={label}>
+          {facts.map(([label, value], i) => (
+            <div className="border-t border-borderLight py-4 animate-card-entrance" key={label} style={{ animationDelay: `${i * 50}ms` }}>
               <p className="text-xs uppercase tracking-wider text-textSecondary">{label}</p>
               <p className="mt-2">{value}</p>
             </div>

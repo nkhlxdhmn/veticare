@@ -32,6 +32,23 @@
   .animate-fade-slide-up {
     animation: fadeSlideUp 400ms ease-out forwards;
   }
+
+  .animate-card-entrance {
+    animation: cardEntrance 300ms ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-modal-overlay {
+    animation: fadeIn 200ms ease-out forwards;
+  }
+
+  .animate-modal-content {
+    animation: modalContent 200ms ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 200ms ease-out forwards;
+  }
 }
 
 @keyframes fadeIn {
@@ -52,5 +69,90 @@
   to { 
     opacity: 1; 
     transform: translateY(0); 
+  }
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes modalContent {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes spinner {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 9999px;
+  animation: spinner 0.6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-fade-slide-up,
+  .animate-card-entrance,
+  .animate-modal-overlay,
+  .animate-modal-content,
+  .animate-scale-in,
+  .skeleton-shimmer {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+  .skeleton-shimmer {
+    background: #f3f4f6;
+  }
+  .spinner {
+    animation: none;
+    border: 2px solid currentColor;
+    opacity: 0.5;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

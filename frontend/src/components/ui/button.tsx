@@ -4,20 +4,22 @@ import { cn } from "@/lib/utils"
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "default" | "outline" | "ghost" | "link";
   size?: "default" | "sm" | "lg" | "icon";
+  loading?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = "default", size = "default", ...props }, ref) => {
+  ({ className, variant = "default", size = "default", loading, disabled, children, ...props }, ref) => {
     return (
       <button
         ref={ref}
+        disabled={disabled || loading}
         className={cn(
-          "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-textPrimary disabled:pointer-events-none disabled:opacity-50",
+          "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-textPrimary disabled:pointer-events-none disabled:opacity-50",
           {
-            "bg-textPrimary text-background hover:bg-textPrimary/90": variant === "default",
-            "border border-borderLight bg-background hover:bg-gray-50": variant === "outline",
-            "hover:bg-gray-50": variant === "ghost",
-            "text-textPrimary underline-offset-4 hover:underline": variant === "link",
+            "bg-textPrimary text-background hover:bg-textPrimary/90 hover:scale-[1.02] active:scale-[0.98]": variant === "default",
+            "border border-borderLight bg-background hover:bg-gray-50 hover:scale-[1.02] active:scale-[0.98]": variant === "outline",
+            "hover:bg-gray-50 hover:scale-[1.02] active:scale-[0.98]": variant === "ghost",
+            "text-textPrimary underline-offset-4 hover:underline hover:scale-[1.02]": variant === "link",
             "h-11 px-4 py-2": size === "default",
             "h-9 rounded-md px-3 text-xs": size === "sm",
             "h-12 rounded-md px-8": size === "lg",
@@ -26,7 +28,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           className
         )}
         {...props}
-      />
+      >
+        {loading && <span className="spinner mr-2 shrink-0" />}
+        {children}
+      </button>
     )
   }
 )

@@ -1,9 +1,12 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Edit3, Plus, Search, Trash2, AlertCircle, Loader2, X, CheckCircle2 } from "lucide-react";
+import { Edit3, Plus, Search, Trash2, AlertCircle, X, CheckCircle2, PawPrint } from "lucide-react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { api, ApiError } from "@/lib/api";
+import { SkeletonPetCard } from "@/components/ui/skeleton";
+import { EmptyState } from "@/components/ui/empty-state";
+import { ErrorState } from "@/components/ui/error-state";
 
 export const PET_SPECIES = ["Dog", "Cat", "Bird", "Horse", "Rabbit", "Fish", "Cattle"];
 
@@ -14,7 +17,7 @@ type BackendPet = {
   created_at: string;
 };
 
-const fieldStyle = "mt-1 h-11 w-full rounded-md border border-borderLight bg-white px-3 text-sm outline-none focus:ring-1 focus:ring-textPrimary disabled:opacity-50";
+const fieldStyle = "mt-1 h-11 w-full rounded-md border border-borderLight bg-white px-3 text-sm outline-none transition-all duration-200 focus:ring-2 focus:ring-textPrimary/30 focus:border-textPrimary disabled:opacity-50";
 const fieldErrorStyle = "mt-1 h-11 w-full rounded-md border border-red-300 bg-white px-3 text-sm outline-none focus:ring-1 focus:ring-red-400";
 const labelStyle = "text-sm font-medium";
 
@@ -154,13 +157,12 @@ function PetForm({ initial, onDone }: { initial?: Partial<BackendPet>; onDone: (
 
       <label className={labelStyle}>
         Notes
-        <textarea value={notes} onChange={e => setNotes(e.target.value)} className="mt-1 min-h-[80px] w-full rounded-md border border-borderLight bg-white px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-textPrimary" placeholder="Optional notes..." />
+        <textarea value={notes} onChange={e => setNotes(e.target.value)} className="mt-1 min-h-[80px] w-full rounded-md border border-borderLight bg-white px-3 py-2 text-sm outline-none transition-all duration-200 focus:ring-2 focus:ring-textPrimary/30 focus:border-textPrimary" placeholder="Optional notes..." />
       </label>
 
       <div className="flex justify-end gap-3 pt-2">
         <Button type="button" variant="outline" onClick={onDone} disabled={saving}>Cancel</Button>
-        <Button type="submit" disabled={saving || !isFormValid}>
-          {saving ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+        <Button type="submit" loading={saving} disabled={saving || !isFormValid}>
           {isEdit ? "Update pet" : "Add pet"}
         </Button>
       </div>
@@ -189,26 +191,8 @@ function DeleteConfirm({ pet, onDone }: { pet: BackendPet; onDone: () => void })
       <p className="text-sm text-textSecondary">Are you sure you want to remove <strong>{pet.name}</strong>? This action cannot be undone.</p>
       <div className="flex justify-end gap-3">
         <Button variant="outline" onClick={onDone} disabled={deleting}>Cancel</Button>
-        <Button onClick={del} disabled={deleting} className="bg-red-700 hover">
-          {deleting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}Delete
-        </Button>
+        <Button onClick={del} loading={deleting} className="bg-red-700 hover:bg-red-800">Delete</Button>
       </div>
-    </div>
-  );
-}
-
-function Skeleton() {
-  return (
-    <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {[1, 2, 3].map(i => (
-        <div key={i} className="overflow-hidden rounded-2xl border border-borderLight">
-          <div className="aspect-[5/3] animate-pulse bg-gray-100" />
-          <div className="space-y-3 p-5">
-            <div className="h-6 w-24 animate-pulse rounded bg-gray-100" />
-            <div className="h-4 w-40 animate-pulse rounded bg-gray-100" />
-          </div>
-        </div>
-      ))}
     </div>
   );
 }
@@ -254,60 +238,63 @@ export default function PetRecords() {
       </header>
 
       <div className="mt-8 flex flex-col gap-3 md:flex-row">
-        <label className="flex flex-1 items-center gap-3 rounded-md border border-borderLight px-4">
+        <label className="flex flex-1 items-center gap-3 rounded-md border border-borderLight px-4 transition-all duration-200 focus-within:ring-2 focus-within:ring-textPrimary/30 focus-within:border-textPrimary">
           <Search className="h-4 w-4 text-textSecondary" />
           <input value={query} onChange={e => setQuery(e.target.value)} className="h-11 w-full outline-none" placeholder="Search pets by name, species, or breed" />
         </label>
-        <select value={filter} onChange={e => setFilter(e.target.value)} className="h-11 w-full md:w-auto rounded-md border border-borderLight bg-white px-3 text-sm text-textSecondary">
+        <select value={filter} onChange={e => setFilter(e.target.value)} className="h-11 w-full md:w-auto rounded-md border border-borderLight bg-white px-3 text-sm text-textSecondary transition-all duration-200 focus:ring-2 focus:ring-textPrimary/30">
           {["All", ...PET_SPECIES].map(f => <option key={f}>{f}</option>)}
         </select>
       </div>
 
-      {isLoading && <Skeleton />}
+      {isLoading && (
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[1, 2, 3].map(i => <SkeletonPetCard key={i} />)}
+        </div>
+      )}
 
       {error && !isLoading && (
-        <div className="mt-8 flex flex-col items-center gap-3 rounded-lg border border-red-200 bg-red-50 p-8 text-center">
-          <AlertCircle className="h-8 w-8 text-red-500" />
-          <p className="text-sm text-red-700">Failed to load pets. Please try again.</p>
-          <Button variant="outline" size="sm" onClick={() => queryClient.invalidateQueries({ queryKey: ["pets"] })}>Retry</Button>
+        <div className="mt-8">
+          <ErrorState
+            message="Failed to load pets. Please try again."
+            onRetry={() => queryClient.invalidateQueries({ queryKey: ["pets"] })}
+          />
         </div>
       )}
 
       {!isLoading && !error && filtered.length === 0 && (
-        <div className="mt-8 flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-borderLight py-16 text-center">
-          <p className="text-4xl">🐾</p>
-          <p className="mt-4 text-xl font-medium">{query || filter !== "All" ? "No pets match your search" : "No pets yet"}</p>
-          <p className="mt-2 text-sm text-textSecondary">{query || filter !== "All" ? "Try a different search or filter." : "Add your first pet to get started."}</p>
-          {!query && filter === "All" && (
-            <Button className="mt-6 rounded-full" onClick={openAdd}>
-              <Plus className="mr-2 h-4 w-4" />Add your first pet
-            </Button>
-          )}
+        <div className="mt-8">
+          <EmptyState
+            icon={query || filter !== "All" ? Search : PawPrint}
+            title={query || filter !== "All" ? "No pets match your search" : "No pets yet"}
+            description={query || filter !== "All" ? "Try a different search or filter." : "Add your first pet to get started."}
+            action={!query && filter === "All" ? { label: "Add your first pet", onClick: openAdd } : undefined}
+          />
         </div>
       )}
 
       {!isLoading && !error && filtered.length > 0 && (
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map(pet => (
-            <article key={pet.id} className="group overflow-hidden rounded-2xl border border-borderLight bg-white transition hover:-translate-y-1 hover:shadow-xl hover:shadow-black/5">
+          {filtered.map((pet, i) => (
+            <article key={pet.id} className="group overflow-hidden rounded-2xl border border-borderLight bg-white transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/5" style={{ animationDelay: `${i * 60}ms` }}>
               <Link to={`/pets/${pet.id}`} className="block">
                 <div className="aspect-[5/3] overflow-hidden bg-gray-50">
                   {pet.image_url
                     ? <img src={pet.image_url} alt={pet.name} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-                    : <div className="flex h-full items-center justify-center text-5xl text-gray-300">🐾</div>}
+                    : <div className="flex h-full items-center justify-center text-5xl text-gray-300"><PawPrint className="h-12 w-12 text-gray-300" /></div>}
                 </div>
               </Link>
               <div className="p-5 md:p-6">
                 <div className="flex items-start justify-between">
                   <div>
-                    <Link to={`/pets/${pet.id}`}><h2 className="text-2xl md:text-3xl hover:underline">{pet.name}</h2></Link>
+                    <Link to={`/pets/${pet.id}`}><h2 className="text-2xl md:text-3xl transition-colors duration-200 hover:text-textSecondary">{pet.name}</h2></Link>
                     <p className="mt-1 text-sm text-textSecondary">{pet.breed ?? pet.species ?? "Pet"}{pet.gender ? ` · ${pet.gender}` : ""}</p>
                   </div>
                   {pet.species && <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium">{pet.species}</span>}
                 </div>
                 <div className="mt-4 flex items-center gap-2">
-                  <button onClick={() => openEdit(pet)} className="inline-flex items-center gap-1 rounded-md border border-borderLight px-3 py-1.5 text-xs transition hover:bg-gray-50"><Edit3 className="h-3 w-3" /> Edit</button>
-                  <button onClick={() => setDeletePet(pet)} className="inline-flex items-center gap-1 rounded-md border border-red-200 px-3 py-1.5 text-xs text-red-600 transition hover:bg-red-50"><Trash2 className="h-3 w-3" /> Delete</button>
+                  <button onClick={() => openEdit(pet)} className="inline-flex items-center gap-1 rounded-md border border-borderLight px-3 py-1.5 text-xs transition-all duration-200 hover:bg-gray-50 hover:scale-[1.02]"><Edit3 className="h-3 w-3" /> Edit</button>
+                  <button onClick={() => setDeletePet(pet)} className="inline-flex items-center gap-1 rounded-md border border-red-200 px-3 py-1.5 text-xs text-red-600 transition-all duration-200 hover:bg-red-50 hover:scale-[1.02]"><Trash2 className="h-3 w-3" /> Delete</button>
                 </div>
               </div>
             </article>
@@ -316,11 +303,11 @@ export default function PetRecords() {
       )}
 
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4" onClick={() => { if (!editPet) closeModal(); }}>
-          <div className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-xl max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 animate-modal-overlay" onClick={() => { if (!editPet) closeModal(); }}>
+          <div className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-xl max-h-[90vh] overflow-y-auto animate-modal-content" onClick={e => e.stopPropagation()}>
             <div className="mb-5 flex items-center justify-between">
               <h2 className="text-2xl">{editPet ? "Edit pet" : "Add a pet"}</h2>
-              <button onClick={closeModal} disabled={false}><X className="h-5 w-5" /></button>
+              <button onClick={closeModal} className="transition-opacity hover:opacity-70"><X className="h-5 w-5" /></button>
             </div>
             <PetForm initial={editPet ?? undefined} onDone={closeModal} />
           </div>
@@ -328,8 +315,8 @@ export default function PetRecords() {
       )}
 
       {deletePet && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-          <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 animate-modal-overlay">
+          <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl animate-modal-content">
             <h2 className="text-2xl">Delete pet</h2>
             <DeleteConfirm pet={deletePet} onDone={() => setDeletePet(null)} />
           </div>

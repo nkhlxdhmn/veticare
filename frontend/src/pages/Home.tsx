@@ -16,7 +16,7 @@ type FeatureCardProps = { icon: LucideIcon; title: string; description: string; 
 type PreviewCardProps = { title: string; placeholder: string };
 const FeatureCard = ({ icon: Icon, title, description, link }: FeatureCardProps) => (
   <Link to={link} className="block group h-full">
-    <Card className="h-full border border-borderLight bg-white transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-gray-300">
+    <Card className="h-full border border-borderLight bg-white transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-gray-300">
       <CardHeader className="space-y-4">
         <Icon className="h-6 w-6 text-textPrimary" strokeWidth={1.5} />
         <CardTitle className="text-lg md:text-xl font-serif">{title}</CardTitle>
@@ -26,7 +26,7 @@ const FeatureCard = ({ icon: Icon, title, description, link }: FeatureCardProps)
           {description}
         </CardDescription>
         <div className="flex items-center text-sm font-medium text-textPrimary">
-          Explore <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+          Explore <ArrowRight className="ml-2 h-4 w-4 transition-all duration-200 group-hover:translate-x-1" />
         </div>
       </CardContent>
     </Card>
@@ -34,8 +34,8 @@ const FeatureCard = ({ icon: Icon, title, description, link }: FeatureCardProps)
 );
 
 const PreviewCard = ({ title, placeholder }: PreviewCardProps) => (
-  <div className="bg-gray-50 border border-borderLight rounded-xl p-6 md:h-64 h-[260px] flex flex-col items-center justify-center text-center space-y-4 transition-transform hover:scale-[1.02] duration-200">
-    <div className="w-12 h-12 bg-white rounded-full border border-borderLight flex items-center justify-center">
+  <div className="bg-gray-50 border border-borderLight rounded-xl p-6 md:h-64 h-[260px] flex flex-col items-center justify-center text-center space-y-4 transition-all duration-200 hover:scale-[1.02] hover:shadow-md">
+    <div className="w-12 h-12 bg-white rounded-full border border-borderLight flex items-center justify-center transition-all duration-200 group-hover:scale-110">
       <Layout className="h-5 w-5 text-textSecondary" />
     </div>
     <div>
@@ -110,30 +110,16 @@ const FeaturesSection = () => (
         <p className="text-textSecondary font-light text-base md:text-lg">A comprehensive suite of tools designed with elegant simplicity.</p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <FeatureCard 
-          icon={Activity}
-          title="Disease Prediction"
-          description="Advanced machine learning models to analyze symptoms and provide instant health insights."
-          link="/predictions"
-        />
-        <FeatureCard 
-          icon={FileText}
-          title="Pet Records"
-          description="A centralized, beautifully organized repository for all your pet's vital medical history."
-          link="/pets"
-        />
-        <FeatureCard 
-          icon={Syringe}
-          title="Vaccination Reminder"
-          description="Never miss a shot with automated tracking and visual timelines for immunizations."
-          link="/vaccinations"
-        />
-        <FeatureCard 
-          icon={MapPin}
-          title="Nearby Services"
-          description="Locate trusted veterinary clinics and emergency hospitals in your immediate area."
-          link="/nearby"
-        />
+        {([
+          [Activity, "Disease Prediction", "Advanced machine learning models to analyze symptoms and provide instant health insights.", "/predictions"],
+          [FileText, "Pet Records", "A centralized, beautifully organized repository for all your pet's vital medical history.", "/pets"],
+          [Syringe, "Vaccination Reminder", "Never miss a shot with automated tracking and visual timelines for immunizations.", "/vaccinations"],
+          [MapPin, "Nearby Services", "Locate trusted veterinary clinics and emergency hospitals in your immediate area.", "/nearby"],
+        ] as const).map(([icon, title, description, link], i) => (
+          <div key={title} className="animate-card-entrance" style={{ animationDelay: `${i * 80}ms` }}>
+            <FeatureCard icon={icon} title={title} description={description} link={link} />
+          </div>
+        ))}
       </div>
     </div>
   </Section>
@@ -152,29 +138,17 @@ const HowItWorksSection = () => (
           <div className="hidden md:block absolute top-1/2 left-0 w-full h-px bg-borderLight -translate-y-1/2" />
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 relative z-10">
-            <div className="bg-white p-6 md:p-8 rounded-xl border border-borderLight text-center space-y-4 shadow-sm">
-              <span className="text-xs uppercase tracking-widest text-textSecondary font-medium">01</span>
-              <h3 className="text-xl md:text-2xl font-serif">Register</h3>
-              <p className="text-textSecondary text-sm leading-relaxed">Create your account to unlock personalized pet care.</p>
-            </div>
-            
-            {/* Mobile arrow */}
-            <div className="md:hidden flex justify-center text-borderLight">↓</div>
-            
-            <div className="bg-white p-6 md:p-8 rounded-xl border border-borderLight text-center space-y-4 shadow-sm">
-              <span className="text-xs uppercase tracking-widest text-textSecondary font-medium">02</span>
-              <h3 className="text-xl md:text-2xl font-serif">Add Pet</h3>
-              <p className="text-textSecondary text-sm leading-relaxed">Input your pet's basic information and medical history.</p>
-            </div>
-            
-            {/* Mobile arrow */}
-            <div className="md:hidden flex justify-center text-borderLight">↓</div>
-            
-            <div className="bg-white p-6 md:p-8 rounded-xl border border-borderLight text-center space-y-4 shadow-sm">
-              <span className="text-xs uppercase tracking-widest text-textSecondary font-medium">03</span>
-              <h3 className="text-xl md:text-2xl font-serif">Predict Disease</h3>
-              <p className="text-textSecondary text-sm leading-relaxed">Describe symptoms and get instant AI-driven health insights.</p>
-            </div>
+            {[
+              ["01", "Register", "Create your account to unlock personalized pet care."],
+              ["02", "Add Pet", "Input your pet's basic information and medical history."],
+              ["03", "Predict Disease", "Describe symptoms and get instant AI-driven health insights."],
+            ].map(([num, title, desc], i) => (
+              <div key={num} className="bg-white p-6 md:p-8 rounded-xl border border-borderLight text-center space-y-4 shadow-sm animate-card-entrance" style={{ animationDelay: `${i * 100}ms` }}>
+                <span className="text-xs uppercase tracking-widest text-textSecondary font-medium">{num}</span>
+                <h3 className="text-xl md:text-2xl font-serif">{title}</h3>
+                <p className="text-textSecondary text-sm leading-relaxed">{desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -194,33 +168,19 @@ const WhySection = () => (
         </p>
       </div>
       <div className="space-y-10 pt-4">
-        <div className="space-y-3">
-          <div className="flex items-center gap-3">
-            <CheckCircle2 className="h-5 w-5 text-textPrimary" />
-            <h3 className="text-xl md:text-2xl font-serif">AI-powered diagnosis</h3>
+        {[
+          ["AI-powered diagnosis", "Our machine learning pipeline analyzes thousands of data points to provide accurate early-warning indicators for potential illnesses."],
+          ["Easy pet management", "A beautiful, minimalist interface that makes managing multiple pets, their weights, and their histories effortless."],
+          ["Smart vaccination reminders", "Stay ahead of preventive care with automated timelines that alert you when it's time for the next visit."],
+        ].map(([title, desc], i) => (
+          <div key={title} className="space-y-3 animate-card-entrance" style={{ animationDelay: `${i * 80}ms` }}>
+            <div className="flex items-center gap-3">
+              <CheckCircle2 className="h-5 w-5 text-textPrimary" />
+              <h3 className="text-xl md:text-2xl font-serif">{title}</h3>
+            </div>
+            <p className="text-textSecondary font-light leading-relaxed pl-8">{desc}</p>
           </div>
-          <p className="text-textSecondary font-light leading-relaxed pl-8">
-            Our machine learning pipeline analyzes thousands of data points to provide accurate early-warning indicators for potential illnesses.
-          </p>
-        </div>
-        <div className="space-y-3">
-          <div className="flex items-center gap-3">
-            <CheckCircle2 className="h-5 w-5 text-textPrimary" />
-            <h3 className="text-xl md:text-2xl font-serif">Easy pet management</h3>
-          </div>
-          <p className="text-textSecondary font-light leading-relaxed pl-8">
-            A beautiful, minimalist interface that makes managing multiple pets, their weights, and their histories effortless.
-          </p>
-        </div>
-        <div className="space-y-3">
-          <div className="flex items-center gap-3">
-            <CheckCircle2 className="h-5 w-5 text-textPrimary" />
-            <h3 className="text-xl md:text-2xl font-serif">Smart vaccination reminders</h3>
-          </div>
-          <p className="text-textSecondary font-light leading-relaxed pl-8">
-            Stay ahead of preventive care with automated timelines that alert you when it's time for the next visit.
-          </p>
-        </div>
+        ))}
       </div>
     </div>
   </Section>
@@ -233,9 +193,11 @@ const QuickPreviewSection = () => (
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif tracking-tight">Quick Preview</h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-        <PreviewCard title="Disease Prediction" placeholder="UI Preview" />
-        <PreviewCard title="Pet Records" placeholder="UI Preview" />
-        <PreviewCard title="Vaccination Timeline" placeholder="UI Preview" />
+        {["Disease Prediction", "Pet Records", "Vaccination Timeline"].map((title, i) => (
+          <div key={title} className="animate-card-entrance" style={{ animationDelay: `${i * 80}ms` }}>
+            <PreviewCard title={title} placeholder="UI Preview" />
+          </div>
+        ))}
       </div>
     </div>
   </Section>
@@ -248,19 +210,19 @@ const TestimonialsSection = () => (
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif tracking-tight">Trusted by Pet Owners</h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-        {[
-          { text: "VetiCare's prediction tool helped me catch my cat's kidney issue early. The interface is stunningly simple.", author: "Sarah M.", role: "Cat Owner" },
-          { text: "Finally, an app that doesn't feel cluttered. Managing my two Golden Retrievers' vaccines is now a breeze.", author: "David K.", role: "Dog Owner" },
-          { text: "The elegant design matched with powerful AI makes this the only pet health app I'll ever need.", author: "Elena R.", role: "Pet Parent" }
-        ].map((t, i) => (
-          <div key={i} className="p-6 md:p-8 border border-borderLight rounded-xl space-y-6 bg-white">
-            <p className="text-textSecondary font-light leading-relaxed text-base md:text-lg">"{t.text}"</p>
-            <div>
-              <p className="font-medium text-textPrimary">{t.author}</p>
-              <p className="text-xs uppercase tracking-widest text-textSecondary">{t.role}</p>
+          {[
+            { text: "VetiCare's prediction tool helped me catch my cat's kidney issue early. The interface is stunningly simple.", author: "Sarah M.", role: "Cat Owner" },
+            { text: "Finally, an app that doesn't feel cluttered. Managing my two Golden Retrievers' vaccines is now a breeze.", author: "David K.", role: "Dog Owner" },
+            { text: "The elegant design matched with powerful AI makes this the only pet health app I'll ever need.", author: "Elena R.", role: "Pet Parent" }
+          ].map((t, i) => (
+            <div key={i} className="p-6 md:p-8 border border-borderLight rounded-xl space-y-6 bg-white animate-card-entrance" style={{ animationDelay: `${i * 80}ms` }}>
+              <p className="text-textSecondary font-light leading-relaxed text-base md:text-lg">"{t.text}"</p>
+              <div>
+                <p className="font-medium text-textPrimary">{t.author}</p>
+                <p className="text-xs uppercase tracking-widest text-textSecondary">{t.role}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   </Section>

@@ -6,9 +6,9 @@ import {
   Globe,
   Navigation,
   Filter,
-  Crosshair,
   RefreshCw,
   AlertCircle,
+  Search,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -151,14 +151,14 @@ export default function NearbyServices() {
             </div>
 
             {showInitialLoading && (
-              <div className="flex items-center gap-3 text-sm text-textSecondary bg-blue-50 rounded-md p-3">
-                <div className="h-4 w-4 animate-spin rounded-full border-2 border-blue-500 border-t-transparent" />
+              <div className="flex items-center gap-3 text-sm text-textSecondary bg-blue-50 rounded-md p-3 animate-card-entrance">
+                <div className="spinner h-4 w-4" />
                 Detecting your location...
               </div>
             )}
 
             {geoError && (
-              <div className="flex items-start gap-2 text-xs text-amber-700 bg-amber-50 rounded-md p-2.5">
+              <div className="flex items-start gap-2 text-xs text-amber-700 bg-amber-50 rounded-md p-2.5 animate-card-entrance">
                 <AlertCircle className="h-3.5 w-3.5 mt-0.5 shrink-0" />
                 <span>{geoError}</span>
               </div>
@@ -174,7 +174,7 @@ export default function NearbyServices() {
             />
 
             {locationState === "ready" && (
-              <>
+              <div className="space-y-4 animate-card-entrance">
                 <div>
                   <label className="flex items-center gap-2 text-sm font-medium text-textSecondary mb-2">
                     <Filter className="h-3.5 w-3.5" />
@@ -186,7 +186,7 @@ export default function NearbyServices() {
                         key={t.value}
                         type="button"
                         onClick={() => setPlaceType(t.value)}
-                        className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
+                        className={`rounded-full px-3 py-1 text-xs font-medium transition-all duration-200 ${
                           placeType === t.value
                             ? "bg-textPrimary text-background"
                             : "bg-gray-50 text-textSecondary hover:bg-gray-100"
@@ -209,7 +209,7 @@ export default function NearbyServices() {
                         key={r.value}
                         type="button"
                         onClick={() => setRadius(r.value)}
-                        className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
+                        className={`rounded-full px-3 py-1 text-xs font-medium transition-all duration-200 ${
                           radius === r.value
                             ? "bg-textPrimary text-background"
                             : "bg-gray-50 text-textSecondary hover:bg-gray-100"
@@ -227,20 +227,20 @@ export default function NearbyServices() {
                     <span className="line-clamp-2">{locationLabel}</span>
                   </div>
                 )}
-              </>
+              </div>
             )}
           </div>
 
           <div className="border-t border-borderLight">
             {loadingServices && (
               <div className="flex flex-col items-center justify-center py-12 gap-3">
-                <div className="h-5 w-5 animate-spin rounded-full border-2 border-textPrimary border-t-transparent" />
+                <div className="spinner h-5 w-5" />
                 <p className="text-xs text-textSecondary">Searching nearby services...</p>
               </div>
             )}
 
             {error && (
-              <div className="flex flex-col items-center gap-3 p-4 m-4 text-sm text-red-600 bg-red-50 rounded-md">
+              <div className="flex flex-col items-center gap-3 p-4 m-4 text-sm text-red-600 bg-red-50 rounded-md animate-card-entrance">
                 <div className="flex items-start gap-2">
                   <AlertCircle className="h-4 w-4 mt-0.5 shrink-0" />
                   <span>{error}</span>
@@ -259,7 +259,7 @@ export default function NearbyServices() {
 
             {showPrompt && !loadingServices && !error && (
               <div className="flex flex-col items-center justify-center py-12 px-4 text-center">
-                <Crosshair className="h-8 w-8 text-textSecondary mb-3" />
+                <Search className="h-8 w-8 text-textSecondary mb-3" />
                 <p className="text-sm text-textSecondary mb-4">
                   Search a location above to find nearby veterinary services.
                 </p>
@@ -284,7 +284,7 @@ export default function NearbyServices() {
                 {places.map((place) => (
                   <Card
                     key={`${place.osm_type}-${place.osm_id}`}
-                    className={`cursor-pointer transition-all ${
+                    className={`cursor-pointer transition-all duration-200 hover:shadow-sm ${
                       selectedPlace?.osm_id === place.osm_id
                         ? "ring-2 ring-textPrimary"
                         : ""

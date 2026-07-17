@@ -1,8 +1,11 @@
 import { useState, useMemo } from "react";
-import { Bell, Edit3, Plus, Syringe, Trash2, AlertCircle, Loader2, X, Search } from "lucide-react";
+import { Bell, Edit3, Plus, Syringe, Trash2, X, Search } from "lucide-react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { api } from "@/lib/api";
+import { SkeletonVaxRow } from "@/components/ui/skeleton";
+import { EmptyState } from "@/components/ui/empty-state";
+import { ErrorState } from "@/components/ui/error-state";
 
 type BackendPet = { id: string; name: string; species: string | null };
 type BackendVax = {
@@ -12,7 +15,7 @@ type BackendVax = {
   reminder_enabled: boolean;
 };
 
-const fieldStyle = "mt-1 h-11 w-full rounded-md border border-borderLight bg-white px-3 text-sm outline-none focus:ring-1 focus:ring-textPrimary";
+const fieldStyle = "mt-1 h-11 w-full rounded-md border border-borderLight bg-white px-3 text-sm outline-none transition-all duration-200 focus:ring-2 focus:ring-textPrimary/30 focus:border-textPrimary";
 
 function VaxForm({ petId, initial, onDone }: { petId: string; initial?: Partial<BackendVax>; onDone: () => void }) {
   const queryClient = useQueryClient();
@@ -57,10 +60,10 @@ function VaxForm({ petId, initial, onDone }: { petId: string; initial?: Partial<
         <label className="text-sm font-medium">Next due date<input type="date" value={nextDue} onChange={e => setNextDue(e.target.value)} className={fieldStyle} /></label>
       </div>
       <label className="text-sm font-medium">Veterinarian<input value={veterinarian} onChange={e => setVeterinarian(e.target.value)} className={fieldStyle} /></label>
-      <label className="text-sm font-medium">Notes<textarea value={notes} onChange={e => setNotes(e.target.value)} className="mt-1 min-h-[60px] w-full rounded-md border border-borderLight bg-white px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-textPrimary" /></label>
+      <label className="text-sm font-medium">Notes<textarea value={notes} onChange={e => setNotes(e.target.value)} className="mt-1 min-h-[60px] w-full rounded-md border border-borderLight bg-white px-3 py-2 text-sm outline-none transition-all duration-200 focus:ring-2 focus:ring-textPrimary/30 focus:border-textPrimary" /></label>
       <div className="flex justify-end gap-3">
         <Button type="button" variant="outline" onClick={onDone}>Cancel</Button>
-        <Button type="submit" disabled={saving}>{saving ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}{isEdit ? "Update" : "Add"} vaccination</Button>
+        <Button type="submit" loading={saving}>{isEdit ? "Update" : "Add"} vaccination</Button>
       </div>
     </form>
   );
@@ -74,11 +77,11 @@ function DeleteConfirmVax({ record, petId, onDone }: { record: BackendVax; petId
     try { await api.delete(`/vaccinations/${record.id}`); queryClient.invalidateQueries({ queryKey: ["vaccinations", petId] }); onDone(); }
     catch { setDeleting(false); }
   };
-  return <div className="space-y-4"><p className="text-sm text-textSecondary">Remove <strong>{record.vaccine_name}</strong> vaccination?</p><div className="flex justify-end gap-3"><Button variant="outline" onClick={onDone} disabled={deleting}>Cancel</Button><Button onClick={del} disabled={deleting} className="bg-red-700 hover">{deleting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}Delete</Button></div></div>;
+  return <div className="space-y-4"><p className="text-sm text-textSecondary">Remove <strong>{record.vaccine_name}</strong> vaccination?</p><div className="flex justify-end gap-3"><Button variant="outline" onClick={onDone} disabled={deleting}>Cancel</Button><Button onClick={del} loading={deleting} className="bg-red-700 hover:bg-red-800">Delete</Button></div></div>;
 }
 
 function StatusBadge({ status }: { status: string }) {
-  return <span className={`rounded-full px-3 py-1 text-xs font-semibold ${status === "Overdue" ? "bg-red-50 text-red-700" : status === "Upcoming" ? "bg-amber-50 text-amber-700" : "bg-green-50 text-green-700"}`}>{status}</span>;
+  return <span className={`rounded-full px-3 py-1 text-xs font-semibold transition-all duration-200 ${status === "Overdue" ? "bg-red-50 text-red-700" : status === "Upcoming" ? "bg-amber-50 text-amber-700" : "bg-green-50 text-green-700"}`}>{status}</span>;
 }
 
 export default function Vaccinations() {
@@ -90,7 +93,7 @@ export default function Vaccinations() {
   const queryClient = useQueryClient();
 
   const { data: pets } = useQuery<BackendPet[]>({ queryKey: ["pets"], queryFn: () => api.get("/pets") });
-  const { data: vaxData, isLoading, error } = useQuery<BackendVax[]>({
+  const { data: vaxData, isLoading, error, refetch } = useQuery<BackendVax[]>({
     queryKey: ["vaccinations", petId],
     queryFn: () => api.get(`/vaccinations/${petId}`),
     enabled: !!petId,
@@ -119,12 +122,12 @@ export default function Vaccinations() {
       </header>
 
       <div className="mt-6 md:mt-8 flex flex-col gap-3 sm:flex-row">
-        <select value={petId} onChange={e => setPetId(e.target.value)} className="h-11 w-full sm:w-auto min-w-[200px] rounded-md border border-borderLight bg-white px-3 text-sm text-textSecondary">
+        <select value={petId} onChange={e => setPetId(e.target.value)} className="h-11 w-full sm:w-auto min-w-[200px] rounded-md border border-borderLight bg-white px-3 text-sm text-textSecondary transition-all duration-200 focus:ring-2 focus:ring-textPrimary/30 focus:border-textPrimary">
           <option value="">Select a pet...</option>
           {pets?.map(p => <option key={p.id} value={p.id}>{p.name} ({p.species ?? "Pet"})</option>)}
         </select>
         {petId && (
-          <label className="flex flex-1 items-center gap-3 rounded-md border border-borderLight px-4">
+          <label className="flex flex-1 items-center gap-3 rounded-md border border-borderLight px-4 transition-all duration-200 focus-within:ring-2 focus-within:ring-textPrimary/30 focus-within:border-textPrimary">
             <Search className="h-4 w-4 text-textSecondary" />
             <input value={search} onChange={e => setSearch(e.target.value)} className="h-11 w-full outline-none" placeholder="Search vaccines" />
           </label>
@@ -140,23 +143,28 @@ export default function Vaccinations() {
       )}
 
       {petId && isLoading && (
-        <div className="mt-10 space-y-4">{[1,2,3].map(i => <div key={i} className="h-16 animate-pulse rounded-lg bg-gray-100" />)}</div>
+        <div className="mt-10 space-y-4">
+          {[1, 2, 3].map(i => <SkeletonVaxRow key={i} />)}
+        </div>
       )}
 
       {petId && error && (
-        <div className="mt-10 flex flex-col items-center gap-3 rounded-lg border border-red-200 bg-red-50 p-8 text-center">
-          <AlertCircle className="h-8 w-8 text-red-500" />
-          <p className="text-sm text-red-700">Failed to load vaccinations.</p>
-          <Button variant="outline" size="sm" onClick={() => queryClient.invalidateQueries({ queryKey: ["vaccinations", petId] })}>Retry</Button>
+        <div className="mt-10">
+          <ErrorState
+            message="Failed to load vaccinations."
+            onRetry={() => refetch()}
+          />
         </div>
       )}
 
       {petId && !isLoading && !error && filtered.length === 0 && (
-        <div className="mt-10 flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-borderLight py-20 text-center">
-          <Syringe className="h-10 w-10 text-textSecondary" />
-          <p className="mt-4 text-lg font-medium">{search ? "No vaccines match your search" : "No vaccination records"}</p>
-          <p className="mt-2 text-sm text-textSecondary">{search ? "Try a different search." : "Add the first vaccination record."}</p>
-          {!search && <Button className="mt-6 rounded-full" onClick={() => { setEditVax(null); setShowModal(true); }}><Plus className="mr-2 h-4 w-4" />Add vaccination</Button>}
+        <div className="mt-10">
+          <EmptyState
+            icon={Syringe}
+            title={search ? "No vaccines match your search" : "No vaccination records"}
+            description={search ? "Try a different search." : "Add the first vaccination record."}
+            action={!search ? { label: "Add vaccination", onClick: () => { setEditVax(null); setShowModal(true); } } : undefined}
+          />
         </div>
       )}
 
@@ -168,7 +176,7 @@ export default function Vaccinations() {
           </div>
 
           {overdue.length > 0 && (
-            <section className="mt-6 flex flex-col justify-between gap-4 border border-red-200 bg-red-50 px-6 py-5 sm:flex-row sm:items-center">
+            <section className="mt-6 flex flex-col justify-between gap-4 border border-red-200 bg-red-50 px-6 py-5 sm:flex-row sm:items-center rounded-lg">
               <div>
                 <p className="font-semibold text-red-900">{overdue.length} vaccination{overdue.length !== 1 ? "s" : ""} overdue</p>
                 <p className="mt-1 text-sm text-red-800">{overdue[0].vaccine_name} is overdue. Contact your clinic to schedule a visit.</p>
@@ -177,11 +185,11 @@ export default function Vaccinations() {
           )}
 
           <div className="mt-6 space-y-3">
-            {filtered.map(v => {
+            {filtered.map((v, i) => {
               const dueDate = v.next_due_date ? new Date(v.next_due_date) : null;
               const status = !dueDate ? "Completed" : dueDate < new Date() ? "Overdue" : "Upcoming";
               return (
-                <div key={v.id} className="flex flex-col gap-3 rounded-xl border border-borderLight bg-white p-5 sm:flex-row sm:items-center sm:justify-between">
+                <div key={v.id} className="flex flex-col gap-3 rounded-xl border border-borderLight bg-white p-5 sm:flex-row sm:items-center sm:justify-between transition-all duration-200 hover:bg-gray-50/50 hover:shadow-sm" style={{ animationDelay: `${i * 40}ms` }}>
                   <div className="flex items-start gap-4">
                     <div className="mt-1"><Syringe className="h-5 w-5 text-textSecondary" /></div>
                     <div>
@@ -193,9 +201,9 @@ export default function Vaccinations() {
                   </div>
                   <div className="flex items-center gap-3 shrink-0">
                     <StatusBadge status={status} />
-                    <button onClick={() => toggleReminder(v)} className={`rounded-full p-2 transition ${v.reminder_enabled ? "bg-blue-100 text-blue-700" : "bg-gray-50 text-textSecondary hover:bg-gray-100"}`} title={v.reminder_enabled ? "Reminder on" : "Enable reminder"}><Bell className="h-4 w-4" /></button>
-                    <button onClick={() => { setEditVax(v); setShowModal(true); }} className="rounded-full p-2 text-textSecondary transition hover:bg-gray-100"><Edit3 className="h-4 w-4" /></button>
-                    <button onClick={() => setDeleteVax(v)} className="rounded-full p-2 text-red-500 transition hover:bg-red-50"><Trash2 className="h-4 w-4" /></button>
+                    <button onClick={() => toggleReminder(v)} className={`rounded-full p-2 transition-all duration-200 ${v.reminder_enabled ? "bg-blue-100 text-blue-700" : "bg-gray-50 text-textSecondary hover:bg-gray-100 hover:scale-105"}`} title={v.reminder_enabled ? "Reminder on" : "Enable reminder"}><Bell className="h-4 w-4" /></button>
+                    <button onClick={() => { setEditVax(v); setShowModal(true); }} className="rounded-full p-2 text-textSecondary transition-all duration-200 hover:bg-gray-100 hover:scale-105"><Edit3 className="h-4 w-4" /></button>
+                    <button onClick={() => setDeleteVax(v)} className="rounded-full p-2 text-red-500 transition-all duration-200 hover:bg-red-50 hover:scale-105"><Trash2 className="h-4 w-4" /></button>
                   </div>
                 </div>
               );
@@ -205,11 +213,11 @@ export default function Vaccinations() {
       )}
 
       {showModal && petId && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4" onClick={() => { if (!editVax) setShowModal(false); }}>
-          <div className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-xl" onClick={e => e.stopPropagation()}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 animate-modal-overlay" onClick={() => { if (!editVax) setShowModal(false); }}>
+          <div className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-xl animate-modal-content" onClick={e => e.stopPropagation()}>
             <div className="mb-5 flex items-center justify-between">
               <h2 className="text-2xl">{editVax ? "Edit vaccination" : "Add vaccination"}</h2>
-              <button onClick={() => setShowModal(false)}><X className="h-5 w-5" /></button>
+              <button onClick={() => setShowModal(false)} className="transition-opacity hover:opacity-70"><X className="h-5 w-5" /></button>
             </div>
             <VaxForm petId={petId} initial={editVax ?? undefined} onDone={() => { setShowModal(false); setEditVax(null); }} />
           </div>
@@ -217,8 +225,8 @@ export default function Vaccinations() {
       )}
 
       {deleteVax && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-          <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 animate-modal-overlay">
+          <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl animate-modal-content">
             <h2 className="text-2xl">Delete vaccination</h2>
             <DeleteConfirmVax record={deleteVax} petId={petId} onDone={() => setDeleteVax(null)} />
           </div>

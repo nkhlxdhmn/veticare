@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { animals } from "@/data/animals";
 import { AnimalCard, CategoryFilter, SearchBar } from "@/components/animal/AnimalComponents";
+import { EmptyState } from "@/components/ui/empty-state";
 
 export default function Animals() {
   const [query, setQuery] = useState("");
@@ -36,17 +37,22 @@ export default function Animals() {
         </div>
         {paged.length ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {paged.map((animal) => <AnimalCard animal={animal} key={animal.id} />)}
+            {paged.map((animal, i) => (
+              <div key={animal.id} className="animate-card-entrance" style={{ animationDelay: `${i * 60}ms` }}>
+                <AnimalCard animal={animal} />
+              </div>
+            ))}
           </div>
         ) : (
-          <div className="border-y border-borderLight py-16 text-center">
-            <p className="text-xl md:text-2xl">No profiles found</p>
-            <p className="mt-2 text-textSecondary">Try a different search or category.</p>
-          </div>
+          <EmptyState
+            icon={undefined}
+            title="No profiles found"
+            description="Try a different search or category."
+          />
         )}
         <div className="mt-10 flex justify-center gap-3">
-          <button disabled={page <= 1} onClick={() => setPage((p) => Math.max(1, p - 1))} className="rounded-full border border-borderLight px-5 py-2 text-sm disabled:opacity-40">Previous</button>
-          <button disabled={page >= pages} onClick={() => setPage((p) => p + 1)} className="rounded-full border border-borderLight px-5 py-2 text-sm disabled:opacity-40">Next</button>
+          <button disabled={page <= 1} onClick={() => setPage((p) => Math.max(1, p - 1))} className="rounded-full border border-borderLight px-5 py-2 text-sm transition-all duration-200 hover:bg-gray-50 disabled:opacity-40">Previous</button>
+          <button disabled={page >= pages} onClick={() => setPage((p) => p + 1)} className="rounded-full border border-borderLight px-5 py-2 text-sm transition-all duration-200 hover:bg-gray-50 disabled:opacity-40">Next</button>
         </div>
       </section>
     </div>
