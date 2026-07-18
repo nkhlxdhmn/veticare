@@ -13,10 +13,12 @@ from app.api.routes.pet import router as pet_router
 from app.api.routes.prediction import router as prediction_router
 from app.api.routes.profile import router as profile_router
 from app.api.routes.vaccination import router as vaccination_router
+from app.api.routes.contact import router as contact_router
 
 api_router = APIRouter()
 
 api_router.include_router(auth_router)
+api_router.include_router(contact_router)
 api_router.include_router(profile_router)
 api_router.include_router(pet_router)
 api_router.include_router(animal_router)

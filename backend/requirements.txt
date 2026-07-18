@@ -12,3 +12,4 @@ joblib
 httpx
 python-dateutil
 email-validator>=2.2.0
+google-genai

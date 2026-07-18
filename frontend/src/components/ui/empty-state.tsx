@@ -1,5 +1,7 @@
 import { type LucideIcon, Inbox } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import { useEffect, useState } from "react";
 
 interface EmptyStateProps {
   icon?: LucideIcon;
@@ -19,6 +21,10 @@ function EmptyState({
   action,
   className,
 }: EmptyStateProps) {
+  const reduced = useReducedMotion();
+  const [showIcon, setShowIcon] = useState(false);
+  useEffect(() => { setShowIcon(true); }, []);
+
   return (
     <div
       className={cn(
@@ -26,7 +32,15 @@ function EmptyState({
         className,
       )}
     >
-      <Icon className="h-10 w-10 text-textSecondary/50" strokeWidth={1.5} />
+      <Icon
+        className="h-10 w-10 text-textSecondary/50"
+        strokeWidth={1.5}
+        style={reduced ? {} : {
+          opacity: showIcon ? 1 : 0,
+          transform: showIcon ? "translateY(0) scale(1)" : "translateY(4px) scale(0.9)",
+          transition: "opacity 250ms ease-out, transform 250ms ease-out",
+        }}
+      />
       <p className="mt-4 text-xl font-medium">{title}</p>
       <p className="mt-2 text-sm text-textSecondary max-w-sm">{description}</p>
       {action && (

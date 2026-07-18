@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { SkeletonDashboardCard } from "@/components/ui/skeleton";
 import { EmptyState } from "@/components/ui/empty-state";
 import { ErrorState } from "@/components/ui/error-state";
+import { StaggerGroup, StaggerItem, HoverCard, FadeIn } from "@/components/ui/motion";
 
 type BackendPet = { id: string; name: string; breed: string | null; image_url: string | null; species: string | null; created_at: string };
 type BackendVax = { id: string; pet_id: string; vaccine_name: string; vaccination_date: string; next_due_date: string | null; reminder_enabled: boolean };
@@ -69,21 +70,23 @@ export default function Dashboard() {
       )}
 
       {!isLoading && !hasError && (
-        <section className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          {overviewCards.map(({ title, value, detail, route, Icon }, i) => (
-            <Link
-              className="rounded-xl border border-borderLight p-5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/5"
-              to={`/${route}`}
-              key={title}
-              style={{ animationDelay: `${i * 80}ms` }}
-            >
-              <Icon className="h-5 w-5 text-textSecondary" />
-              <p className="mt-6 text-2xl md:text-3xl">{value}</p>
-              <p className="mt-1 font-medium">{title}</p>
-              <p className="mt-1 text-sm text-textSecondary">{detail}</p>
-            </Link>
+        <StaggerGroup className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          {overviewCards.map(({ title, value, detail, route, Icon }) => (
+            <StaggerItem key={title}>
+              <HoverCard>
+                <Link
+                  className="block rounded-xl border border-borderLight p-5"
+                  to={`/${route}`}
+                >
+                  <Icon className="h-5 w-5 text-textSecondary" />
+                  <p className="mt-6 text-2xl md:text-3xl">{value}</p>
+                  <p className="mt-1 font-medium">{title}</p>
+                  <p className="mt-1 text-sm text-textSecondary">{detail}</p>
+                </Link>
+              </HoverCard>
+            </StaggerItem>
           ))}
-        </section>
+        </StaggerGroup>
       )}
 
       {!isLoading && !hasError && pets && pets.length > 0 && (
@@ -92,25 +95,25 @@ export default function Dashboard() {
             <div><h2 className="text-2xl md:text-3xl">My pets</h2><p className="mt-2 text-textSecondary">{pets.length} companion{pets.length !== 1 ? "s" : ""}</p></div>
             <Link className="text-sm font-semibold underline" to="/pets">View all</Link>
           </div>
-          <div className="mt-6 grid gap-5 sm:grid-cols-2 md:grid-cols-3">
-            {recentPets.map((pet, i) => (
-              <article
-                className="overflow-hidden rounded-xl border border-borderLight transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/5"
-                key={pet.id}
-                style={{ animationDelay: `${i * 60}ms` }}
-              >
-                <div className="aspect-[16/9] w-full bg-gray-50 flex items-center justify-center text-5xl text-gray-300">
-                  {pet.image_url ? <img className="h-full w-full object-cover" src={pet.image_url} alt={pet.name} loading="lazy" /> : <PawPrint className="h-10 w-10 text-gray-300" />}
-                </div>
-                <div className="p-5">
-                  <div className="flex justify-between gap-3">
-                    <div><h3 className="text-xl md:text-2xl">{pet.name}</h3><p className="mt-1 text-sm text-textSecondary">{pet.breed ?? pet.species ?? "Pet"}</p></div>
-                  </div>
-                  <Link className="mt-4 inline-block text-sm font-semibold underline" to={`/pets/${pet.id}`}>View details</Link>
-                </div>
-              </article>
+          <StaggerGroup className="mt-6 grid gap-5 sm:grid-cols-2 md:grid-cols-3">
+            {recentPets.map((pet) => (
+              <StaggerItem key={pet.id}>
+                <HoverCard>
+                  <article className="overflow-hidden rounded-xl border border-borderLight">
+                    <div className="aspect-[16/9] w-full bg-gray-50 flex items-center justify-center text-5xl text-gray-300">
+                      {pet.image_url ? <img className="h-full w-full object-cover" src={pet.image_url} alt={pet.name} loading="lazy" /> : <PawPrint className="h-10 w-10 text-gray-300" />}
+                    </div>
+                    <div className="p-5">
+                      <div className="flex justify-between gap-3">
+                        <div><h3 className="text-xl md:text-2xl">{pet.name}</h3><p className="mt-1 text-sm text-textSecondary">{pet.breed ?? pet.species ?? "Pet"}</p></div>
+                      </div>
+                      <Link className="mt-4 inline-block text-sm font-semibold underline" to={`/pets/${pet.id}`}>View details</Link>
+                    </div>
+                  </article>
+                </HoverCard>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         </section>
       )}
 
@@ -134,10 +137,12 @@ export default function Dashboard() {
             </div>
             <div className="mt-5 space-y-3">
               {sortedUpcoming.slice(0, 5).map((v, i) => (
-                <div key={v.id} className="flex flex-col sm:flex-row sm:items-center sm:justify-between rounded-xl border border-borderLight p-4 transition-all duration-200 hover:bg-gray-50/50" style={{ animationDelay: `${i * 50}ms` }}>
-                  <div><p className="font-medium">{petMap.get(v.pet_id) ?? "Pet"}</p><p className="text-sm text-textSecondary">{v.vaccine_name}</p></div>
-                  <div className="mt-3 sm:mt-0 text-right"><p className="text-sm font-medium">{v.next_due_date ? new Date(v.next_due_date).toLocaleDateString() : ""}</p><p className="text-xs text-textSecondary">{v.next_due_date ? Math.ceil((new Date(v.next_due_date).getTime() - Date.now()) / (1000 * 60 * 60 * 24)) + " days" : ""}</p></div>
-                </div>
+                <FadeIn key={v.id} delay={i * 50}>
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between rounded-xl border border-borderLight p-4 transition-[background-color] duration-200 hover:bg-gray-50/50">
+                    <div><p className="font-medium">{petMap.get(v.pet_id) ?? "Pet"}</p><p className="text-sm text-textSecondary">{v.vaccine_name}</p></div>
+                    <div className="mt-3 sm:mt-0 text-right"><p className="text-sm font-medium">{v.next_due_date ? new Date(v.next_due_date).toLocaleDateString() : ""}</p><p className="text-xs text-textSecondary">{v.next_due_date ? Math.ceil((new Date(v.next_due_date).getTime() - Date.now()) / (1000 * 60 * 60 * 24)) + " days" : ""}</p></div>
+                  </div>
+                </FadeIn>
               ))}
             </div>
           </section>

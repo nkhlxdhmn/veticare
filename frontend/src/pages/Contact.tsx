@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { Mail, Github, Linkedin, Clock, MapPin, Send, AlertCircle, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { api } from "@/lib/api";
 
 const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "support@veticare.com",
-    href: "mailto:support@veticare.com",
+    value: "nikhilldhimann04@gmail.com",
+    href: "mailto:nikhilldhimann04@gamil.com",
   },
   {
     icon: Github,
@@ -49,10 +50,16 @@ export default function Contact() {
       return;
     }
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const payload = {
+        name: data.get("name"),
+        email: data.get("email"),
+        subject: data.get("subject") || "No subject",
+        message: data.get("message"),
+      };
+      await api.post("/contact", payload);
       setSent(true);
-    } catch {
-      setError("Failed to send message. Please try again.");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to send message. Please try again.");
     } finally {
       setLoading(false);
     }

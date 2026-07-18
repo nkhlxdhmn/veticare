@@ -25,7 +25,8 @@ export default function LocationSearch({
       const data = await servicesService.search(q);
       setResults(data);
       setShowDropdown(true);
-    } catch {
+    } catch (err) {
+      console.error("Location search failed:", err);
       setResults([]);
     } finally {
       setLoading(false);

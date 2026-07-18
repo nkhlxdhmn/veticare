@@ -6,6 +6,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Section } from "@/components/layout/Section";
+import { FadeIn, StaggerItem, StaggerGroup } from "@/components/ui/motion";
 import type { LucideIcon } from "lucide-react";
 
 // ============================================================================
@@ -52,34 +53,41 @@ const PreviewCard = ({ title, placeholder }: PreviewCardProps) => (
 const HeroSection = () => (
   <Section className="pt-16 md:pt-24 lg:pt-32 pb-12 md:pb-16 lg:pb-24">
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-      <div className="space-y-6 md:space-y-8 animate-fade-slide-up">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif leading-[1.1] tracking-tight uppercase">
-          Smart Pet<br />Healthcare<br />Powered by AI
-        </h1>
-        <p className="text-base md:text-lg lg:text-xl text-textSecondary font-light leading-relaxed max-w-lg">
-          Helping pet owners monitor their pets' health with AI-powered disease prediction, vaccination tracking, and nearby veterinary services.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 pt-4">
-          <Link to="/predictions">
-            <Button size="lg" className="w-full sm:w-auto rounded-full px-8 h-12 text-base">
-              Start Prediction
-            </Button>
-          </Link>
-          <Link to="/about">
-            <Button variant="outline" size="lg" className="w-full sm:w-auto rounded-full px-8 h-12 text-base">
-              Learn More
-            </Button>
-          </Link>
+      <div className="space-y-6 md:space-y-8">
+        <FadeIn y={10}>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif leading-[1.1] tracking-tight uppercase">
+            Smart Pet<br />Healthcare<br />Powered by AI
+          </h1>
+        </FadeIn>
+        <FadeIn delay={100} y={10}>
+          <p className="text-base md:text-lg lg:text-xl text-textSecondary font-light leading-relaxed max-w-lg">
+            Helping pet owners monitor their pets' health with AI-powered disease prediction, vaccination tracking, and nearby veterinary services.
+          </p>
+        </FadeIn>
+        <FadeIn delay={200} y={10}>
+          <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <Link to="/predictions">
+              <Button size="lg" className="w-full sm:w-auto rounded-full px-8 h-12 text-base">
+                Start Prediction
+              </Button>
+            </Link>
+            <Link to="/about">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto rounded-full px-8 h-12 text-base">
+                Learn More
+              </Button>
+            </Link>
+          </div>
+        </FadeIn>
+      </div>
+      <FadeIn delay={150} y={10}>
+        <div className="relative aspect-square lg:aspect-auto lg:h-[500px] md:h-[450px] w-full bg-gray-50 rounded-2xl border border-borderLight overflow-hidden">
+          <img 
+            src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&q=80&w=1200" 
+            alt="Premium Pet Healthcare" 
+            className="w-full h-full object-cover object-center mix-blend-multiply opacity-90"
+          />
         </div>
-      </div>
-      <div className="animate-fade-in relative aspect-square lg:aspect-auto lg:h-[500px] md:h-[450px] w-full bg-gray-50 rounded-2xl border border-borderLight overflow-hidden">
-        {/* Placeholder image for a beautiful pet illustration */}
-        <img 
-          src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&q=80&w=1200" 
-          alt="Premium Pet Healthcare" 
-          className="w-full h-full object-cover object-center mix-blend-multiply opacity-90"
-        />
-      </div>
+      </FadeIn>
     </div>
   </Section>
 );
@@ -109,18 +117,18 @@ const FeaturesSection = () => (
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif tracking-tight">Everything Your Pet Needs</h2>
         <p className="text-textSecondary font-light text-base md:text-lg">A comprehensive suite of tools designed with elegant simplicity.</p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <StaggerGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {([
           [Activity, "Disease Prediction", "Advanced machine learning models to analyze symptoms and provide instant health insights.", "/predictions"],
           [FileText, "Pet Records", "A centralized, beautifully organized repository for all your pet's vital medical history.", "/pets"],
           [Syringe, "Vaccination Reminder", "Never miss a shot with automated tracking and visual timelines for immunizations.", "/vaccinations"],
           [MapPin, "Nearby Services", "Locate trusted veterinary clinics and emergency hospitals in your immediate area.", "/nearby"],
-        ] as const).map(([icon, title, description, link], i) => (
-          <div key={title} className="animate-card-entrance" style={{ animationDelay: `${i * 80}ms` }}>
+        ] as const).map(([icon, title, description, link]) => (
+          <StaggerItem key={title}>
             <FeatureCard icon={icon} title={title} description={description} link={link} />
-          </div>
+          </StaggerItem>
         ))}
-      </div>
+      </StaggerGroup>
     </div>
   </Section>
 );

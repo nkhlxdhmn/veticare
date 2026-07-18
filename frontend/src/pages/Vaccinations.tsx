@@ -6,6 +6,7 @@ import { api } from "@/lib/api";
 import { SkeletonVaxRow } from "@/components/ui/skeleton";
 import { EmptyState } from "@/components/ui/empty-state";
 import { ErrorState } from "@/components/ui/error-state";
+import { FadeIn } from "@/components/ui/motion";
 
 type BackendPet = { id: string; name: string; species: string | null };
 type BackendVax = {
@@ -75,7 +76,10 @@ function DeleteConfirmVax({ record, petId, onDone }: { record: BackendVax; petId
   const del = async () => {
     setDeleting(true);
     try { await api.delete(`/vaccinations/${record.id}`); queryClient.invalidateQueries({ queryKey: ["vaccinations", petId] }); onDone(); }
-    catch { setDeleting(false); }
+    catch (err) {
+      console.error("Failed to delete vaccination:", err);
+      setDeleting(false);
+    }
   };
   return <div className="space-y-4"><p className="text-sm text-textSecondary">Remove <strong>{record.vaccine_name}</strong> vaccination?</p><div className="flex justify-end gap-3"><Button variant="outline" onClick={onDone} disabled={deleting}>Cancel</Button><Button onClick={del} loading={deleting} className="bg-red-700 hover:bg-red-800">Delete</Button></div></div>;
 }
@@ -110,7 +114,9 @@ export default function Vaccinations() {
     try {
       await api.patch(`/vaccinations/${record.id}`, { reminder_enabled: !record.reminder_enabled });
       queryClient.invalidateQueries({ queryKey: ["vaccinations", petId] });
-    } catch {}
+    } catch (err) {
+      console.error("Failed to toggle reminder:", err);
+    }
   };
 
   return (
@@ -189,7 +195,8 @@ export default function Vaccinations() {
               const dueDate = v.next_due_date ? new Date(v.next_due_date) : null;
               const status = !dueDate ? "Completed" : dueDate < new Date() ? "Overdue" : "Upcoming";
               return (
-                <div key={v.id} className="flex flex-col gap-3 rounded-xl border border-borderLight bg-white p-5 sm:flex-row sm:items-center sm:justify-between transition-all duration-200 hover:bg-gray-50/50 hover:shadow-sm" style={{ animationDelay: `${i * 40}ms` }}>
+                <FadeIn key={v.id} delay={i * 40} y={8}>
+                <div className="flex flex-col gap-3 rounded-xl border border-borderLight bg-white p-5 sm:flex-row sm:items-center sm:justify-between transition-[background-color,box-shadow] duration-200 hover:bg-gray-50/50 hover:shadow-sm">
                   <div className="flex items-start gap-4">
                     <div className="mt-1"><Syringe className="h-5 w-5 text-textSecondary" /></div>
                     <div>
@@ -206,6 +213,7 @@ export default function Vaccinations() {
                     <button onClick={() => setDeleteVax(v)} className="rounded-full p-2 text-red-500 transition-all duration-200 hover:bg-red-50 hover:scale-105"><Trash2 className="h-4 w-4" /></button>
                   </div>
                 </div>
+                </FadeIn>
               );
             })}
           </div>

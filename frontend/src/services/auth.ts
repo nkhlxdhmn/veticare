@@ -35,13 +35,21 @@ function mapProfile(user: ProfileResponse): AuthUser {
 }
 
 function storeToken(res: TokenResponse): void {
-  localStorage.setItem("veticare_token", JSON.stringify({ access_token: res.access_token }));
+  try {
+    localStorage.setItem("veticare_token", JSON.stringify({ access_token: res.access_token }));
+  } catch {
+    console.warn("Failed to store auth token");
+  }
 }
 
 export const authService = {
   getCurrentUser(): AuthUser | null {
-    const stored = localStorage.getItem("veticare_user");
-    return stored ? (JSON.parse(stored) as AuthUser) : null;
+    try {
+      const stored = localStorage.getItem("veticare_user");
+      return stored ? (JSON.parse(stored) as AuthUser) : null;
+    } catch {
+      return null;
+    }
   },
 
   async login(input: LoginInput): Promise<AuthUser> {
@@ -52,7 +60,7 @@ export const authService = {
     storeToken(token);
     const user = await api.get<ProfileResponse>("/auth/me");
     const mapped = mapProfile(user);
-    localStorage.setItem("veticare_user", JSON.stringify(mapped));
+    try { localStorage.setItem("veticare_user", JSON.stringify(mapped)); } catch { console.warn("Failed to store user data"); }
     return mapped;
   },
 
@@ -66,13 +74,13 @@ export const authService = {
     storeToken(token);
     const user = await api.get<ProfileResponse>("/auth/me");
     const mapped = mapProfile(user);
-    localStorage.setItem("veticare_user", JSON.stringify(mapped));
+    try { localStorage.setItem("veticare_user", JSON.stringify(mapped)); } catch { console.warn("Failed to store user data"); }
     return mapped;
   },
 
   logout(): void {
-    localStorage.removeItem("veticare_token");
-    localStorage.removeItem("veticare_user");
+    try { localStorage.removeItem("veticare_token"); } catch {}
+    try { localStorage.removeItem("veticare_user"); } catch {}
   },
 
   async forgotPassword(_email: string): Promise<void> {
