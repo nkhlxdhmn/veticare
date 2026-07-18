@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import asyncio
 import logging
+import random
 from functools import lru_cache
 from time import time
 
@@ -13,6 +15,8 @@ logger = logging.getLogger(__name__)
 OVERPASS_URL = "https://overpass-api.de/api/interpreter"
 NOMINATIM_SEARCH_URL = "https://nominatim.openstreetmap.org/search"
 NOMINATIM_REVERSE_URL = "https://nominatim.openstreetmap.org/reverse"
+
+USER_AGENT = "VetiCare/1.0"
 
 OSM_TYPE_MAP = {
     "veterinary": "Veterinary Clinic",
@@ -32,8 +36,12 @@ OVERPASS_TYPE_MAP = {
     "animal_shelter": 'node["amenity"="animal_shelter"];way["amenity"="animal_shelter"];',
 }
 
-_cache: dict[str, tuple[float, list[dict]]] = {}
-CACHE_TTL = 300  # 5 minutes
+_cache: dict[str, tuple[float, list[dict] | dict]] = {}
+CACHE_TTL = 300
+
+OVERPASS_TIMEOUT = 60.0
+OVERPASS_MAX_RETRIES = 3
+OVERPASS_BASE_DELAY = 1.0
 
 
 def _make_cache_key(prefix: str, *args) -> str:
@@ -48,7 +56,7 @@ async def search_places(query: str, limit: int = 5) -> list[dict]:
         return cached[1]
 
     params = {"q": query, "format": "json", "limit": limit, "addressdetails": 1}
-    headers = {"User-Agent": "VetiCare/1.0"}
+    headers = {"User-Agent": USER_AGENT}
     try:
         async with httpx.AsyncClient(timeout=10.0) as client:
             response = await client.get(NOMINATIM_SEARCH_URL, params=params, headers=headers)
@@ -83,7 +91,7 @@ async def reverse_geocode(lat: float, lng: float) -> dict | None:
         return cached[1]
 
     params = {"lat": lat, "lon": lng, "format": "json", "addressdetails": 1}
-    headers = {"User-Agent": "VetiCare/1.0"}
+    headers = {"User-Agent": USER_AGENT}
     try:
         async with httpx.AsyncClient(timeout=10.0) as client:
             response = await client.get(NOMINATIM_REVERSE_URL, params=params, headers=headers)
@@ -108,6 +116,112 @@ async def reverse_geocode(lat: float, lng: float) -> dict | None:
     return result
 
 
+def _build_overpass_query(place_type: str, radius: int, lat: float, lon: float) -> str:
+    """Build an Overpass QL query with around filter applied to each statement."""
+    overpass_query = OVERPASS_TYPE_MAP.get(place_type, OVERPASS_TYPE_MAP["veterinary"])
+    radius = min(radius, 50000)
+
+    statements = []
+    for stmt in overpass_query.strip().rstrip(";").split(";"):
+        stmt = stmt.strip()
+        if stmt:
+            statements.append(f"{stmt}(around:{radius},{lat},{lon});")
+
+    joined = "\n      ".join(statements)
+    return f"[out:json];\n    (\n      {joined}\n    );\n    out center;"
+
+
+async def _call_overpass_with_retry(query: str) -> dict:
+    """Call Overpass API with retries and exponential backoff."""
+    body = f"data={query}"
+
+    logger.info("Overpass query:\n%s", query)
+    logger.info("Overpass request body: data=<query> (%d chars)", len(query))
+
+    headers = {
+        "User-Agent": USER_AGENT,
+        "Content-Type": "application/x-www-form-urlencoded",
+    }
+
+    last_error: Exception | None = None
+
+    for attempt in range(1, OVERPASS_MAX_RETRIES + 1):
+        try:
+            async with httpx.AsyncClient(timeout=OVERPASS_TIMEOUT) as client:
+                response = await client.post(OVERPASS_URL, content=body, headers=headers)
+
+            logger.info(
+                "Overpass attempt %d/%d: status=%d",
+                attempt, OVERPASS_MAX_RETRIES, response.status_code,
+            )
+
+            if response.status_code == 429:
+                retry_after = int(response.headers.get("Retry-After", str(OVERPASS_BASE_DELAY * (2 ** attempt))))
+                logger.warning(
+                    "Overpass rate limited (429). Retrying after %ds (attempt %d/%d)",
+                    retry_after, attempt, OVERPASS_MAX_RETRIES,
+                )
+                if attempt < OVERPASS_MAX_RETRIES:
+                    await asyncio.sleep(retry_after)
+                    continue
+                return {"elements": []}
+
+            if response.status_code == 400:
+                logger.error("Overpass bad request (400). Response body: %s", response.text[:500])
+                return {"elements": []}
+
+            if response.status_code == 406:
+                logger.error(
+                    "Overpass not acceptable (406). User-agent or Accept header rejected. Response: %s",
+                    response.text[:300],
+                )
+                return {"elements": []}
+
+            if response.status_code >= 500:
+                logger.error(
+                    "Overpass server error (%d). Attempt %d/%d. Response: %s",
+                    response.status_code, attempt, OVERPASS_MAX_RETRIES, response.text[:300],
+                )
+                if attempt < OVERPASS_MAX_RETRIES:
+                    delay = OVERPASS_BASE_DELAY * (2 ** (attempt - 1)) + random.uniform(0, 1)
+                    logger.info("Retrying in %.1fs", delay)
+                    await asyncio.sleep(delay)
+                    continue
+                return {"elements": []}
+
+            response.raise_for_status()
+            data = response.json()
+            element_count = len(data.get("elements", []))
+            logger.info("Overpass success: %d elements returned", element_count)
+            return data
+
+        except httpx.TimeoutException:
+            logger.error("Overpass timeout on attempt %d/%d", attempt, OVERPASS_MAX_RETRIES)
+            last_error = None
+            if attempt < OVERPASS_MAX_RETRIES:
+                delay = OVERPASS_BASE_DELAY * (2 ** (attempt - 1)) + random.uniform(0, 1)
+                await asyncio.sleep(delay)
+        except httpx.HTTPError as e:
+            logger.error("Overpass HTTP error on attempt %d/%d: %s", attempt, OVERPASS_MAX_RETRIES, e)
+            last_error = e
+            if attempt < OVERPASS_MAX_RETRIES:
+                delay = OVERPASS_BASE_DELAY * (2 ** (attempt - 1)) + random.uniform(0, 1)
+                await asyncio.sleep(delay)
+            else:
+                return {"elements": []}
+        except Exception as e:
+            logger.exception("Overpass unexpected error on attempt %d/%d: %s", attempt, OVERPASS_MAX_RETRIES, e)
+            last_error = e
+            if attempt < OVERPASS_MAX_RETRIES:
+                delay = OVERPASS_BASE_DELAY * (2 ** (attempt - 1)) + random.uniform(0, 1)
+                await asyncio.sleep(delay)
+            else:
+                return {"elements": []}
+
+    logger.error("Overpass exhausted all %d retries", OVERPASS_MAX_RETRIES)
+    return {"elements": []}
+
+
 async def search_nearby_osm(
     latitude: float,
     longitude: float,
@@ -130,24 +244,8 @@ async def search_nearby_osm(
     if cached and (time() - cached[0]) < CACHE_TTL:
         return cached[1]
 
-    overpass_query = OVERPASS_TYPE_MAP.get(place_type, OVERPASS_TYPE_MAP["veterinary"])
-    query = f"""
-    [out:json];
-    (
-      {overpass_query}
-    )(around:{min(radius, 50000)},{latitude},{longitude});
-    out center;
-    """
-
-    headers = {"Accept": "application/json", "Content-Type": "application/x-www-form-urlencoded"}
-    try:
-        async with httpx.AsyncClient(timeout=30.0) as client:
-            response = await client.post(OVERPASS_URL, data={"data": query}, headers=headers)
-            response.raise_for_status()
-            data = response.json()
-    except httpx.HTTPError as e:
-        logger.error("Overpass API request failed: %s", e)
-        return []
+    query = _build_overpass_query(place_type, radius, latitude, longitude)
+    data = await _call_overpass_with_retry(query)
 
     elements = data.get("elements", [])
     places = []
