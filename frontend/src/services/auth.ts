@@ -21,6 +21,7 @@ export type ProfileResponse = {
 };
 export type TokenResponse = {
   access_token: string;
+  refresh_token: string;
   token_type: string;
 };
 
@@ -36,7 +37,7 @@ function mapProfile(user: ProfileResponse): AuthUser {
 
 function storeToken(res: TokenResponse): void {
   try {
-    localStorage.setItem("veticare_token", JSON.stringify({ access_token: res.access_token }));
+    localStorage.setItem("veticare_token", JSON.stringify({ access_token: res.access_token, refresh_token: res.refresh_token }));
   } catch {
     console.warn("Failed to store auth token");
   }
@@ -105,7 +106,6 @@ export const authService = {
     try {
       await api.post("/auth/logout");
     } catch {
-      // backend logout endpoint may not exist; always clear locally
     }
     this.clearSession();
   },
@@ -117,15 +117,15 @@ export const authService = {
     return mapped;
   },
 
-  async forgotPassword(_email: string): Promise<void> {
-    throw new ApiError("Forgot password not yet implemented", 501);
+  async forgotPassword(email: string): Promise<void> {
+    await api.post("/auth/forgot-password", { email });
   },
 
-  async resetPassword(_password: string): Promise<void> {
-    throw new ApiError("Reset password not yet implemented", 501);
+  async resetPassword(token: string, newPassword: string): Promise<void> {
+    await api.post("/auth/reset-password", { token, new_password: newPassword });
   },
 
-  async verifyOTP(_otp: string): Promise<void> {
-    throw new ApiError("OTP verification not yet implemented", 501);
+  async verifyOTP(email: string, otp: string): Promise<void> {
+    await api.post("/auth/verify-otp", { email, otp });
   },
 };

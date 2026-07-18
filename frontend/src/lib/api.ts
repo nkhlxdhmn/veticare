@@ -22,6 +22,39 @@ function getToken(): string | null {
   }
 }
 
+function getRefreshToken(): string | null {
+  try {
+    const raw = localStorage.getItem("veticare_token");
+    if (!raw) return null;
+    return JSON.parse(raw)?.refresh_token ?? null;
+  } catch {
+    return null;
+  }
+}
+
+let refreshPromise: Promise<boolean> | null = null;
+
+async function tryRefresh(): Promise<boolean> {
+  const refreshToken = getRefreshToken();
+  if (!refreshToken) return false;
+  if (!refreshPromise) {
+    refreshPromise = fetch(`${API_BASE}${API_PREFIX}/auth/refresh`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ refresh_token: refreshToken }),
+    })
+      .then(async (res) => {
+        if (!res.ok) return false;
+        const data = await res.json();
+        localStorage.setItem("veticare_token", JSON.stringify(data));
+        return true;
+      })
+      .catch(() => false)
+      .finally(() => { refreshPromise = null; });
+  }
+  return refreshPromise;
+}
+
 interface RequestOptions {
   signal?: AbortSignal;
   timeout?: number;
@@ -56,7 +89,13 @@ async function request<T>(
     clearTimeout(timeoutId);
 
     if (!res.ok) {
-      if (res.status === 401) onUnauthorized?.();
+      if (res.status === 401 && !path.includes("/auth/refresh")) {
+        const refreshed = await tryRefresh();
+        if (refreshed) {
+          return request<T>(method, path, body, options);
+        }
+        onUnauthorized?.();
+      }
       const detail = await res.json().catch(() => ({ detail: res.statusText }));
       throw new ApiError(detail.detail ?? `Request failed (${res.status})`, res.status);
     }

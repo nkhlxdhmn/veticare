@@ -1,7 +1,10 @@
 """Authentication business logic."""
 
+import hashlib
 import logging
+import secrets
 import uuid
+from datetime import UTC, datetime, timedelta
 
 from fastapi import HTTPException, status
 from supabase import Client
@@ -10,6 +13,10 @@ from app.schemas.auth import RegisterRequest
 from app.utils.security import hash_password, verify_password
 
 logger = logging.getLogger(__name__)
+
+
+def _hash_token(token: str) -> str:
+    return hashlib.sha256(token.encode()).hexdigest()
 
 
 def get_profile_by_email(supabase: Client, email: str) -> dict | None:
@@ -38,6 +45,7 @@ def register_profile(supabase: Client, request: RegisterRequest) -> dict:
         "hashed_password": hash_password(request.password),
         "full_name": request.full_name.strip(),
         "phone": request.phone,
+        "is_active": False,
     }
     logger.info("Supabase INSERT: profiles table, id=%s, email=%s", profile_id, request.email)
     try:
@@ -69,3 +77,72 @@ def authenticate_profile(supabase: Client, email: str, password: str) -> dict | 
         return None
     logger.info("Authentication successful: email=%s, id=%s", email, profile.get("id"))
     return profile
+
+
+def request_password_reset(supabase: Client, email: str) -> None:
+    """Always returns silently — never reveal whether an email exists."""
+    profile = get_profile_by_email(supabase, email)
+    if not profile:
+        return
+    raw_token = secrets.token_urlsafe(32)
+    supabase.table("password_reset_tokens").insert({
+        "profile_id": profile["id"],
+        "token_hash": _hash_token(raw_token),
+        "expires_at": (datetime.now(UTC) + timedelta(minutes=30)).isoformat(),
+    }).execute()
+    reset_link = f"https://veticare-seven.vercel.app/reset-password?token={raw_token}"
+    logger.info(
+        "Password reset link for %s: %s",
+        email, reset_link,
+    )
+
+
+def reset_password(supabase: Client, token: str, new_password: str) -> bool:
+    token_hash = _hash_token(token)
+    result = (
+        supabase.table("password_reset_tokens")
+        .select("*")
+        .eq("token_hash", token_hash)
+        .eq("used", False)
+        .execute()
+    )
+    if not result.data:
+        return False
+    row = result.data[0]
+    if datetime.fromisoformat(row["expires_at"]) < datetime.now(UTC):
+        return False
+    supabase.table("profiles").update(
+        {"hashed_password": hash_password(new_password)}
+    ).eq("id", row["profile_id"]).execute()
+    supabase.table("password_reset_tokens").update({"used": True}).eq("id", row["id"]).execute()
+    return True
+
+
+def generate_and_send_otp(supabase: Client, profile_id: str, email: str) -> None:
+    otp = f"{secrets.randbelow(1_000_000):06d}"
+    supabase.table("email_otps").insert({
+        "profile_id": profile_id,
+        "otp_hash": _hash_token(otp),
+        "expires_at": (datetime.now(UTC) + timedelta(minutes=10)).isoformat(),
+    }).execute()
+    logger.info("OTP for %s (profile %s): %s", email, profile_id, otp)
+
+
+def verify_otp(supabase: Client, profile_id: str, otp: str) -> bool:
+    result = (
+        supabase.table("email_otps")
+        .select("*")
+        .eq("profile_id", profile_id)
+        .eq("used", False)
+        .order("created_at", desc=True)
+        .limit(1)
+        .execute()
+    )
+    if not result.data:
+        return False
+    row = result.data[0]
+    if row["otp_hash"] != _hash_token(otp) or datetime.fromisoformat(row["expires_at"]) < datetime.now(UTC):
+        return False
+    supabase.table("email_otps").update({"used": True}).eq("id", row["id"]).execute()
+    supabase.table("profiles").update({"is_active": True}).eq("id", profile_id).execute()
+    return True

@@ -44,3 +44,27 @@ def decode_access_token(token: str) -> str:
     if not isinstance(subject, str):
         raise JWTError("Token has no subject")
     return subject
+
+
+def create_refresh_token(subject: str) -> str:
+    """Create a longer-lived JWT used only to mint new access tokens."""
+    settings = get_settings()
+    expires_at = datetime.now(UTC) + timedelta(days=7)
+    now = datetime.now(UTC)
+    return jwt.encode(
+        {"sub": subject, "type": "refresh", "exp": expires_at, "iat": now},
+        settings.jwt_secret_key.get_secret_value(),
+        algorithm=settings.jwt_algorithm,
+    )
+
+
+def decode_refresh_token(token: str) -> str:
+    """Validate a refresh JWT and return its subject, or raise JWTError."""
+    settings = get_settings()
+    payload = jwt.decode(token, settings.jwt_secret_key.get_secret_value(), algorithms=[settings.jwt_algorithm])
+    if payload.get("type") != "refresh":
+        raise JWTError("Not a refresh token")
+    subject = payload.get("sub")
+    if not isinstance(subject, str):
+        raise JWTError("Token has no subject")
+    return subject

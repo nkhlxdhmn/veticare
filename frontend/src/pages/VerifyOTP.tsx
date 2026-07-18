@@ -1,10 +1,12 @@
 import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { AuthCard } from "@/components/auth/AuthCard";
-import { authService } from "@/services/auth";
+import { api } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 
 export default function VerifyOTP() {
+  const [searchParams] = useSearchParams();
+  const email = searchParams.get("email") || "";
   const [digits, setDigits] = useState(["", "", "", "", "", ""]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -21,7 +23,7 @@ export default function VerifyOTP() {
     setLoading(true);
     setError("");
     try {
-      await authService.verifyOTP(digits.join(""));
+      await api.post("/auth/verify-otp", { email, otp: digits.join("") });
       navigate("/login");
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "Could not verify code.");
@@ -47,7 +49,7 @@ export default function VerifyOTP() {
             />
           ))}
         </div>
-        <p className="mt-4 text-sm text-textSecondary">Resend available in 00:30</p>
+        <p className="mt-4 text-sm text-textSecondary">Enter the code from your email to activate your account.</p>
         {error && (
           <p className="mt-3 text-sm text-red-700 flex items-center gap-2 animate-card-entrance">
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-red-500 shrink-0" />

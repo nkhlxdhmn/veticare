@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { AuthCard } from "@/components/auth/AuthCard";
 import { authService } from "@/services/auth";
 import { Button } from "@/components/ui/button";
 
 export default function ResetPassword() {
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get("token") || "";
   const [done, setDone] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -20,8 +22,13 @@ export default function ResetPassword() {
       setLoading(false);
       return;
     }
+    if (!token) {
+      setError("Missing reset token. Use the link from the email.");
+      setLoading(false);
+      return;
+    }
     try {
-      await authService.resetPassword(password);
+      await authService.resetPassword(token, password);
       setDone(true);
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "Unable to reset password.");
@@ -34,7 +41,7 @@ export default function ResetPassword() {
     <div className="flex min-h-[calc(100vh-64px)] md:min-h-[calc(100vh-72px)] items-center justify-center px-4 md:px-6 animate-fade-in">
       <AuthCard
         title={done ? "Password updated" : "Reset password"}
-        description={done ? "Your mock account password has been updated." : "Choose a new secure password."}
+        description={done ? "Your password has been updated." : "Choose a new secure password."}
       >
         {done ? (
           <Link className="underline transition-colors duration-200 hover:text-textPrimary" to="/login">Back to login</Link>

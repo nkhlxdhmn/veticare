@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthCard } from "@/components/auth/AuthCard";
-import { useAuth } from "@/context/AuthContext";
+import { api } from "@/lib/api";
+import type { TokenResponse } from "@/services/auth";
 import { Button } from "@/components/ui/button";
 
 export default function Register() {
-  const { register } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -27,8 +27,15 @@ export default function Register() {
       return;
     }
     try {
-      await register({ name: String(values.get("name")), email: String(values.get("email")), phone: String(values.get("phone")), password });
-      navigate("/dashboard");
+      const email = String(values.get("email"));
+      const token = await api.post<TokenResponse>("/auth/register", {
+        email,
+        password,
+        full_name: String(values.get("name")),
+        phone: String(values.get("phone")) || null,
+      });
+      localStorage.setItem("veticare_token", JSON.stringify(token));
+      navigate(`/verify-otp?email=${encodeURIComponent(email)}`);
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "Unable to create account.");
     } finally {

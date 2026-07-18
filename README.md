@@ -111,9 +111,11 @@ VetiCare addresses these challenges with an integrated platform:
 - Works with user's current location
 
 ### Authentication
-- JWT-based stateless authentication
-- Session restoration on app startup
-- Global 401 handling with automatic logout
+- JWT-based stateless authentication with **refresh token rotation** (7-day refresh, rotated on use)
+- Email **OTP verification** on registration (6-digit code, 10-min expiry)
+- **Password reset** flow with expiring tokens (30-min expiry, SHA-256 hashed)
+- Session restoration on app startup with auto-refresh on 401
+- Global 401 handling with silent token refresh and automatic logout on failure
 - Route protection (guest vs. authenticated)
 
 ---
@@ -270,6 +272,8 @@ veticare/
 
 ## Authentication Flow
 
+### Session Startup & Auto-Refresh
+
 ```mermaid
 sequenceDiagram
     participant Browser
@@ -282,18 +286,26 @@ sequenceDiagram
     Browser->>React: Page load
     React->>AuthCtx: Mount AuthProvider
     
-    AuthCtx->>AuthCtx: Check localStorage for token
+    AuthCtx->>AuthCtx: Check localStorage for access + refresh tokens
     
-    alt Token Exists
+    alt Tokens Exist
         AuthCtx->>AuthCtx: Show full-screen spinner
         AuthCtx->>API: GET /api/v1/auth/me
-        API->>DB: SELECT profile
+        API->>DB: SELECT profile (is_active = true)
         DB-->>API: Profile data
         API-->>AuthCtx: 200 OK
         
         alt Valid
             AuthCtx->>React: Set user, render dashboard
-        else 401
+        else 401 & refresh_token exists
+            AuthCtx->>API: POST /api/v1/auth/refresh
+            API->>API: Decode + validate refresh token
+            API-->>AuthCtx: 200 OK (rotated pair)
+            AuthCtx->>AuthCtx: Store new tokens
+            AuthCtx->>API: GET /api/v1/auth/me (retry)
+            API-->>AuthCtx: 200 OK
+            AuthCtx->>React: Set user, render dashboard
+        else 401 & no refresh_token
             AuthCtx->>AuthCtx: Clear localStorage
             AuthCtx->>AuthCtx: Show toast "session expired"
             AuthCtx->>AuthCtx: Redirect to /login
@@ -301,6 +313,50 @@ sequenceDiagram
     else No Token
         AuthCtx->>React: Show login page
     end
+```
+
+### Registration & OTP Verification
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant React
+    participant API as FastAPI
+    participant DB as Supabase
+
+    User->>React: Fill register form
+    React->>API: POST /api/v1/auth/register
+    API->>DB: INSERT profile (is_active = false)
+    API->>DB: INSERT email_otp (SHA-256 hashed, 10-min expiry)
+    API-->>React: 201 (access_token + refresh_token)
+    React->>User: Redirect to /verify-otp?email=...
+    User->>React: Enter 6-digit OTP
+    React->>API: POST /api/v1/auth/verify-otp { email, otp }
+    API->>DB: SELECT hashed OTP, verify + check expiry
+    API->>DB: UPDATE profiles SET is_active = true
+    API-->>React: 204 No Content
+    React->>User: Redirect to /login
+```
+
+### Password Reset
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant React
+    participant API as FastAPI
+
+    User->>React: Click "Forgot password"
+    React->>API: POST /api/v1/auth/forgot-password { email }
+    API->>API: Generate token_urlsafe(32), SHA-256 hash
+    API->>API: Log reset link (stdout until email provider is connected)
+    API-->>React: 204 No Content (always, to prevent email enumeration)
+    Note over User,API: User clicks link: /reset-password?token=...
+    React->>API: POST /api/v1/auth/reset-password { token, new_password }
+    API->>API: Hash token, match against DB, check expiry
+    API->>API: UPDATE password, mark token used
+    API-->>React: 204 No Content
+    React->>User: Redirect to /login
 ```
 
 ---
@@ -407,9 +463,13 @@ API Docs: http://localhost:8000/docs
 
 | Method | Route | Description | Auth |
 |--------|-------|-------------|------|
-| POST | `/api/v1/auth/register` | Create account | No |
-| POST | `/api/v1/auth/login` | Sign in | No |
+| POST | `/api/v1/auth/register` | Create account (returns access + refresh token, sends OTP) | No |
+| POST | `/api/v1/auth/login` | Sign in (returns access + refresh token) | No |
 | POST | `/api/v1/auth/token` | OAuth2 token (Swagger) | No |
+| POST | `/api/v1/auth/refresh` | Rotate refresh token → new access + refresh pair | No |
+| POST | `/api/v1/auth/verify-otp` | Verify email OTP and activate account | No |
+| POST | `/api/v1/auth/forgot-password` | Request password reset link (always 204) | No |
+| POST | `/api/v1/auth/reset-password` | Reset password using token from email | No |
 | GET | `/api/v1/auth/me` | Current user profile | Yes |
 
 ### Pets
@@ -551,7 +611,10 @@ sequenceDiagram
 | Measure | Implementation |
 |---------|---------------|
 | **Password hashing** | bcrypt with salt via `passlib` |
-| **JWT tokens** | HS256, 30-minute expiry |
+| **JWT access tokens** | HS256, 30-minute expiry |
+| **JWT refresh tokens** | HS256, 7-day expiry, rotated on every use |
+| **Email OTP verification** | 6-digit code, SHA-256 hashed, 10-min expiry, single-use |
+| **Password reset tokens** | `secrets.token_urlsafe(32)`, SHA-256 hashed, 30-min expiry, single-use |
 | **Production secret validation** | Startup check rejects development defaults |
 | **Input validation** | Pydantic v2 schemas on all endpoints |
 | **CORS whitelist** | Only configured origins allowed |
@@ -560,6 +623,7 @@ sequenceDiagram
 | **Global error handler** | Sanitized 500 responses with trace_id |
 | **Password masking** | Request logs mask password fields |
 | **Secrets management** | All secrets via environment variables |
+| **Email enumeration protection** | Forgot-password endpoint always returns 204 |
 
 ### Security Headers
 
@@ -624,6 +688,9 @@ graph TD
 
 ### v1.0 — Current
 - [x] JWT authentication with session restoration
+- [x] Refresh token rotation (auto-refresh on 401)
+- [x] Email OTP verification on registration
+- [x] Password reset flow (forgot / reset endpoints)
 - [x] ML disease prediction
 - [x] AI veterinary assistant
 - [x] Pet & vaccination CRUD
@@ -632,11 +699,10 @@ graph TD
 - [x] Responsive UI with animations
 
 ### v1.1 — Next
-- [ ] Refresh token flow
-- [ ] Password reset (email-based)
-- [ ] Email verification
+- [ ] Email provider integration (Resend / SES) for actual OTP & password reset delivery
 - [ ] Dark mode
 - [ ] Improved test coverage
+- [ ] httpOnly cookie-based token storage
 
 ### v1.2 — Future
 - [ ] PWA / offline support
