@@ -1,4 +1,4 @@
-import { api, ApiError } from "@/lib/api";
+import { api } from "@/lib/api";
 
 export type AuthUser = {
   id: string;
