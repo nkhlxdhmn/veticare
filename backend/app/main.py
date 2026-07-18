@@ -180,6 +180,11 @@ def create_application() -> FastAPI:
             },
         )
 
+    # ── Root endpoint (Render health check) ─────────────────────────
+    @application.get("/", tags=["health"])
+    async def root() -> dict:
+        return {"status": "ok", "service": "veticare-api", "version": "1.0.0"}
+
     # ── Health endpoint ──────────────────────────────────────────────
     @application.get("/health", tags=["health"])
     async def health_check() -> dict:

@@ -56,6 +56,7 @@ async function request<T>(
     clearTimeout(timeoutId);
 
     if (!res.ok) {
+      if (res.status === 401) onUnauthorized?.();
       const detail = await res.json().catch(() => ({ detail: res.statusText }));
       throw new ApiError(detail.detail ?? `Request failed (${res.status})`, res.status);
     }
@@ -104,6 +105,12 @@ function apiDelete<T>(path: string, options?: RequestOptions) {
 }
 
 export const api = { get: apiGet, post: apiPost, patch: apiPatch, delete: apiDelete };
+
+let onUnauthorized: (() => void) | null = null;
+
+export function setOnUnauthorized(fn: (() => void) | null) {
+  onUnauthorized = fn;
+}
 
 const AI_API_BASE = import.meta.env.VITE_AI_API_URL ?? "http://localhost:8000";
 

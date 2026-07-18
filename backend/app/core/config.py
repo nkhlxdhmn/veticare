@@ -25,6 +25,7 @@ class Settings(BaseSettings):
         "http://localhost:5173",
         "http://127.0.0.1:5173",
         "https://veticare-seven.vercel.app",
+        "https://veticare.vercel.app",
     ]
 
     veticare_supabase_url: str = ""

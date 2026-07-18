@@ -43,6 +43,17 @@ function storeToken(res: TokenResponse): void {
 }
 
 export const authService = {
+  getStoredToken(): string | null {
+    try {
+      const raw = localStorage.getItem("veticare_token");
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      return parsed?.access_token ?? null;
+    } catch {
+      return null;
+    }
+  },
+
   getCurrentUser(): AuthUser | null {
     try {
       const stored = localStorage.getItem("veticare_user");
@@ -50,6 +61,18 @@ export const authService = {
     } catch {
       return null;
     }
+  },
+
+  async validateSession(): Promise<AuthUser> {
+    const profile = await api.get<ProfileResponse>("/auth/me");
+    const mapped = mapProfile(profile);
+    try { localStorage.setItem("veticare_user", JSON.stringify(mapped)); } catch { console.warn("Failed to store user data"); }
+    return mapped;
+  },
+
+  clearSession(): void {
+    try { localStorage.removeItem("veticare_token"); } catch {}
+    try { localStorage.removeItem("veticare_user"); } catch {}
   },
 
   async login(input: LoginInput): Promise<AuthUser> {
@@ -78,9 +101,20 @@ export const authService = {
     return mapped;
   },
 
-  logout(): void {
-    try { localStorage.removeItem("veticare_token"); } catch {}
-    try { localStorage.removeItem("veticare_user"); } catch {}
+  async logout(): Promise<void> {
+    try {
+      await api.post("/auth/logout");
+    } catch {
+      // backend logout endpoint may not exist; always clear locally
+    }
+    this.clearSession();
+  },
+
+  async refreshUser(): Promise<AuthUser> {
+    const profile = await api.get<ProfileResponse>("/auth/me");
+    const mapped = mapProfile(profile);
+    try { localStorage.setItem("veticare_user", JSON.stringify(mapped)); } catch { console.warn("Failed to store user data"); }
+    return mapped;
   },
 
   async forgotPassword(_email: string): Promise<void> {

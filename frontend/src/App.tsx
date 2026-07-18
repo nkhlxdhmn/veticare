@@ -5,7 +5,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import ErrorBoundary from "@/components/ErrorBoundary";
-import { AuthProvider } from "@/context/AuthContext";
+import { AuthProvider, useAuth } from "@/context/AuthContext";
 import { GuestRoute, ProtectedRoute } from "@/components/auth/RouteGuards";
 import { PageTransition } from "@/components/ui/PageTransition";
 import { SkeletonCard } from "@/components/ui/skeleton";
@@ -64,28 +64,44 @@ function AnimatedOutlet() {
   );
 }
 
+function AuthGate({ children }: { children: React.ReactNode }) {
+  const { loading } = useAuth();
+  if (loading) {
+    return (
+      <div className="flex min-h-screen w-full items-center justify-center bg-background">
+        <div className="spinner h-8 w-8 text-textPrimary" />
+      </div>
+    );
+  }
+  return <>{children}</>;
+}
+
 function RootLayout() {
   return (
-    <div className="flex min-h-screen w-full flex-col bg-background text-textPrimary">
-      <ScrollToTop />
-      <Navbar />
-      <main className="mt-[72px] flex-1">
-        <Suspense fallback={<PageFallback />}>
-          <ErrorBoundary>
-            <AnimatedOutlet />
-          </ErrorBoundary>
-        </Suspense>
-      </main>
-      <Footer />
-      <Toaster
-        position="top-right"
-        richColors
-        closeButton
-        toastOptions={{
-          duration: 4000,
-        }}
-      />
-    </div>
+    <AuthProvider>
+      <AuthGate>
+        <div className="flex min-h-screen w-full flex-col bg-background text-textPrimary">
+          <ScrollToTop />
+          <Navbar />
+          <main className="mt-[72px] flex-1">
+            <Suspense fallback={<PageFallback />}>
+              <ErrorBoundary>
+                <AnimatedOutlet />
+              </ErrorBoundary>
+            </Suspense>
+          </main>
+          <Footer />
+          <Toaster
+            position="top-right"
+            richColors
+            closeButton
+            toastOptions={{
+              duration: 4000,
+            }}
+          />
+        </div>
+      </AuthGate>
+    </AuthProvider>
   );
 }
 
@@ -134,9 +150,5 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
-  return (
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
-  );
+  return <RouterProvider router={router} />;
 }
