@@ -14,10 +14,13 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import JSONResponse
 
 from app.api.router import api_router
+from app.api.routes.ai_assistant import router as ai_assistant_router
 from app.core.config import Settings, get_settings
 from app.core.logging import configure_logging
 from app.core.ml_model import load_model
 from app.core.rate_limit import RateLimitMiddleware
+from app.services.ai_knowledge_service import get_diseases_count, reload_knowledge_base
+from app.services.ai_llm_service import is_gemini_configured
 
 logger = logging.getLogger(__name__)
 
@@ -125,6 +128,11 @@ async def lifespan(application: FastAPI):
         logger.exception("Failed to load ML model")
         application.state.model = None
 
+    # ── AI Assistant: reload knowledge base ──────────────────────────
+    reload_knowledge_base()
+    logger.info("AI assistant knowledge base ready (%d diseases)", get_diseases_count())
+    logger.info("Gemini configured: %s", is_gemini_configured())
+
     yield
     logger.info("VetiCare API shutting down")
 
@@ -160,6 +168,7 @@ def create_application() -> FastAPI:
         )
 
     application.include_router(api_router, prefix=settings.api_v1_prefix)
+    application.include_router(ai_assistant_router)
 
     # ── Global exception handler with trace_id ───────────────────────
     @application.exception_handler(Exception)

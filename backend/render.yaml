@@ -26,4 +26,6 @@ services:
         sync: false
       - key: VETICARE_SUPABASE_KEY
         sync: false
+      - key: GEMINI_API_KEY
+        sync: false
       # MODEL_PATH removed — path is resolved automatically from __file__

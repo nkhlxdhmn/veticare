@@ -1,0 +1,4005 @@
+[
+  {
+    "id": 1,
+    "animal": "Dog",
+    "disease_name": "Canine Parvovirus",
+    "aliases": [
+      "Parvo",
+      "CPV-2",
+      "Canine Parvoviral Enteritis"
+    ],
+    "description": "Highly contagious viral illness causing severe hemorrhagic gastroenteritis and myocarditis in puppies. The virus attacks rapidly dividing cells in the intestinal tract, bone marrow, and heart, leading to severe dehydration, immunosuppression, and potentially death within 48-72 hours of clinical onset if untreated.",
+    "common_causes": [
+      "Infection with Canine Parvovirus type 2",
+      "Direct contact with infected dog feces",
+      "Fomite transmission via contaminated surfaces, bowls, shoes",
+      "Lack of maternal antibody protection",
+      "Inadequate or incomplete vaccination schedule"
+    ],
+    "symptoms": [
+      "Profuse foul-smelling bloody diarrhea",
+      "Persistent vomiting",
+      "High fever (103-106F)",
+      "Complete loss of appetite",
+      "Severe lethargy and depression",
+      "Rapid dehydration",
+      "Abdominal pain and bloating",
+      "Weight loss",
+      "Weakness and collapse"
+    ],
+    "risk_factors": [
+      "Unvaccinated or incompletely vaccinated puppies",
+      "Age under 6 months",
+      "Certain breeds: Rottweilers, Dobermans, Pit Bulls",
+      "Crowded or unsanitary conditions",
+      "Stress from weaning or relocation"
+    ],
+    "severity": "Emergency",
+    "home_care": [
+      "Isolate the dog from other animals immediately",
+      "Provide fresh water if dog is not vomiting",
+      "Clean all contaminated areas with 1:30 bleach solution",
+      "Wash hands thoroughly after contact",
+      "Follow strict quarantine protocol for 4 weeks"
+    ],
+    "warning_signs": [
+      "Bloody or black tarry diarrhea",
+      "Persistent vomiting leading to inability to keep water down",
+      "Severe lethargy with unresponsiveness",
+      "Rapid onset of dehydration (skin tenting, dry gums)",
+      "Hypothermia (temperature below 99F)",
+      "Seizures or collapse"
+    ],
+    "when_to_visit_vet": "Immediately at first suspicion. Prognosis worsens significantly with every hour of delay. This is a life-threatening emergency requiring intensive veterinary care including hospitalization and IV fluid therapy.",
+    "prevention": [
+      "Core vaccination beginning at 6-8 weeks with boosters every 3-4 weeks until 16 weeks",
+      "Annual booster vaccination as recommended by veterinarian",
+      "Limit exposure to unvaccinated dogs and high-traffic dog areas until fully vaccinated",
+      "Avoid dog parks, pet stores, and boarding during vaccination period",
+      "Quarantine new puppies for 2 weeks before introduction"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "Canine Parvovirus fecal ELISA test",
+      "Complete blood count (leukopenia is characteristic)",
+      "Blood chemistry panel",
+      "Fecal PCR test for confirmation",
+      "Abdominal radiography"
+    ],
+    "contagious": true,
+    "zoonotic": false,
+    "affected_age": "Primarily puppies 6-20 weeks; older unvaccinated dogs also susceptible",
+    "breed_risk": [
+      "Rottweiler",
+      "Doberman Pinscher",
+      "American Pit Bull Terrier",
+      "English Springer Spaniel",
+      "German Shepherd"
+    ],
+    "recovery_time": "5-14 days with intensive care; survivors have lifelong immunity",
+    "references": [
+      "MSD Veterinary Manual: Canine Parvovirus",
+      "American Veterinary Medical Association (AVMA): Parvovirus FAQs",
+      "Journal of Veterinary Internal Medicine: CPV-2 epidemiology"
+    ]
+  },
+  {
+    "id": 2,
+    "animal": "Dog",
+    "disease_name": "Canine Distemper",
+    "aliases": [
+      "Hard Pad Disease",
+      "Distemper",
+      "CDV"
+    ],
+    "description": "A serious multisystemic viral disease affecting the respiratory, gastrointestinal, and nervous systems of dogs. Caused by a paramyxovirus closely related to the measles virus. The disease follows a biphasic fever pattern and can cause permanent neurological damage in survivors.",
+    "common_causes": [
+      "Infection with Canine Distemper Virus",
+      "Aerosol transmission through respiratory droplets",
+      "Direct contact with infected dogs or wildlife",
+      "Fomite contamination of food bowls and bedding",
+      "Transplacental transmission from dam to puppy"
+    ],
+    "symptoms": [
+      "Biphasic fever (temperature spike, improvement, then second spike)",
+      "Watery to mucoid nasal discharge",
+      "Coughing and pneumonia",
+      "Vomiting and diarrhea",
+      "Loss of appetite and weight loss",
+      "Conjunctivitis with eye discharge",
+      "Hyperkeratosis (hardening) of paw pads",
+      "Muscle twitching and tremors",
+      "Seizures with chewing gum fits",
+      "Partial or complete paralysis"
+    ],
+    "risk_factors": [
+      "Unvaccinated status",
+      "Age under one year",
+      "Exposure to wildlife reservoirs (raccoons, foxes, skunks)",
+      "Crowded shelter or kennel environments",
+      "Immunosuppression from stress or malnutrition"
+    ],
+    "severity": "Emergency",
+    "home_care": [
+      "Strict isolation from other animals",
+      "Warm, quiet, and draft-free environment",
+      "Soft food if able to eat, assisted feeding if needed",
+      "Gently clean nose and eyes of discharge",
+      "Monitor temperature and neurological status hourly",
+      "Provide padded bedding if seizures occur"
+    ],
+    "warning_signs": [
+      "Seizures or neurological deterioration",
+      "Complete loss of coordination",
+      "Difficulty breathing from pneumonia",
+      "Collapse or unresponsiveness",
+      "Signs of secondary bacterial infection"
+    ],
+    "when_to_visit_vet": "At the first sign of symptoms. Early supportive care significantly improves survival odds. Any dog with fever, respiratory signs, and neurological signs requires immediate hospitalization.",
+    "prevention": [
+      "Core DHP/DHPP vaccination beginning at 6-8 weeks",
+      "Booster vaccinations every 3-4 weeks until 16 weeks of age",
+      "Avoid contact with wildlife and unvaccinated dogs",
+      "Disinfect premises with appropriate virucidal agents",
+      "Quarantine new dogs before introducing to household"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "RT-PCR on conjunctival or nasal swabs",
+      "Direct fluorescent antibody test",
+      "Serology (IgM and IgG)",
+      "Complete blood count",
+      "Chest radiographs for pneumonia assessment"
+    ],
+    "contagious": true,
+    "zoonotic": false,
+    "affected_age": "Most common in puppies 3-6 months; can affect unvaccinated dogs of any age",
+    "breed_risk": [],
+    "recovery_time": "2-6 weeks for acute phase; neurological deficits may be permanent",
+    "references": [
+      "MSD Veterinary Manual: Canine Distemper",
+      "AVMA: Distemper in Dogs",
+      "Journal of Comparative Pathology: CDV pathogenesis"
+    ]
+  },
+  {
+    "id": 3,
+    "animal": "Dog",
+    "disease_name": "Canine Infectious Tracheobronchitis",
+    "aliases": [
+      "Kennel Cough",
+      "Bordetellosis",
+      "Canine Cough Complex"
+    ],
+    "description": "A highly contagious respiratory syndrome characterized by inflammation of the trachea and bronchi. Multiple pathogens can be involved, most commonly Bordetella bronchiseptica bacteria in combination with canine parainfluenza virus or canine adenovirus type 2.",
+    "common_causes": [
+      "Bordetella bronchiseptica infection",
+      "Canine parainfluenza virus",
+      "Canine adenovirus type 2 (CAV-2)",
+      "Canine herpesvirus",
+      "Mycoplasma species co-infection",
+      "Mixed infections are common"
+    ],
+    "symptoms": [
+      "Persistent dry hacking cough often described as goose-honk",
+      "Gagging or retching at end of cough",
+      "Clear to mucoid nasal discharge",
+      "Mild fever in some cases",
+      "Watery eye discharge",
+      "Lethargy in severe cases"
+    ],
+    "risk_factors": [
+      "Recent boarding or daycare attendance",
+      "Dog park exposure",
+      "Shelter or rescue environments",
+      "Stress from travel or competition",
+      "Crowded living conditions with poor ventilation",
+      "Young puppies or immunocompromised dogs"
+    ],
+    "severity": "Low",
+    "home_care": [
+      "Rest and limit exercise for 7-10 days",
+      "Use a harness instead of a collar to reduce tracheal pressure",
+      "Humidifier or steam therapy to soothe airways",
+      "Avoid smoke, dust, and strong fragrances",
+      "Separate from other dogs for 2 weeks"
+    ],
+    "warning_signs": [
+      "Difficulty breathing or open-mouth breathing",
+      "Lethargy with complete loss of appetite",
+      "Fever persisting beyond 48 hours",
+      "Cough producing thick yellow-green discharge",
+      "Signs of progressing to pneumonia"
+    ],
+    "when_to_visit_vet": "If cough persists beyond 7 days, if fever develops, if the dog stops eating, or if the cough worsens. Puppies and elderly dogs should be seen sooner.",
+    "prevention": [
+      "Bordetella vaccination (intranasal or injectable)",
+      "Avoid high-density dog environments during outbreaks",
+      "Good ventilation and sanitation in kennels",
+      "Reduce stress during boarding",
+      "Allow 2 weeks between vaccination and potential exposure"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "PCR panel for respiratory pathogens",
+      "Tracheal wash culture and sensitivity",
+      "Complete blood count to assess inflammation",
+      "Thoracic radiographs if pneumonia suspected"
+    ],
+    "contagious": true,
+    "zoonotic": false,
+    "affected_age": "All ages; more severe in puppies and geriatric dogs",
+    "breed_risk": [
+      "Brachycephalic breeds (pugs, bulldogs) may have more severe symptoms"
+    ],
+    "recovery_time": "7-21 days; cough may persist 2-3 weeks after other symptoms resolve",
+    "references": [
+      "MSD Veterinary Manual: Canine Infectious Respiratory Disease Complex",
+      "Journal of the American Veterinary Medical Association: Bordetella management",
+      "WSAVA guidelines for canine respiratory vaccination"
+    ]
+  },
+  {
+    "id": 4,
+    "animal": "Dog",
+    "disease_name": "Canine Rabies",
+    "aliases": [
+      "Rabies",
+      "Hydrophobia",
+      "Lyssa"
+    ],
+    "description": "A fatal viral encephalomyelitis caused by a lyssavirus that affects all mammals. It is the deadliest zoonotic disease with near-100% fatality once clinical signs appear. The virus travels from the bite wound along peripheral nerves to the central nervous system.",
+    "common_causes": [
+      "Bite from an infected animal (wildlife or domestic)",
+      "Saliva from an infected animal contacting open wounds or mucous membranes",
+      "Raccoons, skunks, foxes, and bats are primary wildlife reservoirs",
+      "Inhalation of aerosolized virus in bat caves (rare)"
+    ],
+    "symptoms": [
+      "Prodromal phase: behavioral changes, anxiety, unusual friendliness or aggression",
+      "Furious form: hyperexcitability, aggression, roaming, disorientation",
+      "Paralytic form: progressive paralysis starting from hind legs",
+      "Excessive drooling and foaming at the mouth",
+      "Difficulty swallowing (pharyngeal paralysis)",
+      "Hydrophobia-like aversion to water",
+      "Seizures and respiratory arrest",
+      "Coma leading to death"
+    ],
+    "risk_factors": [
+      "Unvaccinated dogs",
+      "Outdoor or free-roaming dogs",
+      "Living in regions with high wildlife rabies prevalence",
+      "Hunting dogs exposed to wildlife",
+      "Travel to endemic areas"
+    ],
+    "severity": "Emergency",
+    "home_care": [
+      "No home care is possible or safe",
+      "Do not approach the animal if rabies is suspected",
+      "Contact local animal control immediately",
+      "If bitten, wash wound thoroughly with soap and water for 15 minutes",
+      "Seek immediate post-exposure prophylaxis at a hospital",
+      "Report case to local health department"
+    ],
+    "warning_signs": [
+      "Any unexplained behavioral change in a previously normal dog",
+      "Sudden aggression or unusual tameness",
+      "Progressive paralysis",
+      "Excessive drooling without other cause",
+      "Loss of fear of humans or other animals"
+    ],
+    "when_to_visit_vet": "Any suspected rabies exposure requires immediate veterinary consultation and local health department notification. If a dog shows neurological signs or has bitten someone, it must be quarantined or tested per local regulations.",
+    "prevention": [
+      "Mandatory rabies vaccination by 12-16 weeks of age",
+      "Booster vaccination at 1 year and every 1-3 years depending on local laws and vaccine type",
+      "Avoid free-roaming to reduce wildlife contact",
+      "Report stray or unusual behaving animals to authorities",
+      "Post-exposure prophylaxis for any bite wounds"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "Direct fluorescent antibody test on brain tissue (post-mortem)",
+      "RT-PCR for viral RNA",
+      "Histopathology for Negri bodies",
+      "Serology for antibody titer in vaccinated animals"
+    ],
+    "contagious": true,
+    "zoonotic": true,
+    "affected_age": "All ages; risk increases with age if vaccination is not maintained",
+    "breed_risk": [],
+    "recovery_time": "No recovery; nearly 100% fatal once clinical signs appear. Incubation period: 2 weeks to 6 months.",
+    "references": [
+      "World Health Organization: Rabies fact sheet",
+      "CDC: Rabies in dogs",
+      "MSD Veterinary Manual: Rabies",
+      "Compendium of Animal Rabies Prevention and Control"
+    ]
+  },
+  {
+    "id": 5,
+    "animal": "Dog",
+    "disease_name": "Canine Heartworm Disease",
+    "aliases": [
+      "Dirofilariasis",
+      "Heartworm",
+      "Dirofilaria immitis infection"
+    ],
+    "description": "A serious and potentially fatal parasitic disease caused by foot-long worms (Dirofilaria immitis) that live in the heart, pulmonary arteries, and adjacent blood vessels. Transmitted through mosquito bites, the worms cause progressive damage to the heart and lungs over months to years.",
+    "common_causes": [
+      "Infection with Dirofilaria immitis nematodes",
+      "Mosquito bite transmitting infective larvae (L3)",
+      "Lack of year-round heartworm prevention",
+      "Travel to or relocation from endemic regions"
+    ],
+    "symptoms": [
+      "Soft, persistent cough",
+      "Exercise intolerance and fatigue after minimal activity",
+      "Weight loss and muscle wasting",
+      "Decreased appetite",
+      "Swollen abdomen due to fluid accumulation (right heart failure)",
+      "Labored or rapid breathing",
+      "Pale or bluish gums",
+      "Collapse or fainting episodes",
+      "Caval syndrome: sudden collapse with dark urine"
+    ],
+    "risk_factors": [
+      "No heartworm prevention use",
+      "Geographic location (endemic areas include tropical and subtropical regions)",
+      "Outdoor lifestyle increasing mosquito exposure",
+      "Hunting or working dogs with prolonged outdoor exposure",
+      "Previous history of heartworm in household"
+    ],
+    "severity": "High",
+    "home_care": [
+      "Strict exercise restriction to prevent pulmonary thromboembolism",
+      "Comfortable environment away from heat and exertion",
+      "Balanced nutrition to maintain body condition",
+      "Monitor breathing rate and effort daily",
+      "Administer prevention as directed year-round"
+    ],
+    "warning_signs": [
+      "Sudden collapse or fainting",
+      "Coughing up blood",
+      "Severe difficulty breathing",
+      "Distended abdomen that feels tight",
+      "Blue-tinged gums",
+      "Inability to rise or walk"
+    ],
+    "when_to_visit_vet": "Annual testing is essential in endemic areas. If a dog shows any respiratory signs or exercise intolerance and is not on prevention, test immediately. Emergency if caval syndrome is suspected.",
+    "prevention": [
+      "Year-round heartworm prevention medication prescribed by veterinarian",
+      "Annual antigen and microfilaria testing as recommended",
+      "Minimize mosquito exposure during dawn and dusk",
+      "Remove standing water sources"
+    ],
+    "vaccination_available": false,
+    "recommended_tests": [
+      "Heartworm antigen test (ELISA): detects adult female worms",
+      "Microfilaria test (modified Knott test)",
+      "Complete blood count (eosinophilia pattern)",
+      "Chest radiographs for pulmonary artery changes",
+      "Echocardiography for visible adult worms in advanced cases"
+    ],
+    "contagious": false,
+    "zoonotic": false,
+    "affected_age": "Most commonly diagnosed in dogs aged 2-8 years; risk increases with cumulative mosquito exposure",
+    "breed_risk": [],
+    "recovery_time": "Slow kill protocol: 6-12 months. Adulticide treatment: 2-4 months with strict exercise restriction during treatment",
+    "references": [
+      "American Heartworm Society: Canine heartworm guidelines",
+      "MSD Veterinary Manual: Heartworm Disease",
+      "Journal of Veterinary Internal Medicine: Heartworm treatment protocols"
+    ]
+  },
+  {
+    "id": 6,
+    "animal": "Dog",
+    "disease_name": "Canine Leptospirosis",
+    "aliases": [
+      "Lepto",
+      "Weil's Disease",
+      "Leptospira infection"
+    ],
+    "description": "A bacterial zoonotic disease caused by pathogenic Leptospira species. The bacteria infect the kidneys and liver, causing acute organ failure. It is transmitted through contact with urine-contaminated water, soil, or food of infected animals, particularly rodents and wildlife.",
+    "common_causes": [
+      "Leptospira interrogans serovars (icterohaemorrhagiae, canicola, grippotyphosa)",
+      "Contact with urine-contaminated standing water",
+      "Exposure to infected wildlife (rats, raccoons, opossums)",
+      "Rodent infestation in living environment",
+      "Swimming in or drinking from contaminated ponds or puddles"
+    ],
+    "symptoms": [
+      "Sudden fever (103-105F) with shivering",
+      "Muscle tenderness and stiffness",
+      "Vomiting and diarrhea",
+      "Increased thirst and urination (polyuria/polydipsia)",
+      "Yellowing of eyes, gums, and skin (jaundice)",
+      "Lethargy and depression",
+      "Bleeding disorders (petechiae, epistaxis)",
+      "Reduced or absent urine production (kidney failure)",
+      "Eye inflammation (uveitis)"
+    ],
+    "risk_factors": [
+      "Access to ponds, lakes, or standing water",
+      "Rural or suburban environment with wildlife",
+      "Hunting or working dogs with water exposure",
+      "Rodent infestation in home or kennel",
+      "Unvaccinated against Leptospira"
+    ],
+    "severity": "Emergency",
+    "home_care": [
+      "Handle with gloves as bacteria shed in urine",
+      "Isolate from other pets and family members",
+      "Provide fresh water if kidney function is monitored",
+      "Encourage urination away from living areas",
+      "Disinfect urine-contaminated surfaces with bleach solution",
+      "Follow antibiotic course exactly as prescribed"
+    ],
+    "warning_signs": [
+      "Absence of urine output for 12+ hours",
+      "Severe jaundice (yellow discoloration)",
+      "Bleeding from nose or gums",
+      "Seizures or disorientation",
+      "Collapse or inability to stand"
+    ],
+    "when_to_visit_vet": "Any combination of fever, lethargy, and increased thirst requires urgent evaluation. If jaundice is visible or urine output decreases, treat as an emergency.",
+    "prevention": [
+      "Leptospirosis vaccination (non-core but recommended for at-risk dogs)",
+      "Eliminate standing water sources",
+      "Rodent control in and around the property",
+      "Prevent drinking from ponds and puddles during walks",
+      "Handle and dispose of dog urine with care"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "Leptospira antibody titer (MAT test)",
+      "PCR testing on blood or urine",
+      "Complete blood count and blood chemistry panel",
+      "Urinalysis and urine culture",
+      "Kidney and liver function tests"
+    ],
+    "contagious": true,
+    "zoonotic": true,
+    "affected_age": "All ages; higher risk in young adult dogs (1-3 years) with outdoor exposure",
+    "breed_risk": [],
+    "recovery_time": "2-4 weeks with prompt treatment; lifelong kidney damage may persist in severe cases",
+    "references": [
+      "MSD Veterinary Manual: Leptospirosis",
+      "CDC: Leptospirosis in dogs and humans",
+      "Journal of Veterinary Internal Medicine: Canine leptospirosis consensus"
+    ]
+  },
+  {
+    "id": 7,
+    "animal": "Dog",
+    "disease_name": "Canine Gastroenteritis",
+    "aliases": [
+      "Stomach Bug",
+      "Acute Gastroenteritis",
+      "Dietary Indiscretion Diarrhea"
+    ],
+    "description": "Inflammation of the stomach and intestinal lining causing acute onset vomiting and diarrhea. Usually self-limiting and caused by dietary indiscretion but can be triggered by infections, parasites, or dietary changes.",
+    "common_causes": [
+      "Dietary indiscretion (eating garbage, spoiled food, foreign objects)",
+      "Sudden change in diet",
+      "Food intolerance or allergy",
+      "Bacterial overgrowth",
+      "Viral infection",
+      "Intestinal parasites",
+      "Stress or anxiety"
+    ],
+    "symptoms": [
+      "Acute vomiting (food, bile, or foam)",
+      "Soft to watery diarrhea",
+      "Mild to moderate loss of appetite",
+      "Lethargy (mild)",
+      "Abdominal discomfort or gurgling sounds",
+      "Mild dehydration",
+      "Occasional low-grade fever"
+    ],
+    "risk_factors": [
+      "Access to trash or compost",
+      "History of dietary indiscretion",
+      "Recently adopted dogs with diet change",
+      "Stressful events (boarding, travel, new home)",
+      "Competitive eating or gulping food"
+    ],
+    "severity": "Low",
+    "home_care": [
+      "Withhold food for 12-24 hours to rest the digestive tract",
+      "Provide small amounts of fresh water frequently",
+      "Introduce bland diet (boiled rice with boiled chicken or pumpkin)",
+      "Feed small frequent meals once vomiting stops",
+      "Gradually transition back to regular food over 3-4 days",
+      "Probiotics to restore gut flora"
+    ],
+    "warning_signs": [
+      "Vomiting blood or coffee-ground material",
+      "Bloody or black tarry diarrhea",
+      "Persistent vomiting beyond 24 hours",
+      "Complete inability to keep water down",
+      "Severe lethargy or collapse",
+      "Abdominal pain with vocalization"
+    ],
+    "when_to_visit_vet": "If vomiting persists beyond 24 hours, if blood is present, if the dog cannot keep water down, or if lethargy is severe. Puppies and senior dogs should be seen at 12 hours of persistent symptoms.",
+    "prevention": [
+      "Keep garbage and compost inaccessible",
+      "Make dietary changes gradually over 5-7 days",
+      "Avoid table scraps and high-fat foods",
+      "Use slow feeder bowls to prevent gulping",
+      "Maintain consistent feeding schedule"
+    ],
+    "vaccination_available": false,
+    "recommended_tests": [
+      "Fecal floatation for parasite screening",
+      "Fecal Giardia ELISA test",
+      "Complete blood count to assess hydration and infection",
+      "Abdominal radiographs if foreign body is suspected"
+    ],
+    "contagious": false,
+    "zoonotic": false,
+    "affected_age": "All ages; more common in dogs under 2 years due to exploratory eating habits",
+    "breed_risk": [
+      "Labradors and Golden Retrievers (higher rates of dietary indiscretion)"
+    ],
+    "recovery_time": "24-72 hours with proper supportive care",
+    "references": [
+      "MSD Veterinary Manual: Acute Gastroenteritis in Small Animals",
+      "Journal of Small Animal Practice: Dietary management of gastroenteritis"
+    ]
+  },
+  {
+    "id": 8,
+    "animal": "Dog",
+    "disease_name": "Canine Hip Dysplasia",
+    "aliases": [
+      "CHD",
+      "Hip Dysplasia",
+      "Coxofemoral Dysplasia"
+    ],
+    "description": "A developmental orthopedic condition where the hip joint develops abnormally due to laxity of the joint capsule and malformation of the acetabulum, leading to subluxation, arthritis, and pain. It has a strong genetic component but is influenced by environmental factors.",
+    "common_causes": [
+      "Genetic predisposition (polygenic inheritance)",
+      "Abnormal joint laxity in early development",
+      "Rapid growth rate in large breed puppies",
+      "Excessive exercise on hard surfaces during growth",
+      "Obesity increasing joint stress",
+      "Nutritional imbalances (excess calcium or calories)"
+    ],
+    "symptoms": [
+      "Hind limb lameness worsening after exercise",
+      "Bunny-hopping gait when running",
+      "Difficulty rising from lying down",
+      "Reluctance to climb stairs or jump",
+      "Swaying of the hips when walking",
+      "Decreased activity level",
+      "Pain on hip extension or rotation",
+      "Muscle atrophy in the hindquarters"
+    ],
+    "risk_factors": [
+      "Large and giant breed size",
+      "Family history of hip dysplasia",
+      "Rapid weight gain during puppyhood",
+      "Slick flooring surfaces",
+      "High-calorie diet during growth"
+    ],
+    "severity": "Medium",
+    "home_care": [
+      "Maintain lean body weight to reduce joint stress",
+      "Low-impact exercise (swimming, leash walks)",
+      "Provide orthopedic memory foam bedding",
+      "Use ramps for vehicles and stairs",
+      "Joint supplements containing glucosamine and chondroitin",
+      "Warmth therapy for stiff joints",
+      "Physical therapy and massage"
+    ],
+    "warning_signs": [
+      "Complete inability to stand or walk",
+      "Crying out in pain when touched",
+      "Severe muscle wasting over hindquarters",
+      "Dragging of hind limbs"
+    ],
+    "when_to_visit_vet": "If a puppy shows lameness or gait abnormality, seek evaluation for early intervention. Adult dogs with progressive lameness should be examined to manage arthritis before it becomes debilitating.",
+    "prevention": [
+      "Responsible breeding with OFA/PennHIP certification",
+      "Maintain lean body condition throughout life",
+      "Controlled exercise on soft surfaces during growth",
+      "Balanced nutrition without excess calcium or calories",
+      "Avoid high-impact activity until skeletal maturity"
+    ],
+    "vaccination_available": false,
+    "recommended_tests": [
+      "OFA (Orthopedic Foundation for Animals) hip screening",
+      "PennHIP hip laxity evaluation",
+      "Radiographic evaluation under sedation for joint laxity",
+      "Physical examination with Ortolani and Barden maneuvers"
+    ],
+    "contagious": false,
+    "zoonotic": false,
+    "affected_age": "Signs may appear as early as 4-12 months; degenerative changes progress with age",
+    "breed_risk": [
+      "Labrador Retriever",
+      "Golden Retriever",
+      "German Shepherd",
+      "Great Dane",
+      "Saint Bernard",
+      "Rottweiler",
+      "Bulldog"
+    ],
+    "recovery_time": "Lifelong management required; surgical recovery 8-12 weeks; medical management ongoing",
+    "references": [
+      "Orthopedic Foundation for Animals (OFA): Hip Dysplasia database",
+      "MSD Veterinary Manual: Hip Dysplasia",
+      "Journal of the American Veterinary Medical Association: CHD management"
+    ]
+  },
+  {
+    "id": 9,
+    "animal": "Cat",
+    "disease_name": "Feline Panleukopenia",
+    "aliases": [
+      "Feline Distemper",
+      "Feline Parvovirus",
+      "FPV",
+      "Feline Infectious Enteritis"
+    ],
+    "description": "A highly contagious viral disease caused by feline parvovirus, characterized by severe leukopenia, gastroenteritis, and high mortality in kittens. The virus attacks rapidly dividing cells in the bone marrow, intestinal tract, and developing brain.",
+    "common_causes": [
+      "Infection with Feline Parvovirus (FPV)",
+      "Direct contact with infected cats or their bodily fluids",
+      "Fomite transmission via food bowls, bedding, litter boxes",
+      "Indoor contamination as the virus survives months on surfaces",
+      "Transplacental transmission causing cerebellar hypoplasia in kittens"
+    ],
+    "symptoms": [
+      "Sudden onset high fever (104-106F)",
+      "Profuse vomiting",
+      "Severe watery diarrhea, often bloody",
+      "Complete loss of appetite",
+      "Profound depression and lethargy",
+      "Severe dehydration with skin tenting",
+      "Hunched posture from abdominal pain",
+      "Pale mucous membranes",
+      "Hiding behavior in early stages"
+    ],
+    "risk_factors": [
+      "Unvaccinated cats and kittens",
+      "Age 2-6 months highest susceptibility",
+      "Multi-cat households and shelters",
+      "Crowded or unsanitary living conditions",
+      "Stress from weaning, relocation, or surgery"
+    ],
+    "severity": "Emergency",
+    "home_care": [
+      "Strict isolation from other cats for at least 2 weeks",
+      "Do not attempt home treatment, requires intensive veterinary care",
+      "Warmth support with heating pads (low setting, wrapped)",
+      "Gentle cleaning of soiled fur and bedding",
+      "Bleach-clean all surfaces the cat contacted",
+      "Hand hygiene before and after contact"
+    ],
+    "warning_signs": [
+      "Bloody or watery diarrhea leading to rapid dehydration",
+      "Persistent vomiting preventing fluid intake",
+      "Rapid deterioration with severe lethargy",
+      "Low body temperature (hypothermia)",
+      "Collapse or unresponsiveness",
+      "Sudden death in young kittens"
+    ],
+    "when_to_visit_vet": "Immediately at the first sign of fever, vomiting, or lethargy. This is a medical emergency requiring hospitalization, IV fluids, and intensive care.",
+    "prevention": [
+      "Core FVRCP vaccination beginning at 6-8 weeks",
+      "Booster vaccinations every 3-4 weeks until 16-20 weeks",
+      "Annual booster as recommended",
+      "Keep indoor-only lifestyle",
+      "Disinfect environment with bleach solution (1:32)",
+      "Quarantine new cats for 2 weeks"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "Fecal ELISA for feline parvovirus antigen",
+      "Complete blood count (severe leukopenia is hallmark)",
+      "Blood chemistry and electrolytes",
+      "PCR testing for confirmation",
+      "Abdominal ultrasound"
+    ],
+    "contagious": true,
+    "zoonotic": false,
+    "affected_age": "Primarily kittens 2-6 months; unvaccinated cats of any age susceptible",
+    "breed_risk": [],
+    "recovery_time": "5-14 days with intensive hospital care; survivors have lifelong immunity",
+    "references": [
+      "MSD Veterinary Manual: Feline Panleukopenia",
+      "American Association of Feline Practitioners: FPV guidelines",
+      "Journal of Feline Medicine and Surgery: FPV management"
+    ]
+  },
+  {
+    "id": 10,
+    "animal": "Cat",
+    "disease_name": "Feline Upper Respiratory Infection",
+    "aliases": [
+      "Cat Flu",
+      "Feline URI",
+      "Feline Viral Rhinotracheitis",
+      "Feline Calicivirus"
+    ],
+    "description": "A highly contagious respiratory infection primarily caused by feline herpesvirus type 1 (FHV-1) and feline calicivirus (FCV). These viruses cause acute inflammation of the nasal passages, sinuses, eyes, and throat, with herpesvirus establishing lifelong latency with periodic reactivation.",
+    "common_causes": [
+      "Feline herpesvirus type 1 (FHV-1) - majority of cases",
+      "Feline calicivirus (FCV)",
+      "Secondary bacterial infections (Bordetella, Chlamydia, Mycoplasma)",
+      "Stress-induced viral reactivation in carriers",
+      "Direct contact with infected cats or contaminated surfaces"
+    ],
+    "symptoms": [
+      "Frequent sneezing fits",
+      "Clear to purulent nasal discharge",
+      "Conjunctivitis with redness and swelling",
+      "Eye discharge (clear to mucoid)",
+      "Fever (103-105F)",
+      "Loss of appetite",
+      "Lethargy and depression",
+      "Oral ulcers on tongue and palate (FCV)",
+      "Corneal ulcers (FHV-1)",
+      "Excessive salivation or drooling"
+    ],
+    "risk_factors": [
+      "Multi-cat households or catteries",
+      "Stress from boarding, travel, or new pets",
+      "Age (kittens and geriatric cats)",
+      "Unvaccinated or incompletely vaccinated cats",
+      "Poor ventilation and overcrowding",
+      "Feline herpesvirus carrier status"
+    ],
+    "severity": "Low",
+    "home_care": [
+      "Gently clean eyes and nose with warm damp cloth several times daily",
+      "Offer strongly aromatic warmed wet food to stimulate appetite",
+      "Run a humidifier or bring cat into steamy bathroom",
+      "Reduce stress with quiet environment",
+      "Keep food and water bowls within easy reach",
+      "Ensure hydration with wet food or syringe water"
+    ],
+    "warning_signs": [
+      "Difficulty breathing with open-mouth breathing",
+      "Refusing all food for 24+ hours",
+      "Severe lethargy and unresponsiveness",
+      "Yellow-green or bloody nasal discharge",
+      "Ulceration of the cornea (eye cloudiness)",
+      "Dehydration signs (skin tenting)"
+    ],
+    "when_to_visit_vet": "If the cat stops eating or drinking for more than 24 hours, shows difficulty breathing, develops eye ulcers, or if fever persists beyond 3 days despite home care.",
+    "prevention": [
+      "FVRCP vaccination (core vaccine)",
+      "Reduce stress in multi-cat households",
+      "Good ventilation and avoid overcrowding",
+      "Quarantine new cats for 2 weeks before introduction",
+      "Use separate food bowls and litter boxes"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "PCR panel for FHV-1, FCV, and secondary pathogens",
+      "Fluorescein stain to check for corneal ulcers",
+      "Complete blood count",
+      "Chest radiographs if pneumonia suspected"
+    ],
+    "contagious": true,
+    "zoonotic": false,
+    "affected_age": "All ages; kittens and elderly cats most severely affected",
+    "breed_risk": [
+      "Brachycephalic breeds (Persians, Himalayans) more prone to severe symptoms"
+    ],
+    "recovery_time": "7-21 days for acute infection; herpesvirus remains latent for life with periodic reactivation",
+    "references": [
+      "MSD Veterinary Manual: Feline Respiratory Infections",
+      "American Association of Feline Practitioners: URI guidelines",
+      "Journal of Feline Medicine and Surgery: FHV-1 and FCV management"
+    ]
+  },
+  {
+    "id": 11,
+    "animal": "Cat",
+    "disease_name": "Feline Leukemia Virus Infection",
+    "aliases": [
+      "FeLV",
+      "Feline Leukemia",
+      "Feline Lymphosarcoma"
+    ],
+    "description": "A retrovirus that causes immunosuppression, anemia, and lymphoma in infected cats. FeLV is one of the most important infectious diseases of cats, significantly shortening lifespan and predisposing to secondary infections and neoplasia.",
+    "common_causes": [
+      "Infection with Feline Leukemia Virus (FeLV)",
+      "Prolonged close contact with infected cats",
+      "Mutual grooming with infected individuals",
+      "Sharing food bowls and water sources",
+      "Bite wounds from infected cats",
+      "Transplacental transmission from queen to kittens",
+      "Transmission via milk during nursing"
+    ],
+    "symptoms": [
+      "Progressive weight loss and muscle wasting",
+      "Persistent or recurrent fevers",
+      "Pale gums and mucous membranes (anemia)",
+      "Enlarged lymph nodes (lymphadenopathy)",
+      "Chronic or recurrent infections",
+      "Oral and gum inflammation (stomatitis)",
+      "Yellowing of eyes and skin (jaundice)",
+      "Lethargy and depression",
+      "Respiratory distress from thymic lymphoma",
+      "Poor wound healing"
+    ],
+    "risk_factors": [
+      "Outdoor or free-roaming cats",
+      "Multi-cat households with unknown FeLV status",
+      "Aggressive cats that fight with others",
+      "Kittens born to infected queens",
+      "Shelter cats with unknown vaccination and exposure history"
+    ],
+    "severity": "High",
+    "home_care": [
+      "Keep the cat strictly indoors to prevent spread and protect from infections",
+      "Provide high-quality nutrition to support immune function",
+      "Minimize stress with predictable routine and quiet environment",
+      "Monitor for signs of secondary infection",
+      "Regular dental care to prevent stomatitis",
+      "Monthly weigh-ins to track weight loss"
+    ],
+    "warning_signs": [
+      "Persistent fever unresponsive to supportive care",
+      "Severe weight loss despite good appetite",
+      "Difficulty breathing with open-mouth breathing",
+      "Sudden onset of pale or yellow gums",
+      "Seizures or neurological signs",
+      "Bleeding from nose, mouth, or in stool"
+    ],
+    "when_to_visit_vet": "Any FeLV-positive cat showing new symptoms should be evaluated promptly. Routine checkups every 6 months are recommended for FeLV-positive cats.",
+    "prevention": [
+      "FeLV vaccination (recommended for at-risk cats)",
+      "Keep cats indoors to avoid contact with infected strays",
+      "Test all new cats before introducing to household",
+      "Separate FeLV-positive cats from negative cats",
+      "Routine annual FeLV testing for at-risk cats"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "ELISA test for FeLV p27 antigen (screening)",
+      "IFA test for confirmation (bone marrow detection)",
+      "Complete blood count to assess anemia and cell counts",
+      "Blood chemistry profile",
+      "PCR for proviral DNA"
+    ],
+    "contagious": true,
+    "zoonotic": false,
+    "affected_age": "Most commonly diagnosed in young to middle-aged cats (1-6 years); kittens most susceptible",
+    "breed_risk": [],
+    "recovery_time": "Lifelong infection with progressive disease; median survival 2-4 years after diagnosis",
+    "references": [
+      "American Association of Feline Practitioners: FeLV guidelines",
+      "MSD Veterinary Manual: Feline Leukemia Virus",
+      "Journal of Feline Medicine and Surgery: FeLV management"
+    ]
+  },
+  {
+    "id": 12,
+    "animal": "Cat",
+    "disease_name": "Feline Immunodeficiency Virus Infection",
+    "aliases": [
+      "FIV",
+      "Feline AIDS",
+      "Feline Immunodeficiency"
+    ],
+    "description": "A lentivirus that progressively compromises the immune system of cats, making them vulnerable to secondary infections. FIV is species-specific and transmitted primarily through deep bite wounds during territorial fighting.",
+    "common_causes": [
+      "Infection with Feline Immunodeficiency Virus (FIV)",
+      "Deep bite wounds from infected cats",
+      "Territorial fighting in outdoor cats",
+      "Transplacental transmission (rare)",
+      "Blood transfusion from infected donor (rare)"
+    ],
+    "symptoms": [
+      "Progressive decline in overall health",
+      "Chronic gingivitis and stomatitis",
+      "Recurrent bacterial and viral infections",
+      "Chronic diarrhea",
+      "Weight loss and poor coat condition",
+      "Persistent fever of unknown origin",
+      "Enlarged lymph nodes",
+      "Eye inflammation (uveitis, glaucoma)",
+      "Neurological signs: behavioral changes, seizures",
+      "Neoplasia (lymphoma, squamous cell carcinoma)"
+    ],
+    "risk_factors": [
+      "Outdoor or free-roaming lifestyle",
+      "Intact male cats (most likely to fight)",
+      "Aggressive temperament",
+      "Multi-cat households with territorial disputes",
+      "History of bite abscesses or wounds"
+    ],
+    "severity": "High",
+    "home_care": [
+      "Strictly indoor-only to reduce exposure to pathogens",
+      "High-quality, balanced diet to support immune function",
+      "Regular dental care and monitoring for oral disease",
+      "Stress reduction with environmental enrichment",
+      "Monthly weight monitoring",
+      "Flea and parasite prevention to reduce disease burden"
+    ],
+    "warning_signs": [
+      "Persistent fever lasting more than 48 hours",
+      "Oral ulcers or severe dental disease causing drooling",
+      "Chronic diarrhea leading to weight loss",
+      "Neurological signs such as circling or seizures",
+      "Recurrent infections not responding to treatment"
+    ],
+    "when_to_visit_vet": "Any cat with recurrent infections, chronic oral disease, or unexplained weight loss should be tested for FIV. Routine biannual wellness exams are recommended for confirmed positive cats.",
+    "prevention": [
+      "Keep cats indoors exclusively",
+      "Neuter to reduce fighting behavior",
+      "Test all new cats before introduction to household",
+      "Separate FIV-positive from FIV-negative cats",
+      "No effective vaccine currently available in most regions"
+    ],
+    "vaccination_available": false,
+    "recommended_tests": [
+      "ELISA antibody test (screening)",
+      "Western blot for confirmation",
+      "PCR for proviral DNA detection",
+      "Complete blood count",
+      "Blood chemistry profile including globulins"
+    ],
+    "contagious": true,
+    "zoonotic": false,
+    "affected_age": "Most commonly diagnosed in middle-aged to older cats (5-10 years)",
+    "breed_risk": [],
+    "recovery_time": "Lifelong infection; many FIV-positive cats live normal lives with proper care for years",
+    "references": [
+      "American Association of Feline Practitioners: FIV guidelines",
+      "MSD Veterinary Manual: Feline Immunodeficiency Virus",
+      "Journal of Feline Medicine and Surgery: FIV management"
+    ]
+  },
+  {
+    "id": 13,
+    "animal": "Cat",
+    "disease_name": "Feline Lower Urinary Tract Disease",
+    "aliases": [
+      "FLUTD",
+      "Feline Idiopathic Cystitis",
+      "FIC",
+      "Feline Urologic Syndrome"
+    ],
+    "description": "A complex syndrome encompassing multiple conditions affecting the feline bladder and urethra. The most common form is feline idiopathic cystitis, a sterile inflammation of the bladder that shares features with human interstitial cystitis.",
+    "common_causes": [
+      "Feline idiopathic cystitis (most common, 55-65% of cases)",
+      "Calcium oxalate or struvite uroliths (bladder stones)",
+      "Urethral plugs composed of matrix and crystals",
+      "Bacterial urinary tract infection (uncommon in young cats)",
+      "Stress and environmental factors",
+      "Obesity and sedentary lifestyle"
+    ],
+    "symptoms": [
+      "Straining to urinate with prolonged squatting",
+      "Frequent small-volume urination (pollakiuria)",
+      "Blood in urine (hematuria)",
+      "Urinating outside the litter box (periuria)",
+      "Crying or vocalizing during urination (dysuria)",
+      "Excessive licking of the genital area",
+      "Painful or tense abdomen",
+      "Vomiting and lethargy if obstructed"
+    ],
+    "risk_factors": [
+      "Overweight or obese body condition",
+      "Dry food only diet with low moisture intake",
+      "Indoor lifestyle with limited exercise",
+      "Environmental stress (new pets, moving, construction)",
+      "Multiple-cat households",
+      "Male cats (higher risk of urethral obstruction)"
+    ],
+    "severity": "High",
+    "home_care": [
+      "Increase water intake with wet food diet and water fountains",
+      "Reduce stress with environmental enrichment",
+      "Provide multiple clean litter boxes (one per cat plus one)",
+      "Use unscented clumping litter",
+      "Feliway pheromone diffusers to reduce stress",
+      "Interactive play sessions daily",
+      "Maintain stable daily routine"
+    ],
+    "warning_signs": [
+      "Complete inability to urinate (urethral obstruction - emergency)",
+      "Vocalizing in pain and straining with no urine output",
+      "Vomiting and lethargy with large painful bladder",
+      "Collapse or unresponsiveness",
+      "Blood in urine with obstruction signs"
+    ],
+    "when_to_visit_vet": "Any sign of urinary obstruction (straining without urine production) is a life-threatening emergency requiring immediate veterinary care. Non-obstructive cases should be seen within 24 hours.",
+    "prevention": [
+      "Feed high-moisture diet (canned or raw)",
+      "Maintain healthy body weight",
+      "Minimize environmental stress with predictable routine",
+      "Provide vertical space, hiding spots, and perches",
+      "Multiple clean litter boxes in quiet locations",
+      "Regular veterinary checkups with urinalysis"
+    ],
+    "vaccination_available": false,
+    "recommended_tests": [
+      "Urinalysis with sediment examination",
+      "Urine culture and sensitivity",
+      "Abdominal radiography or ultrasound for uroliths",
+      "Blood chemistry panel",
+      "Urethral catheterization for obstruction relief"
+    ],
+    "contagious": false,
+    "zoonotic": false,
+    "affected_age": "All ages; most common in middle-aged cats (2-7 years)",
+    "breed_risk": [
+      "Persian (higher risk of urolithiasis)",
+      "Himalayan",
+      "Burmese"
+    ],
+    "recovery_time": "3-14 days for acute episode; lifelong management required for chronic cases",
+    "references": [
+      "American Association of Feline Practitioners: FLUTD guidelines",
+      "MSD Veterinary Manual: Feline Lower Urinary Tract Disease",
+      "Journal of Feline Medicine and Surgery: FIC consensus statement"
+    ]
+  },
+  {
+    "id": 14,
+    "animal": "Cat",
+    "disease_name": "Feline Chronic Kidney Disease",
+    "aliases": [
+      "Chronic Renal Failure",
+      "CRF",
+      "CKD",
+      "Feline Kidney Disease"
+    ],
+    "description": "A progressive, irreversible decline in kidney function commonly affecting older cats. The kidneys gradually lose their ability to filter waste, concentrate urine, and regulate electrolytes. Most cases are due to chronic tubulointerstitial nephritis.",
+    "common_causes": [
+      "Chronic tubulointerstitial nephritis (idiopathic, most common)",
+      "Polycystic kidney disease (Persian cats)",
+      "Glomerulonephritis",
+      "Chronic bacterial pyelonephritis",
+      "Previous acute kidney injury",
+      "Neoplasia (lymphoma or renal adenoma)",
+      "Amyloidosis (in Oriental breeds)"
+    ],
+    "symptoms": [
+      "Increased thirst and urination (compensatory early sign)",
+      "Weight loss and muscle wasting",
+      "Decreased appetite progressing to anorexia",
+      "Vomiting (often with undigested food)",
+      "Bad breath with uremic odor",
+      "Lethargy and weakness",
+      "Poor coat condition (unkempt, greasy)",
+      "Pale or ulcerated gums",
+      "Constipation from dehydration"
+    ],
+    "risk_factors": [
+      "Age over 7 years",
+      "Persian cat breed",
+      "Chronic hypertension",
+      "Dental disease (periodontal bacteria affect kidneys)",
+      "Previous acute kidney injury or toxin exposure",
+      "Chronic dehydration",
+      "Low-moisture diet history"
+    ],
+    "severity": "Medium",
+    "home_care": [
+      "Feed prescription renal diet with restricted protein and phosphorus",
+      "Ensure constant access to fresh, clean water at multiple stations",
+      "Provide water fountains to encourage drinking",
+      "Administer subcutaneous fluids as directed by veterinarian",
+      "Maintain consistent feeding schedule with small frequent meals",
+      "Use low-stress handling and environment"
+    ],
+    "warning_signs": [
+      "Complete loss of appetite for more than 24 hours",
+      "Severe vomiting preventing medication or food intake",
+      "Oral ulcers on tongue or gums",
+      "Seizures or muscle tremors",
+      "Sudden weakness or collapse",
+      "Breath smelling of ammonia or urine"
+    ],
+    "when_to_visit_vet": "At first diagnosis for staging and treatment planning. Any cat with CKD showing anorexia, vomiting, or lethargy needs immediate evaluation for potential uremic crisis.",
+    "prevention": [
+      "Annual senior wellness blood work starting at age 7",
+      "High-moisture diet throughout life",
+      "Regular dental care to prevent periodontal disease",
+      "Avoid nephrotoxic medications and monitor drug doses",
+      "Prompt treatment of urinary tract infections",
+      "Maintain good hydration"
+    ],
+    "vaccination_available": false,
+    "recommended_tests": [
+      "Blood chemistry with BUN and creatinine",
+      "SDMA (symmetric dimethylarginine) for early detection",
+      "Urinalysis with specific gravity",
+      "Urine protein:creatinine ratio",
+      "Blood pressure measurement",
+      "Abdominal ultrasound"
+    ],
+    "contagious": false,
+    "zoonotic": false,
+    "affected_age": "Most common in cats over 7 years; 30-50% of cats over 15 years affected",
+    "breed_risk": [
+      "Persian",
+      "Angora",
+      "Russian Blue",
+      "Siamese"
+    ],
+    "recovery_time": "Chronic progressive condition; management lifelong; survival varies from months to years depending on stage at diagnosis",
+    "references": [
+      "International Renal Interest Society (IRIS): CKD staging guidelines",
+      "MSD Veterinary Manual: Feline Chronic Kidney Disease",
+      "Journal of Feline Medicine and Surgery: CKD management consensus"
+    ]
+  },
+  {
+    "id": 15,
+    "animal": "Cat",
+    "disease_name": "Feline Diabetes Mellitus",
+    "aliases": [
+      "Feline Diabetes",
+      "Diabetes",
+      "DM"
+    ],
+    "description": "A common endocrine disorder where the body cannot properly produce or utilize insulin, leading to hyperglycemia. Type II diabetes (insulin resistance) is most common in cats, often associated with obesity. With proper management, many cats achieve remission.",
+    "common_causes": [
+      "Obesity and sedentary lifestyle",
+      "Genetic predisposition",
+      "Pancreatitis damaging insulin-producing cells",
+      "Chronic corticosteroid administration",
+      "Advanced age",
+      "Male gender predilection",
+      "Concurrent acromegaly (in some cases)"
+    ],
+    "symptoms": [
+      "Increased thirst (polydipsia)",
+      "Frequent urination (polyuria)",
+      "Weight loss despite increased or normal appetite",
+      "Lethargy and weakness",
+      "Poor coat condition (unkempt, greasy)",
+      "Plantigrade stance (walking on hocks)",
+      "Increased appetite (polyphagia) early on",
+      "Decreased appetite in advanced disease",
+      "Vomiting and dehydration in ketoacidosis"
+    ],
+    "risk_factors": [
+      "Obese body condition (BCS 7+/9)",
+      "Middle-aged to older cats (7+ years)",
+      "Male cats (higher risk than females)",
+      "Burmese cat breed",
+      "Sedentary indoor lifestyle",
+      "History of pancreatitis",
+      "Chronic corticosteroid use"
+    ],
+    "severity": "Medium",
+    "home_care": [
+      "Administer insulin injections exactly as prescribed, at same times daily",
+      "Monitor water intake and urination patterns daily",
+      "Weekly weight checks",
+      "Provide a quiet, stress-free environment",
+      "Ensure fresh water is always available",
+      "Keep a log of appetite, thirst, and behavior changes"
+    ],
+    "warning_signs": [
+      "Sudden weakness, collapse, or seizures (hypoglycemia from insulin overdose)",
+      "Vomiting, lethargy, and dehydration with sweet-smelling breath (ketoacidosis)",
+      "Complete loss of appetite for more than 12 hours",
+      "Extreme thirst and urination (polyuria/polydipsia)",
+      "Walking on hocks (plantigrade stance)"
+    ],
+    "when_to_visit_vet": "Any cat with increased thirst, weight loss, and increased urination should be tested. Emergency if ketoacidosis is suspected: unresponsive, vomiting, or breathing difficulty.",
+    "prevention": [
+      "Feed a low-carbohydrate, high-protein prescription diabetic diet consistently",
+      "Consistent feeding schedule with 2-3 meals at fixed times daily",
+      "Monitor water intake and urination patterns daily",
+      "Weekly weight checks",
+      "Regular veterinary checkups for blood glucose monitoring"
+    ],
+    "vaccination_available": false,
+    "recommended_tests": [
+      "Fasting blood glucose measurement",
+      "Fructosamine level (reflects 2-3 week glucose control)",
+      "Urinalysis with glucose and ketone testing",
+      "Serial blood glucose curves (during insulin adjustment)",
+      "Thyroid panel to rule out concurrent hyperthyroidism"
+    ],
+    "contagious": false,
+    "zoonotic": false,
+    "affected_age": "Most commonly diagnosed in middle-aged to older cats (7-12 years)",
+    "breed_risk": [
+      "Burmese cats at higher risk"
+    ],
+    "recovery_time": "Lifelong management; diabetic remission possible in 30-50% of cats with early diagnosis and weight management",
+    "references": [
+      "MSD Veterinary Manual: Feline Diabetes Mellitus",
+      "American Association of Feline Practitioners: Diabetes guidelines",
+      "Journal of Feline Medicine and Surgery: feline diabetes management"
+    ]
+  },
+  {
+    "id": 16,
+    "animal": "Cattle",
+    "disease_name": "Bovine Mastitis",
+    "aliases": [
+      "Mastitis",
+      "Udder Infection",
+      "Garget",
+      "Clinical Mastitis"
+    ],
+    "description": "Inflammation of the mammary gland parenchyma, almost always caused by bacterial infection. It is the most economically significant disease of dairy cattle worldwide, leading to reduced milk yield, discarded milk, early culling, and increased treatment costs.",
+    "common_causes": [
+      "Staphylococcus aureus (contagious, chronic)",
+      "Streptococcus agalactiae (contagious)",
+      "Escherichia coli (environmental, acute)",
+      "Klebsiella species (environmental)",
+      "Streptococcus uberis (environmental)",
+      "Mycoplasma species (contagious, highly infectious)",
+      "Poor milking hygiene and technique",
+      "Teat end damage or injury"
+    ],
+    "symptoms": [
+      "Abnormal milk with clots, flakes, or watery appearance",
+      "Swollen, hot, and painful udder quarter",
+      "Redness of the udder skin",
+      "Reduced milk yield in affected quarter",
+      "Systemic signs: fever, depression, loss of appetite",
+      "Dehydration and rapid breathing in severe cases",
+      "Chronic cases: fibrosis and atrophy of udder quarter"
+    ],
+    "risk_factors": [
+      "Poor milking hygiene and sanitation",
+      "Faulty milking machine function",
+      "Teat end lesions or damage",
+      "High-yielding dairy cows",
+      "Early lactation period",
+      "Dirty or wet bedding environment",
+      "Incomplete milking of quarters",
+      "Introduction of infected cows to herd"
+    ],
+    "severity": "Medium",
+    "home_care": [
+      "Hygienic milking: clean teats thoroughly before and after milking",
+      "Use teat dip post-milking (veterinary grade)",
+      "Separate cows with clinical mastitis from the herd",
+      "Discard all abnormal milk",
+      "Maintain clean, dry, well-bedded stalls",
+      "Ensure proper milking machine function and maintenance"
+    ],
+    "warning_signs": [
+      "Gangrene of the udder (cold, blue-black skin)",
+      "Systemic illness with high fever and collapse",
+      "Complete loss of milk production in quarter",
+      "Signs of septicemia",
+      "Recurrence in the same quarter after treatment"
+    ],
+    "when_to_visit_vet": "Severe cases with systemic signs (fever, depression) require immediate veterinary attention. Mild cases not responding to standard therapy within 24-48 hours also need veterinary evaluation.",
+    "prevention": [
+      "Good milking hygiene: clean dry teats, teat dipping, backflushing",
+      "Regular milking machine maintenance and testing",
+      "Hygienic and dry bedding materials",
+      "Dry cow therapy at drying off",
+      "Culling of chronic carriers",
+      "Biosecurity for new herd additions",
+      "Proper milking technique and complete milk-out"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "California Mastitis Test (CMT) for screening",
+      "Somatic cell count monitoring",
+      "Milk culture and sensitivity for pathogen identification",
+      "Clinical examination and udder palpation",
+      "Milk quality testing"
+    ],
+    "contagious": true,
+    "zoonotic": false,
+    "affected_age": "Adult lactating cows; highest risk in early lactation and periparturient period",
+    "breed_risk": [
+      "High-yielding Holstein-Friesian at increased risk"
+    ],
+    "recovery_time": "3-14 days depending on severity; chronic cases may never recover full production",
+    "references": [
+      "MSD Veterinary Manual: Bovine Mastitis",
+      "National Mastitis Council: recommended mastitis control program",
+      "Journal of Dairy Science: mastitis epidemiology"
+    ]
+  },
+  {
+    "id": 17,
+    "animal": "Cattle",
+    "disease_name": "Foot and Mouth Disease",
+    "aliases": [
+      "FMD",
+      "Aphtae Epizooticae",
+      "Hoof and Mouth Disease"
+    ],
+    "description": "A highly contagious viral vesicular disease affecting cloven-hoofed animals. Caused by an aphthovirus of the Picornaviridae family, FMD is the most economically devastating livestock disease globally.",
+    "common_causes": [
+      "Foot and Mouth Disease Virus (FMDV): seven serotypes (O, A, C, SAT1, SAT2, SAT3, Asia1)",
+      "Direct contact with infected animals",
+      "Airborne spread over several kilometers",
+      "Contaminated feed, water, and equipment",
+      "Contaminated vehicles, clothing, and footwear",
+      "Meat and animal products"
+    ],
+    "symptoms": [
+      "Sudden onset high fever (104-106F)",
+      "Vesicles (blisters) on the tongue, lips, and oral mucosa",
+      "Excessive drooling and foaming at the mouth",
+      "Vesicles on the coronary band and interdigital space of feet",
+      "Severe lameness with reluctance to move",
+      "Sharp drop in milk yield",
+      "Weight loss and reduced feed intake",
+      "Abortions and infertility in breeding stock"
+    ],
+    "risk_factors": [
+      "Location near endemic regions",
+      "Introduction of new animals without quarantine",
+      "Contact with contaminated livestock products",
+      "Shared grazing or water sources",
+      "Bird and windborne transmission",
+      "Farm visitors and vehicles with prior animal contact"
+    ],
+    "severity": "Emergency",
+    "home_care": [
+      "No home care: this is a reportable disease requiring mandatory government involvement",
+      "Immediately isolate affected animals from the herd",
+      "Restrict all animal movement on and off the premises",
+      "Do not treat animals; await official veterinary instructions",
+      "Implement strict biosecurity: footbaths, separate clothing",
+      "Report to local veterinary authorities immediately"
+    ],
+    "warning_signs": [
+      "Sudden lameness affecting multiple animals",
+      "Profuse drooling in otherwise healthy-looking cattle",
+      "Vesicles or erosions in the mouth or on feet",
+      "Sharp milk drop across the herd",
+      "Sudden death in young animals (myocarditis)"
+    ],
+    "when_to_visit_vet": "Immediate reporting to government veterinary authorities is mandatory by law when FMD is suspected. Do not wait for confirmation before reporting.",
+    "prevention": [
+      "Government-regulated vaccination programs in endemic regions",
+      "Strict biosecurity protocols on farm entry and exit",
+      "Quarantine for 28 days for all new animal introductions",
+      "Import restrictions from affected regions",
+      "Controlled slaughter and disposal in outbreaks",
+      "Movement restrictions during outbreaks",
+      "Regular surveillance and serological monitoring"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "ELISA for serotype identification",
+      "Virus isolation from vesicular fluid",
+      "RT-PCR for rapid detection",
+      "Complement fixation test",
+      "Serological surveys for surveillance"
+    ],
+    "contagious": true,
+    "zoonotic": false,
+    "affected_age": "All ages; severe disease in young animals with mortality from myocarditis",
+    "breed_risk": [],
+    "recovery_time": "2-6 months for full recovery; chronic production losses often persist",
+    "references": [
+      "World Organisation for Animal Health (WOAH/OIE): FMD technical guidelines",
+      "MSD Veterinary Manual: Foot and Mouth Disease",
+      "FAO: FMD prevention and control"
+    ]
+  },
+  {
+    "id": 18,
+    "animal": "Cattle",
+    "disease_name": "Bovine Respiratory Disease Complex",
+    "aliases": [
+      "BRDC",
+      "Shipping Fever",
+      "Pneumonic Pasteurellosis",
+      "Enzootic Pneumonia of Calves"
+    ],
+    "description": "A multifactorial disease complex resulting from an interaction between environmental stressors, viral infections, and bacterial pathogens. It is the leading cause of morbidity and mortality in feedlot cattle.",
+    "common_causes": [
+      "Mannheimia haemolytica (primary bacterial cause)",
+      "Pasteurella multocida",
+      "Histophilus somni",
+      "Mycoplasma bovis",
+      "Bovine herpesvirus type 1 (IBR)",
+      "Bovine viral diarrhea virus (BVDV)",
+      "Bovine respiratory syncytial virus (BRSV)",
+      "Parainfluenza type 3 (PI3)",
+      "Stress from weaning, transport, and commingling"
+    ],
+    "symptoms": [
+      "Sudden high fever (104-108F)",
+      "Depression and isolation from the group",
+      "Nasal discharge (clear to purulent)",
+      "Coughing with rapid shallow breathing",
+      "Increased respiratory rate and effort",
+      "Reduced feed intake and weight loss",
+      "Extended neck breathing in severe cases",
+      "Open-mouth breathing in severe cases"
+    ],
+    "risk_factors": [
+      "Recent transport or shipping of cattle",
+      "Weaning stress within the past 30 days",
+      "Commingling of cattle from multiple sources",
+      "Poor ventilation in housing facilities",
+      "Extreme weather changes",
+      "Inadequate colostrum intake in calves"
+    ],
+    "severity": "High",
+    "home_care": [
+      "Isolate affected animals from the group",
+      "Provide clean, dry, well-ventilated shelter",
+      "Ensure easy access to fresh water and high-quality feed",
+      "Minimize dust and ammonia levels in housing",
+      "Monitor body temperature and respiratory rate daily"
+    ],
+    "warning_signs": [
+      "Severe difficulty breathing with open mouth",
+      "Complete refusal to eat for 24+ hours",
+      "Blue-tinged mucous membranes (cyanosis)",
+      "Collapse or inability to stand",
+      "High fever not responding to initial treatment"
+    ],
+    "when_to_visit_vet": "Any calf or adult with fever and respiratory signs should be examined within 24 hours. Rapid treatment is critical; delays allow progression to irreversible lung damage.",
+    "prevention": [
+      "Vaccination programs targeting viral and bacterial pathogens",
+      "Metaphylaxis at arrival in high-risk populations",
+      "Stress reduction: proper weaning, short transport, shade",
+      "Good ventilation and optimal stocking density",
+      "All-in-all-out management in feedlot",
+      "Adequate colostrum intake for newborns"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "Clinical scoring system for early detection",
+      "Nasopharyngeal swab culture/PCR",
+      "Transtracheal wash culture",
+      "Thoracic ultrasound for lung consolidation",
+      "Complete blood count and acute phase proteins"
+    ],
+    "contagious": true,
+    "zoonotic": false,
+    "affected_age": "Most severe in young calves and feedlot cattle 6-18 months old",
+    "breed_risk": [],
+    "recovery_time": "10-30 days; chronic cases may have permanent lung damage and reduced growth",
+    "references": [
+      "MSD Veterinary Manual: Bovine Respiratory Disease Complex",
+      "Journal of Veterinary Internal Medicine: BRDC management",
+      "University of Nebraska-Lincoln: BRDC prevention guidelines"
+    ]
+  },
+  {
+    "id": 19,
+    "animal": "Cattle",
+    "disease_name": "Bovine Tuberculosis",
+    "aliases": [
+      "TB",
+      "Mycobacterium bovis infection",
+      "Bovine TB"
+    ],
+    "description": "A chronic bacterial disease primarily caused by Mycobacterium bovis, characterized by the formation of granulomatous lesions (tubercles) in the lungs, lymph nodes, and other organs. It is a significant zoonotic disease with human health implications.",
+    "common_causes": [
+      "Mycobacterium bovis infection",
+      "Inhalation of aerosolized bacteria from infected animals",
+      "Contaminated feed or water sources",
+      "Direct contact with infected cattle or wildlife reservoirs",
+      "Undercooked milk from infected cows",
+      "Transplacental transmission from dam to calf"
+    ],
+    "symptoms": [
+      "Progressive weight loss despite adequate appetite",
+      "Persistent cough (initially dry, later moist)",
+      "Low-grade intermittent fever",
+      "Enlarged superficial lymph nodes (especially head and neck)",
+      "Difficulty breathing (dyspnea)",
+      "Weakness and lethargy",
+      "Milk yield reduction",
+      "Diarrhea if gastrointestinal involvement"
+    ],
+    "risk_factors": [
+      "Herd with history of TB infection",
+      "Large herd size with shared feeding",
+      "Wildlife reservoir contact (badgers, deer, possums)",
+      "Purchase of cattle from unknown or infected herds",
+      "Close confinement housing",
+      "Region with endemic bovine TB"
+    ],
+    "severity": "High",
+    "home_care": [
+      "No home care is possible or advisable",
+      "Report suspected cases to veterinary authorities",
+      "Isolate suspect animals from rest of herd",
+      "Maintain strict biosecurity",
+      "Follow official testing and culling protocols"
+    ],
+    "warning_signs": [
+      "Persistent cough lasting weeks",
+      "Progressive emaciation with good appetite",
+      "Visible lymph node swelling",
+      "Blood-tinged mucus from coughing",
+      "Sudden deterioration with respiratory distress"
+    ],
+    "when_to_visit_vet": "Any suspicion of TB requires immediate reporting to government veterinary services. TB is a notifiable disease requiring official testing and control measures.",
+    "prevention": [
+      "Regular herd testing with tuberculin skin test",
+      "Culling of positive reactors",
+      "Movement control and quarantine of new animals",
+      "Biosecurity to prevent contact with wildlife reservoirs",
+      "Test and slaughter programs in endemic regions",
+      "Pasteurization of milk for human consumption"
+    ],
+    "vaccination_available": false,
+    "recommended_tests": [
+      "Single intradermal comparative cervical tuberculin test (SICCT)",
+      "Interferon-gamma (IFN-gamma) blood test",
+      "Bacterial culture and PCR for confirmation",
+      "Post-mortem examination for visible lesions",
+      "ELISA serology"
+    ],
+    "contagious": true,
+    "zoonotic": true,
+    "affected_age": "All ages; chronic course more common in adult cattle",
+    "breed_risk": [],
+    "recovery_time": "Chronic progressive disease; no treatment, control through test and slaughter",
+    "references": [
+      "World Organisation for Animal Health (WOAH): Bovine TB",
+      "MSD Veterinary Manual: Bovine Tuberculosis",
+      "CDC: Mycobacterium bovis transmission"
+    ]
+  },
+  {
+    "id": 20,
+    "animal": "Cattle",
+    "disease_name": "Bovine Brucellosis",
+    "aliases": [
+      "Bang's Disease",
+      "Contagious Abortion",
+      "Brucella abortus infection"
+    ],
+    "description": "A chronic bacterial disease primarily caused by Brucella abortus, characterized by abortion in the last trimester of pregnancy, retained placenta, and reduced fertility. It is one of the most important zoonotic diseases worldwide.",
+    "common_causes": [
+      "Brucella abortus infection",
+      "Ingestion of contaminated feed or water",
+      "Contact with aborted fetuses, placentas, or fetal fluids",
+      "Direct contact with infected animals",
+      "Contaminated equipment or clothing",
+      "Venereal transmission through infected bulls"
+    ],
+    "symptoms": [
+      "Abortion in the last trimester (5-8 months of pregnancy)",
+      "Retained placenta and metritis",
+      "Reduced milk yield after abortion",
+      "Swollen joints (hygromas, especially carpal joints)",
+      "Infertility and prolonged calving intervals",
+      "Enlarged or inflamed testicles in bulls (orchitis)",
+      "Weak calves born at full term"
+    ],
+    "risk_factors": [
+      "Herd with open or unknown brucellosis status",
+      "Shared grazing with infected herds",
+      "Introduction of cattle without testing and quarantine",
+      "Wildlife reservoirs (bison, elk in some regions)",
+      "Poor hygiene during calving"
+    ],
+    "severity": "Medium",
+    "home_care": [
+      "Wear gloves when handling aborted fetuses or afterbirth",
+      "Bury or incinerate aborted materials",
+      "Disinfect contaminated areas with appropriate disinfectant",
+      "Isolate aborting cows from the herd",
+      "Report cases to veterinary authorities"
+    ],
+    "warning_signs": [
+      "Multiple abortions in the herd",
+      "Abortion storms affecting many cows simultaneously",
+      "Retained placentas with foul discharge",
+      "Orchitis in bulls",
+      "Hygromas with joint swelling"
+    ],
+    "when_to_visit_vet": "Any abortion in cattle should be investigated by a veterinarian. Brucellosis is a notifiable disease in most countries, and official testing is mandatory.",
+    "prevention": [
+      "Vaccination of heifer calves (Brucella abortus strain 19 or RB51)",
+      "Regular herd serological testing",
+      "Quarantine and test all new cattle introductions",
+      "Test and slaughter eradication programs",
+      "Good hygiene during assisted calving",
+      "Avoid bringing in untested breeding stock"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "Rose Bengal plate test (screening)",
+      "Complement fixation test (confirmatory)",
+      "ELISA (most sensitive)",
+      "Brucella milk ring test for dairy herds",
+      "Bacterial culture from aborted materials"
+    ],
+    "contagious": true,
+    "zoonotic": true,
+    "affected_age": "Sexually mature cattle; pregnant cows most severely affected",
+    "breed_risk": [],
+    "recovery_time": "Chronic infection; no effective treatment; eradication through test and slaughter",
+    "references": [
+      "World Organisation for Animal Health (WOAH): Bovine Brucellosis",
+      "CDC: Brucellosis",
+      "MSD Veterinary Manual: Brucellosis in Cattle"
+    ]
+  },
+  {
+    "id": 21,
+    "animal": "Cattle",
+    "disease_name": "Bovine Ketosis",
+    "aliases": [
+      "Acetonemia",
+      "Pregnancy Toxemia",
+      "Fat Cow Syndrome"
+    ],
+    "description": "A metabolic disorder occurring in early lactation high-producing dairy cows caused by a negative energy balance, leading to excessive fat mobilization and accumulation of ketone bodies. It typically occurs within the first 6-8 weeks of lactation.",
+    "common_causes": [
+      "Negative energy balance in early lactation",
+      "Inadequate feed intake post-calving",
+      "High milk production demand exceeding energy intake",
+      "Excessive body fat mobilization",
+      "Poor transition cow management",
+      "Obesity at calving"
+    ],
+    "symptoms": [
+      "Gradual decrease in milk production",
+      "Progressive weight loss despite eating",
+      "Reduced appetite for concentrates",
+      "Sweet, acetone-like smell on breath",
+      "Dullness and lethargy",
+      "Muscle weakness and staggering gait",
+      "Decreased rumination",
+      "Neurological signs in severe cases (head pressing, circling, blindness)",
+      "Recumbency in advanced cases"
+    ],
+    "risk_factors": [
+      "High milk production (over 40 kg/day)",
+      "Overconditioned (fat) cows at calving",
+      "Poor transition diet during dry period",
+      "Calving difficulties or retained placenta",
+      "Multiple metabolic diseases in early lactation"
+    ],
+    "severity": "Medium",
+    "home_care": [
+      "Encourage feed intake with high-quality forages and palatable concentrates",
+      "Provide fresh, clean water at all times",
+      "Ensure comfortable, clean, shaded environment",
+      "Propylene glycol drench as directed by veterinarian",
+      "Monitor body condition and milk production daily"
+    ],
+    "warning_signs": [
+      "Complete loss of appetite for more than 24 hours",
+      "Neurological signs: head pressing, circling, blindness",
+      "Recumbency with inability to stand",
+      "Rapid decline in milk production",
+      "Acetone breath detectable from a distance"
+    ],
+    "when_to_visit_vet": "If a cow shows reduced appetite and declining milk within first 8 weeks of lactation, test for ketosis. Neurological signs or recumbency require emergency veterinary attention.",
+    "prevention": [
+      "Proper transition diet with adequate energy density",
+      "Body condition score management: target 3.0-3.5 at calving",
+      "Monitor feed intake closely for first 30 days post-calving",
+      "Regular ketone testing in early lactation"
+    ],
+    "vaccination_available": false,
+    "recommended_tests": [
+      "Blood beta-hydroxybutyrate (BHB) measurement",
+      "Urine ketone dipstick test",
+      "Milk ketone test",
+      "Blood chemistry including glucose and liver enzymes"
+    ],
+    "contagious": false,
+    "zoonotic": false,
+    "affected_age": "Adult lactating cows, primarily 2-8 weeks post-calving",
+    "breed_risk": [
+      "High-yielding Holstein-Friesian most commonly affected"
+    ],
+    "recovery_time": "5-14 days with appropriate treatment and dietary correction",
+    "references": [
+      "MSD Veterinary Manual: Ketosis in Cattle",
+      "Journal of Dairy Science: transition cow management",
+      "Cornell University College of Veterinary Medicine: bovine ketosis"
+    ]
+  },
+  {
+    "id": 22,
+    "animal": "Buffalo",
+    "disease_name": "Bubaline Pox",
+    "aliases": [
+      "Buffalo Pox",
+      "Buffalopox",
+      "Bubaline Orthopoxvirus"
+    ],
+    "description": "A contagious viral disease of water buffalo caused by a parapoxvirus closely related to vaccinia virus. It has zoonotic potential and causes economic losses through reduced milk yield, damage to udders, and hide quality deterioration.",
+    "common_causes": [
+      "Bubaline poxvirus (Orthopoxvirus genus)",
+      "Direct contact with infected buffaloes",
+      "Milker's hands as mechanical vectors",
+      "Contaminated milking equipment",
+      "Viral persistence in the environment"
+    ],
+    "symptoms": [
+      "Small raised pustular lesions on udder and teats",
+      "Vesicles that rupture forming scabs",
+      "Tender and painful udder leading to milking difficulty",
+      "Fever and systemic signs in severe cases",
+      "Reduced milk yield",
+      "Lesions on skin of hands of milkers (zoonotic)",
+      "Secondary mastitis from bacterial infection"
+    ],
+    "risk_factors": [
+      "Milking buffaloes (lesions on udder)",
+      "Poor milking hygiene",
+      "Contaminated milking machines",
+      "Crowded housing conditions",
+      "Contact with previously infected animals"
+    ],
+    "severity": "Medium",
+    "home_care": [
+      "Milk affected animals last and use separate equipment",
+      "Gentle handling of the udder during milking",
+      "Apply antiseptic ointments as recommended by veterinarian",
+      "Improve milking hygiene and teat dipping",
+      "Isolate affected animals from healthy herd"
+    ],
+    "warning_signs": [
+      "Spread of lesions across entire udder",
+      "Secondary bacterial mastitis",
+      "Severe pain preventing milking",
+      "Zoonotic transmission to milkers"
+    ],
+    "when_to_visit_vet": "If lesions are severe, spread rapidly, or if secondary mastitis develops. Also if human cases occur among farm workers.",
+    "prevention": [
+      "Good milking hygiene and teat dipping",
+      "Separate milking of infected animals",
+      "Hand washing and glove use for milkers",
+      "Quarantine of newly introduced buffaloes",
+      "Disinfection of milking equipment"
+    ],
+    "vaccination_available": false,
+    "recommended_tests": [
+      "Clinical examination of lesions",
+      "Electron microscopy of scab material",
+      "Virus isolation and PCR",
+      "Serology for antibody detection"
+    ],
+    "contagious": true,
+    "zoonotic": true,
+    "affected_age": "All ages; active milking buffaloes most commonly affected",
+    "breed_risk": [],
+    "recovery_time": "2-4 weeks; lesions heal spontaneously in most cases",
+    "references": [
+      "MSD Veterinary Manual: Buffalopox",
+      "WOAH: Buffalopox technical sheets",
+      "Indian Journal of Veterinary Pathology: buffalo pox epidemiology"
+    ]
+  },
+  {
+    "id": 23,
+    "animal": "Buffalo",
+    "disease_name": "Hemorrhagic Septicemia",
+    "aliases": [
+      "HS",
+      "Pasteurellosis",
+      "Barbone"
+    ],
+    "description": "An acute, highly fatal septicemic disease primarily affecting water buffalo and cattle, caused by specific serotypes of Pasteurella multocida. Characterized by high fever, respiratory distress, and sudden death, often within hours of onset.",
+    "common_causes": [
+      "Pasteurella multocida serotype B:2 (Asian serotype)",
+      "Pasteurella multocida serotype E:2 (African serotype)",
+      "Stress factors compromising immunity",
+      "Environmental factors: humidity, temperature fluctuations",
+      "Overcrowding and poor ventilation"
+    ],
+    "symptoms": [
+      "Sudden onset high fever (105-108F)",
+      "Profuse salivation and nasal discharge",
+      "Rapid breathing with extended head and neck",
+      "Severe respiratory distress",
+      "Swelling of the pharyngeal and neck region (edema)",
+      "Subcutaneous hemorrhages on mucous membranes",
+      "Death within 6-24 hours in peracute cases"
+    ],
+    "risk_factors": [
+      "Water buffalo breed (higher susceptibility than cattle)",
+      "Age: young buffaloes 6 months to 2 years",
+      "Seasonal outbreaks: monsoon and humid weather",
+      "Transport stress and overcrowding",
+      "Poor nutritional status",
+      "Endemic regions: South and Southeast Asia, Africa"
+    ],
+    "severity": "Emergency",
+    "home_care": [
+      "No time for home care; immediate veterinary intervention required",
+      "Isolate affected animals from the herd",
+      "Reduce stress: quiet environment, avoid handling",
+      "Provide soft, palatable feed if animal is eating"
+    ],
+    "warning_signs": [
+      "Sudden death of multiple animals in short period",
+      "Visible swelling of the throat and brisket",
+      "Severe difficulty breathing with mouth open",
+      "High fever unresponsive to basic intervention",
+      "Blood-tinged nasal discharge"
+    ],
+    "when_to_visit_vet": "Any sudden death in buffaloes or cattle with respiratory signs is a veterinary emergency. Immediate herd-wide intervention is required.",
+    "prevention": [
+      "Vaccination before monsoon season (killed vaccine)",
+      "Booster vaccination every 6 months in endemic areas",
+      "Avoid overcrowding and ensure good ventilation",
+      "Reduce transport stress",
+      "Quarantine new animals for 2 weeks",
+      "Prompt treatment of exposed animals"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "Blood smear for bipolar staining bacteria",
+      "Bacterial culture from blood or tissues",
+      "PCR for Pasteurella multocida",
+      "Post-mortem examination",
+      "Serotyping for epidemiological tracking"
+    ],
+    "contagious": true,
+    "zoonotic": false,
+    "affected_age": "Young buffaloes 6-24 months most susceptible; all ages at risk",
+    "breed_risk": [
+      "Water buffalo significantly more susceptible than cattle"
+    ],
+    "recovery_time": "Peracute death within 6-24 hours; acute cases 3-7 days with intensive treatment",
+    "references": [
+      "MSD Veterinary Manual: Hemorrhagic Septicemia",
+      "WOAH: Hemorrhagic septicemia guidelines",
+      "FAO: HS prevention and control in buffalo"
+    ]
+  },
+  {
+    "id": 24,
+    "animal": "Buffalo",
+    "disease_name": "Surra",
+    "aliases": [
+      "Trypanosomiasis",
+      "Trypanosoma evansi infection",
+      "Murrina",
+      "El Debab"
+    ],
+    "description": "A wasting protozoal disease caused by Trypanosoma evansi, transmitted mechanically by biting flies (tabanids, stomoxys). It is one of the most important diseases of buffaloes and camels in Asia, Africa, and South America.",
+    "common_causes": [
+      "Trypanosoma evansi protozoan parasite",
+      "Mechanical transmission by tabanid horse flies",
+      "Transmission by stable flies (Stomoxys)",
+      "Biting fly season and waterlogging conditions",
+      "Iatrogenic transmission through contaminated needles"
+    ],
+    "symptoms": [
+      "Intermittent fever with temperature spikes",
+      "Progressive weight loss and weakness",
+      "Anemia with pale mucous membranes",
+      "Subcutaneous edema (especially brisket, ventral abdomen)",
+      "Lacrimation and corneal opacity",
+      "Muscle tremors and incoordination",
+      "Reduced milk yield and reproductive performance",
+      "Abortions and extended calving intervals"
+    ],
+    "risk_factors": [
+      "Wet season with high fly population",
+      "Waterlogged areas and fly breeding grounds",
+      "Working buffaloes (more outdoor exposure)",
+      "Close proximity to fly habitats",
+      "Endemic regions in Asia and Africa",
+      "Contaminated needles during mass vaccination"
+    ],
+    "severity": "High",
+    "home_care": [
+      "Provide high-quality nutrition to support body condition",
+      "Stall animals in well-ventilated, fly-proof housing",
+      "Use insect repellents on animals",
+      "Remove manure and standing water to reduce fly breeding",
+      "Rest affected animals from work"
+    ],
+    "warning_signs": [
+      "Progressive emaciation despite adequate feed intake",
+      "Severe anemia with very pale gums",
+      "Corneal opacity progressing to blindness",
+      "Intermittent fever spikes not responding to general treatment",
+      "Recumbency from weakness"
+    ],
+    "when_to_visit_vet": "Any buffalo showing chronic weight loss, anemia, and fever in a fly-endemic area should be tested for Surra. Early treatment significantly improves prognosis.",
+    "prevention": [
+      "Vector control: insecticide spraying, fly traps",
+      "Housing near fly-proof shelters during peak season",
+      "Regular screening in endemic areas",
+      "Prompt treatment of positive cases",
+      "Single-use needles for all injections"
+    ],
+    "vaccination_available": false,
+    "recommended_tests": [
+      "Blood smear examination for trypanosomes (Giemsa stain)",
+      "Wet blood film for motile parasites",
+      "Hematocrit centrifugation technique",
+      "ELISA and PCR for chronic low-parasitemia cases"
+    ],
+    "contagious": false,
+    "zoonotic": false,
+    "affected_age": "All ages; more severe in young and working animals",
+    "breed_risk": [],
+    "recovery_time": "2-4 weeks with treatment; chronic cases may require prolonged management",
+    "references": [
+      "MSD Veterinary Manual: Trypanosomiasis (Surra)",
+      "WOAH: Surra technical disease card",
+      "Journal of Veterinary Parasitology: T. evansi in buffalo"
+    ]
+  },
+  {
+    "id": 25,
+    "animal": "Goat",
+    "disease_name": "Peste des Petits Ruminants",
+    "aliases": [
+      "PPR",
+      "Goat Plague",
+      "Kata",
+      "Ovine Rinderpest"
+    ],
+    "description": "A highly contagious viral disease of goats and sheep caused by a Morbillivirus closely related to rinderpest and canine distemper. Characterized by severe mucopurulent discharge, pneumonia, diarrhea, and high mortality.",
+    "common_causes": [
+      "PPR virus (Paramyxoviridae, Morbillivirus genus)",
+      "Direct contact with infected animals",
+      "Aerosol transmission over short distances",
+      "Contaminated feed, water, and bedding",
+      "Fomite spread via equipment and clothing"
+    ],
+    "symptoms": [
+      "Sudden onset high fever (104-107F)",
+      "Serous to mucopurulent nasal and eye discharge",
+      "Erosive stomatitis with necrotic oral lesions",
+      "Severe pneumonia with coughing and respiratory distress",
+      "Profuse watery to bloody diarrhea",
+      "Dehydration and rapid weight loss",
+      "Depression, anorexia, and isolation",
+      "Abortion in pregnant does"
+    ],
+    "risk_factors": [
+      "Unvaccinated flock or herd",
+      "Introduction of new animals without quarantine",
+      "Overcrowded marketing or transport conditions",
+      "Seasonal outbreaks during dry or cold periods",
+      "Mixed grazing with sheep and goats"
+    ],
+    "severity": "Emergency",
+    "home_care": [
+      "Isolate affected animals immediately",
+      "Supportive care: soft palatable feed, clean water",
+      "Provide warm, dry, and well-ventilated shelter",
+      "Gently clean eyes and nose of discharge",
+      "Separate sick from healthy animals",
+      "Report suspected cases to veterinary services"
+    ],
+    "warning_signs": [
+      "High fever with profuse nasal and eye discharge",
+      "Severe diarrhea leading to rapid dehydration",
+      "Respiratory distress with mouth breathing",
+      "Oral necrotic lesions",
+      "Death within 5-10 days of onset"
+    ],
+    "when_to_visit_vet": "Immediately upon suspicion. PPR is a notifiable disease and requires official reporting.",
+    "prevention": [
+      "Annual PPR vaccination (attenuated live vaccine)",
+      "Quarantine for 21 days before introducing new animals",
+      "Biosecurity: disinfection, separate clothing, footbaths",
+      "Avoid mixing goats from different sources",
+      "Movement restrictions during outbreaks"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "PCR on nasal swabs or blood",
+      "ELISA for antigen detection",
+      "Serology (cELISA) for antibody surveillance",
+      "Post-mortem examination",
+      "Virus isolation in cell culture"
+    ],
+    "contagious": true,
+    "zoonotic": false,
+    "affected_age": "All ages; young animals 3-12 months most severely affected",
+    "breed_risk": [],
+    "recovery_time": "2-4 weeks; mortality rate 50-90% in naive populations",
+    "references": [
+      "WOAH: Peste des Petits Ruminants guidelines",
+      "FAO: PPR global eradication program",
+      "MSD Veterinary Manual: PPR"
+    ]
+  },
+  {
+    "id": 26,
+    "animal": "Goat",
+    "disease_name": "Caprine Arthritis Encephalitis",
+    "aliases": [
+      "CAE",
+      "CAEV",
+      "Caprine Retrovirus Infection",
+      "Big Knee"
+    ],
+    "description": "A persistent lentiviral infection of goats causing chronic arthritis in adults and neurological disease in kids. CAE virus is closely related to the Maedi-Visna virus of sheep, resulting in lifelong carrier status with progressive clinical deterioration.",
+    "common_causes": [
+      "Caprine arthritis encephalitis virus (CAEV, a lentivirus)",
+      "Ingestion of colostrum or milk from infected does (kids)",
+      "Direct contact: prolonged close association with infected goats",
+      "Respiratory and salivary secretions",
+      "Blood contamination on equipment",
+      "In utero transmission (rare)"
+    ],
+    "symptoms": [
+      "Chronic progressive arthritis: swollen carpal (knee) joints",
+      "Stiffness, lameness, and reluctance to move",
+      "Weight loss and poor body condition despite good appetite",
+      "Hard, firm udder (indurative mastitis) reduced milk production",
+      "Ataxia: progressive hind limb weakness and paralysis (kids 2-6 months)",
+      "Head tilt, circling, and blindness in neurological cases"
+    ],
+    "risk_factors": [
+      "Kids fed unpasteurized colostrum from infected does",
+      "Kids raised on pooled goat milk",
+      "Dairy goat herds with intensive management",
+      "Lack of CAE testing and control program",
+      "Introduction of untested goats to negative herd"
+    ],
+    "severity": "Medium",
+    "home_care": [
+      "Provide soft, deep bedding for animals with arthritis",
+      "Keep feed and water accessible without need to stretch or climb",
+      "Provide high-quality nutrition with adequate vitamins and minerals",
+      "Shorten hooves regularly to improve mobility",
+      "Separate CAE-positive from CAE-negative animals"
+    ],
+    "warning_signs": [
+      "Complete inability to stand from arthritis",
+      "Rapid weight loss despite adequate feeding",
+      "Progressive hind limb paralysis in kids",
+      "Hard udder with very low milk production",
+      "Recurrent pneumonia"
+    ],
+    "when_to_visit_vet": "When arthritis or neurological signs first appear to confirm diagnosis and plan management. Annual testing of all goats is recommended for control programs.",
+    "prevention": [
+      "Test and cull programs: remove seropositive animals from herd",
+      "Never feed unpasteurized pooled colostrum or milk to kids",
+      "Pasteurize all goat milk (133F for 30 minutes)",
+      "Raise kids separated from does after colostrum",
+      "Annual herd testing for CAE antibodies"
+    ],
+    "vaccination_available": false,
+    "recommended_tests": [
+      "ELISA for CAE antibodies (serology)",
+      "Agar gel immunodiffusion (AGID) test",
+      "PCR for proviral DNA",
+      "Joint radiography for arthritis assessment"
+    ],
+    "contagious": true,
+    "zoonotic": false,
+    "affected_age": "Kids 2-6 months (neurological form); adults 2-6 years (arthritis form)",
+    "breed_risk": [],
+    "recovery_time": "Lifelong infection with progressive disease; no cure; management and prevention are key",
+    "references": [
+      "MSD Veterinary Manual: Caprine Arthritis Encephalitis",
+      "American Association of Small Ruminant Practitioners: CAE guidelines",
+      "Journal of Veterinary Internal Medicine: CAEV epidemiology"
+    ]
+  },
+  {
+    "id": 27,
+    "animal": "Goat",
+    "disease_name": "Caprine Enterotoxemia",
+    "aliases": [
+      "Overeating Disease",
+      "Clostridium perfringens type D",
+      "Pulpy Kidney Disease"
+    ],
+    "description": "A toxemic disease caused by Clostridium perfringens type D, producing epsilon toxin in the intestine. The disease is triggered by sudden changes to high-carbohydrate diet, causing high mortality, often before clinical signs are observed.",
+    "common_causes": [
+      "Clostridium perfringens type D bacterial overgrowth",
+      "Sudden access to high-grain or concentrate diet",
+      "Overeating of grain, bread, or lush pasture",
+      "Dietary change from forage to concentrate",
+      "Inadequate transition period during diet changes"
+    ],
+    "symptoms": [
+      "Sudden death in the best-conditioned kids or adults",
+      "Severe abdominal pain with bloating",
+      "Profuse watery diarrhea (sometimes with blood)",
+      "Neurological signs: staggering, head pressing, convulsions",
+      "Tetanic spasms and opisthotonos",
+      "Foaming at the mouth",
+      "Respiratory distress",
+      "Coma preceding death"
+    ],
+    "risk_factors": [
+      "Kids and lambs on high-concentrate finishing diets",
+      "Access to grain bins, feeders, or spilled concentrate",
+      "Sudden introduction to lush legume pasture",
+      "Inadequate gradual transition to new feed",
+      "Unvaccinated animals"
+    ],
+    "severity": "Emergency",
+    "home_care": [
+      "Immediate veterinary attention required",
+      "Remove all grain and concentrate feed immediately",
+      "Offer good-quality hay only",
+      "Provide clean fresh water",
+      "Reduce stress: quiet, dark environment"
+    ],
+    "warning_signs": [
+      "Sudden death of well-conditioned animals",
+      "Abdominal pain with bloating in a goat on high grain",
+      "Neurological signs: circling, blindness, head pressing",
+      "Severe diarrhea hours before death"
+    ],
+    "when_to_visit_vet": "Any suspicion of enterotoxemia is an emergency. Do not wait for symptoms to progress.",
+    "prevention": [
+      "Vaccination with Clostridium perfringens type C and D toxoid",
+      "Prime: 2 doses 4 weeks apart; annual booster",
+      "Gradual diet changes over 7-14 days",
+      "Limit grain intake and provide adequate roughage",
+      "Divide grain into multiple small meals"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "History and clinical signs strongly suggestive",
+      "Urine glucose test (high glucose in enterotoxemia)",
+      "PCR or ELISA for epsilon toxin in intestinal contents",
+      "Post-mortem: pulpy kidney, enteritis"
+    ],
+    "contagious": false,
+    "zoonotic": false,
+    "affected_age": "Most common in fast-growing kids and lambs 4-12 weeks; adults also susceptible",
+    "breed_risk": [],
+    "recovery_time": "Peracute death within hours; acute cases 3-7 days with intensive treatment",
+    "references": [
+      "MSD Veterinary Manual: Enterotoxemia in Goats",
+      "American Association of Small Ruminant Practitioners: clostridial disease prevention",
+      "Journal of Veterinary Diagnostic Investigation: epsilon toxin detection"
+    ]
+  },
+  {
+    "id": 28,
+    "animal": "Goat",
+    "disease_name": "Caprine Coccidiosis",
+    "aliases": [
+      "Eimeriosis",
+      "Coccidiosis",
+      "Coccidial Enteritis"
+    ],
+    "description": "An intestinal parasitic disease caused primarily by Eimeria species (E. ninakohlyakimovae, E. arloingi). It is a major cause of diarrhea and poor growth in young kids, especially under conditions of stress, overcrowding, and poor sanitation.",
+    "common_causes": [
+      "Eimeria ninakohlyakimovae (most pathogenic in goats)",
+      "Eimeria arloingi",
+      "Eimeria christenseni",
+      "Ingestion of sporulated oocysts from contaminated environment",
+      "Contaminated feed and water",
+      "Fecal-oral transmission in soiled bedding"
+    ],
+    "symptoms": [
+      "Watery to mucoid diarrhea, sometimes with blood",
+      "Straining during defecation (tenesmus)",
+      "Weight loss or poor growth",
+      "Rough, dull hair coat",
+      "Weakness and lethargy",
+      "Dehydration with sunken eyes",
+      "Reduced feed intake",
+      "Fever in severe cases"
+    ],
+    "risk_factors": [
+      "Kids 3-12 weeks old",
+      "Overcrowded pens and feeding areas",
+      "Wet and soiled bedding",
+      "Stress: weaning, transport, weather changes",
+      "Poor hygiene and infrequent bedding changes",
+      "Mixing kids of different ages"
+    ],
+    "severity": "Medium",
+    "home_care": [
+      "Clean and dry living area with fresh bedding daily",
+      "Raise feed and water troughs to avoid contamination",
+      "Provide clean fresh water at all times",
+      "Offer highly palatable, nutritious feed",
+      "Isolate affected kids from healthy ones"
+    ],
+    "warning_signs": [
+      "Bloody diarrhea with straining",
+      "Severe dehydration with sunken eyes and skin tenting",
+      "Complete loss of appetite",
+      "Weight loss and poor body condition",
+      "Death in severe outbreaks"
+    ],
+    "when_to_visit_vet": "If diarrhea persists beyond 48 hours despite supportive care, if blood is present, or if multiple kids are affected simultaneously.",
+    "prevention": [
+      "Good sanitation: clean, dry bedding regularly changed",
+      "Age-segregated housing",
+      "Avoid overcrowding and overstocking",
+      "Raised feed bunks and waterers",
+      "Rotational grazing of pastures",
+      "Coccidiostat feed additives for high-risk periods"
+    ],
+    "vaccination_available": false,
+    "recommended_tests": [
+      "Fecal floatation for oocyst count (OPG)",
+      "McMaster counting chamber for quantitative assessment",
+      "Necropsy with intestinal histopathology in fatal cases"
+    ],
+    "contagious": false,
+    "zoonotic": false,
+    "affected_age": "Primarily kids 3-12 weeks; adults develop immunity but can be carriers",
+    "breed_risk": [],
+    "recovery_time": "7-14 days with treatment; chronic cases may have permanent growth impairment",
+    "references": [
+      "MSD Veterinary Manual: Coccidiosis in Small Ruminants",
+      "American Association of Small Ruminant Practitioners: coccidiosis control",
+      "Veterinary Parasitology: Eimeria species in goats"
+    ]
+  },
+  {
+    "id": 29,
+    "animal": "Goat",
+    "disease_name": "Goat Pneumonia",
+    "aliases": [
+      "Verminous Pneumonia",
+      "Lungworm Infection",
+      "Pneumonic Pasteurellosis"
+    ],
+    "description": "Inflammation of the lungs in goats caused by bacterial, viral, or parasitic agents. The most common bacterial cause is Mannheimia haemolytica, while the lungworm Muellerius capillaris is a frequent parasitic cause.",
+    "common_causes": [
+      "Mannheimia haemolytica (bacterial, primary)",
+      "Pasteurella multocida (bacterial, secondary)",
+      "Mycoplasma ovipneumoniae",
+      "Muellerius capillaris (lungworm, parasitic)",
+      "Dictyocaulus filaria (lungworm)",
+      "Aspiration pneumonia from forced feeding"
+    ],
+    "symptoms": [
+      "Coughing (dry initially, then moist)",
+      "Nasal discharge (clear to purulent)",
+      "Fever (103-107F)",
+      "Labored breathing with increased effort",
+      "Open-mouth breathing in severe cases",
+      "Loss of appetite and weight loss",
+      "Depression and isolation from the herd",
+      "Extended neck and drooling",
+      "Poor growth in kids"
+    ],
+    "risk_factors": [
+      "Cold, damp weather and drafts",
+      "Poor ventilation in housing",
+      "Overcrowding and stress",
+      "Nutritional deficiencies (selenium, vitamin E)",
+      "Recent transport or weaning",
+      "Endoparasite burden predisposing to infection",
+      "Mixing goats from different sources"
+    ],
+    "severity": "Medium",
+    "home_care": [
+      "Provide warm, dry, well-ventilated shelter",
+      "Ensure clean bedding free of dust and mold",
+      "Offer soft, palatable feed to encourage eating",
+      "Keep water source clean and accessible",
+      "Reduce stress and avoid handling sick animals",
+      "Separate affected from healthy goats"
+    ],
+    "warning_signs": [
+      "Severe difficulty breathing with extended neck and mouth open",
+      "Complete refusal to eat",
+      "High fever persisting beyond 48 hours",
+      "Blue-tinged mucous membranes (cyanosis)",
+      "Collapse or inability to stand"
+    ],
+    "when_to_visit_vet": "Any goat with fever, cough, and reduced appetite should be evaluated within 24 hours. Respiratory distress with mouth breathing is an emergency.",
+    "prevention": [
+      "Good ventilation and dust-free housing",
+      "Avoid overcrowding",
+      "Vaccination against respiratory pathogens when available",
+      "Regular anthelmintic treatment for lungworm control",
+      "Adequate colostrum intake for kids",
+      "Proper nutrition with adequate selenium and vitamin E"
+    ],
+    "vaccination_available": false,
+    "recommended_tests": [
+      "Thoracic auscultation",
+      "Deep nasal swab culture or PCR",
+      "Baermann technique for lungworm larvae in feces",
+      "Complete blood count",
+      "Chest radiography or ultrasound"
+    ],
+    "contagious": true,
+    "zoonotic": false,
+    "affected_age": "All ages; kids and elderly goats most severely affected",
+    "breed_risk": [],
+    "recovery_time": "2-4 weeks with appropriate treatment; chronic cases may have permanent lung damage",
+    "references": [
+      "MSD Veterinary Manual: Pneumonia in Sheep and Goats",
+      "Small Ruminant Research: caprine respiratory disease",
+      "Veterinary Clinics of North America: small ruminant respiratory disease"
+    ]
+  },
+  {
+    "id": 30,
+    "animal": "Goat",
+    "disease_name": "Blue Tongue in Goats",
+    "aliases": [
+      "Bluetongue",
+      "BT",
+      "Orbivirus Infection"
+    ],
+    "description": "An insect-transmitted viral disease of sheep and goats caused by bluetongue virus (BTV, Reoviridae). While goats often show milder or subclinical signs compared to sheep, the disease can still cause significant production losses.",
+    "common_causes": [
+      "Bluetongue virus (BTV), multiple serotypes",
+      "Bites from infected Culicoides midges (biting midges)",
+      "Seasonal spread: late summer and autumn",
+      "Transplacental transmission (some serotypes)"
+    ],
+    "symptoms": [
+      "Fever (104-106F)",
+      "Facial edema: swelling of lips, face, and eyelids",
+      "Hyperemia and congestion of oral and nasal mucosa",
+      "Excessive salivation",
+      "Ulceration and necrosis of the tongue and dental pad",
+      "Coronary band inflammation with lameness",
+      "Abortions and stillbirths in pregnant does",
+      "Reduced milk yield"
+    ],
+    "risk_factors": [
+      "Season with high Culicoides midge population",
+      "Low-lying, wet areas with midge breeding habitat",
+      "Proximity to infected flocks",
+      "Unvaccinated flock in high-risk area"
+    ],
+    "severity": "Medium",
+    "home_care": [
+      "Provide shade and shelter from sun and midges",
+      "Offer soft palatable feed for animals with oral pain",
+      "Keep shallow water source accessible",
+      "House animals indoors during peak midge activity (dusk to dawn)",
+      "Provide soft bedding for lame animals"
+    ],
+    "warning_signs": [
+      "Blue-black tongue protruding from mouth",
+      "Severe respiratory distress from pharyngeal edema",
+      "Complete refusal to eat or drink due to oral pain",
+      "Death within 6-8 days of onset"
+    ],
+    "when_to_visit_vet": "Any goat with unexplained fever, oral lesions, and lameness should be evaluated immediately. BT is a notifiable disease in most countries.",
+    "prevention": [
+      "Vaccination with attenuated live or inactivated BTV vaccine",
+      "Culicoides control: insecticide treatment of animals and housing",
+      "Avoid grazing near midge breeding sites at peak activity times",
+      "Housing animals at night during midge season",
+      "Quarantine of imported animals"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "RT-PCR on blood (virus detection)",
+      "ELISA serology (antibody detection)",
+      "Virus isolation from blood or tissues",
+      "Clinical examination: characteristic oral lesions"
+    ],
+    "contagious": true,
+    "zoonotic": false,
+    "affected_age": "All ages; clinical signs more common in young goats",
+    "breed_risk": [],
+    "recovery_time": "2-4 weeks; chronic cases may have persistent lameness",
+    "references": [
+      "WOAH: Bluetongue technical guidelines",
+      "MSD Veterinary Manual: Bluetongue in Sheep and Goats",
+      "Veterinary Research: BTV pathogenesis"
+    ]
+  },
+  {
+    "id": 31,
+    "animal": "Sheep",
+    "disease_name": "Ovine Johne's Disease",
+    "aliases": [
+      "Paratuberculosis",
+      "Johne's Disease",
+      "Mycobacterium avium subsp. paratuberculosis infection"
+    ],
+    "description": "A chronic, incurable enteritis of sheep caused by Mycobacterium avium subspecies paratuberculosis (MAP). The disease has a long incubation period (1-5 years) and is characterized by progressive wasting, persistent diarrhea, and death.",
+    "common_causes": [
+      "Mycobacterium avium subsp. paratuberculosis (MAP)",
+      "Ingestion of MAP bacteria from contaminated pasture or feed",
+      "Fecal-oral transmission from infected sheep",
+      "Contaminated water sources",
+      "Contaminated colostrum or milk in lambs",
+      "Infected wildlife reservoirs (rabbits, foxes)"
+    ],
+    "symptoms": [
+      "Chronic progressive weight loss despite normal appetite",
+      "Persistent diarrhea (intermittent to continuous)",
+      "Submandibular edema (bottle jaw) from protein loss",
+      "Profound weakness and lethargy",
+      "Decreased wool production and quality",
+      "Exercise intolerance and lagging behind flock",
+      "Reduced milk production in ewes",
+      "Death from cachexia 2-6 months after clinical onset"
+    ],
+    "risk_factors": [
+      "Herd with previous Johne's disease history",
+      "Introduction of untested sheep from infected flocks",
+      "Overcrowded pastures and feeding areas",
+      "Contaminated water sources",
+      "High soil MAP burden",
+      "Young animals most susceptible to infection"
+    ],
+    "severity": "High",
+    "home_care": [
+      "Provide high-quality protein-rich feed to slow progression",
+      "Keep feed and water sources clean and elevated",
+      "Provide sheltered area away from weather",
+      "Separate clinically affected sheep from healthy flock",
+      "Remove manure from feeding areas regularly"
+    ],
+    "warning_signs": [
+      "Profuse diarrhea not responsive to treatment",
+      "Submandibular edema (bottle jaw)",
+      "Extreme emaciation despite eating",
+      "Weakness with inability to walk",
+      "Blood in stool or dark tarry feces"
+    ],
+    "when_to_visit_vet": "Any sheep with chronic weight loss and diarrhea should be tested. There is no cure, but early diagnosis allows management decisions to protect the flock.",
+    "prevention": [
+      "Test and cull: serological and fecal testing",
+      "Raising lambs on clean pasture away from adult sheep",
+      "Avoid pooling colostrum from multiple ewes",
+      "Clean birthing areas",
+      "Fence off wet, marshy areas",
+      "Do not introduce untested sheep"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "Fecal culture for MAP (gold standard, slow)",
+      "PCR for MAP DNA in feces",
+      "ELISA serology (less sensitive in sheep)",
+      "Interferon-gamma blood test",
+      "Necropsy with acid-fast staining of intestinal tissues"
+    ],
+    "contagious": true,
+    "zoonotic": true,
+    "affected_age": "Clinical disease typically in adult sheep 2-6 years; infection occurs in first few months of life",
+    "breed_risk": [],
+    "recovery_time": "No recovery; progressive fatal disease. Incubation period 1-5 years, clinical course 2-6 months to death.",
+    "references": [
+      "MSD Veterinary Manual: Paratuberculosis (Johne's Disease)",
+      "WOAH: Paratuberculosis",
+      "Journal of Veterinary Diagnostic Investigation: MAP detection in sheep"
+    ]
+  },
+  {
+    "id": 32,
+    "animal": "Sheep",
+    "disease_name": "Ovine Foot Rot",
+    "aliases": [
+      "Footrot",
+      "Contagious Ovine Digital Dermatitis",
+      "Bacterial Pododermatitis"
+    ],
+    "description": "A highly contagious bacterial infection of the hoof causing severe lameness and economic loss in sheep flocks. It is primarily caused by Dichelobacter nodosus in association with Fusobacterium necrophorum.",
+    "common_causes": [
+      "Dichelobacter nodosus (primary pathogen)",
+      "Fusobacterium necrophorum (predisposing invader)",
+      "Prolonged exposure to wet, muddy conditions",
+      "Contaminated pasture with infected hoof material",
+      "Introduction of infected sheep into clean flock",
+      "Poor hoof conformation and overgrown hooves"
+    ],
+    "symptoms": [
+      "Lameness ranging from mild to severe",
+      "Holding foot off the ground when standing",
+      "Under-running and separation of the hoof horn",
+      "Foul, distinctive odor from affected hoof",
+      "Moist, necrotic interdigital skin",
+      "Swelling and redness of the coronary band",
+      "Undermining of the sole and heel",
+      "Weight loss in chronically affected sheep"
+    ],
+    "risk_factors": [
+      "Wet, warm weather conditions",
+      "Overgrown hooves",
+      "High stocking density on pasture",
+      "Sheep lanes and muddy gateways",
+      "Introduction of untested or affected sheep",
+      "Poor trace mineral nutrition (zinc, selenium)"
+    ],
+    "severity": "Medium",
+    "home_care": [
+      "Hoof trimming to remove loose, under-run horn",
+      "Foot bathing in formalin 2% or zinc sulfate 10%",
+      "Move sheep to dry pasture or housing",
+      "Spread lime at gateways and high-traffic areas",
+      "Isolate affected sheep during treatment"
+    ],
+    "warning_signs": [
+      "Severe lameness with inability to bear weight",
+      "Extensive under-running of hoof horn extending into sensitive tissue",
+      "Foul purulent discharge from hoof",
+      "Spread to multiple feet on same animal",
+      "Widespread flock involvement"
+    ],
+    "when_to_visit_vet": "If home foot bathing and trimming do not improve lameness within 7 days, or if the infection is spreading rapidly through the flock.",
+    "prevention": [
+      "Quarantine new sheep for 4 weeks and inspect hooves",
+      "Regular hoof trimming every 3-6 months",
+      "Foot bathing after trimming and monthly in wet seasons",
+      "Culling of chronically infected and non-responding sheep",
+      "Maintain dry environment: improve drainage, rotate pastures",
+      "Avoid overstocking on wet pastures"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "Clinical examination of hooves",
+      "Hoof swab for culture or PCR for D. nodosus",
+      "Virulence testing of D. nodosus isolates"
+    ],
+    "contagious": true,
+    "zoonotic": false,
+    "affected_age": "All ages; more severe in adult sheep due to chronicity",
+    "breed_risk": [
+      "Merino (more susceptible due to poorer hoof conformation)"
+    ],
+    "recovery_time": "2-6 weeks with aggressive treatment; chronic cases may never fully recover",
+    "references": [
+      "MSD Veterinary Manual: Foot Rot in Sheep",
+      "Small Ruminant Research: ovine foot rot control"
+    ]
+  },
+  {
+    "id": 33,
+    "animal": "Sheep",
+    "disease_name": "Pregnancy Toxemia in Sheep",
+    "aliases": [
+      "Twin Lamb Disease",
+      "Ketosis of Ewes",
+      "Gestational Ketosis",
+      "Pregnancy Disease"
+    ],
+    "description": "A metabolic disorder occurring in the last 4-6 weeks of pregnancy, primarily in ewes carrying multiple fetuses. Results from a negative energy balance when the energy demands of rapidly growing fetuses exceed dietary intake.",
+    "common_causes": [
+      "Negative energy balance in late pregnancy",
+      "Multiple fetuses (twins, triplets)",
+      "Inadequate feed intake due to competition or poor feed quality",
+      "Obesity or overconditioning at breeding",
+      "Sudden weather stress or feed change",
+      "Parasite burden reducing nutrient absorption"
+    ],
+    "symptoms": [
+      "Isolation from the flock and depression",
+      "Loss of appetite progressing to complete anorexia",
+      "Dullness with lowered head and closed eyes",
+      "Teeth grinding (bruxism)",
+      "Progressive weakness and staggering gait",
+      "Muscle tremors and twitching",
+      "Neurological signs: circling, head pressing, blindness",
+      "Sweet or fruity breath odor (acetone)",
+      "Recumbency in terminal stages"
+    ],
+    "risk_factors": [
+      "Ewes carrying 2+ fetuses",
+      "Overconditioned (fat) ewes at breeding",
+      "Underconditioned ewes with poor body reserves",
+      "Short breeding season with uniform lambing",
+      "Poor quality pasture or silage in late pregnancy",
+      "Late winter lambing with limited forage",
+      "Older ewes (4+ years)"
+    ],
+    "severity": "Emergency",
+    "home_care": [
+      "Immediate veterinary attention required",
+      "Provide high-energy feed: good hay, molasses, grain",
+      "Offer palatable feed within easy reach without competition",
+      "Drench with propylene glycol 60-100ml twice daily as directed",
+      "Keep warm, dry, and comfortable with deep bedding"
+    ],
+    "warning_signs": [
+      "Complete anorexia for more than 24 hours",
+      "Recumbency with inability to stand",
+      "Neurological signs: seizures, blindness, head pressing",
+      "Fruity acetone breath",
+      "Rapid deterioration with progression to coma"
+    ],
+    "when_to_visit_vet": "Immediately at first signs of reduced appetite or isolation. Once recumbency occurs, prognosis is poor even with intensive treatment.",
+    "prevention": [
+      "Body condition score (BCS) management: aim for 3.0-3.5 at breeding",
+      "Avoid overconditioning or underconditioning ewes",
+      "Increase feed energy density in last 4-6 weeks of pregnancy",
+      "Separate thin and fat ewes for targeted feeding",
+      "Provide adequate feeder space to reduce competition",
+      "Ultrasound pregnancy scanning to identify multiple fetuses"
+    ],
+    "vaccination_available": false,
+    "recommended_tests": [
+      "Blood beta-hydroxybutyrate (BHB) measurement",
+      "Urine ketone dipstick test",
+      "Blood glucose level",
+      "Blood calcium to rule out hypocalcemia"
+    ],
+    "contagious": false,
+    "zoonotic": false,
+    "affected_age": "Adult ewes in last 4-6 weeks of pregnancy",
+    "breed_risk": [
+      "Prolific breeds (Finnish Landrace, Romanov, East Friesian) carrying multiple lambs"
+    ],
+    "recovery_time": "3-7 days with aggressive treatment; advanced cases may not recover",
+    "references": [
+      "MSD Veterinary Manual: Pregnancy Toxemia in Sheep",
+      "American Association of Small Ruminant Practitioners: pregnancy toxemia guidelines",
+      "Sheep and Goat Research Journal: metabolic disorders in ewes"
+    ]
+  },
+  {
+    "id": 34,
+    "animal": "Sheep",
+    "disease_name": "Ovine Caseous Lymphadenitis",
+    "aliases": [
+      "CLA",
+      "Cheesy Gland",
+      "Corynebacterium pseudotuberculosis infection"
+    ],
+    "description": "A chronic bacterial disease causing abscessation of superficial and internal lymph nodes. Caused by Corynebacterium pseudotuberculosis, the disease is highly prevalent in sheep flocks worldwide.",
+    "common_causes": [
+      "Corynebacterium pseudotuberculosis infection",
+      "Infection through skin wounds and shearing cuts",
+      "Contaminated shearing equipment and blades",
+      "Direct contact with draining abscesses from infected sheep",
+      "Contaminated bedding and feed"
+    ],
+    "symptoms": [
+      "Enlarged superficial lymph nodes (most commonly prescapular, prefemoral)",
+      "Abscesses that enlarge slowly over weeks to months",
+      "Caseous: thick, greenish-yellow pus with layered appearance",
+      "Abscesses rupture and drain through the skin",
+      "Chronic weight loss when internal lymph nodes affected",
+      "Respiratory signs if mediastinal lymph nodes involved",
+      "Reduced wool production and quality"
+    ],
+    "risk_factors": [
+      "Shearing season (wounds allow entry)",
+      "Crowded sheep housing",
+      "Contaminated shearing and tagging equipment",
+      "Purchase of untested replacement sheep",
+      "Endemic flocks with 10-30% prevalence"
+    ],
+    "severity": "Low",
+    "home_care": [
+      "Lance and drain accessible abscesses when mature (away from flock)",
+      "Collect and dispose of pus: do not contaminate the environment",
+      "Clean and disinfect lancing equipment between sheep",
+      "Apply fly repellent to draining wounds",
+      "Isolate affected sheep during abscess drainage",
+      "Shear infected sheep last to avoid spread"
+    ],
+    "warning_signs": [
+      "Multiple draining abscesses across the body",
+      "Chronic weight loss suggesting internal involvement",
+      "Respiratory distress from mediastinal abscesses",
+      "Spread to uninfected sheep at high rate"
+    ],
+    "when_to_visit_vet": "When first abscess is detected to confirm diagnosis and plan control. If multiple sheep are affected, develop a flock-level control program.",
+    "prevention": [
+      "Vaccination (CLA toxoid vaccine available in some countries)",
+      "Quarantine new sheep for 30 days and inspect for abscesses",
+      "Disinfect shearing equipment between sheep",
+      "Shear affected sheep last",
+      "Cull chronically infected and recurring cases",
+      "Good hygiene: clean pens, reduce wound contamination"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "Culture of pus: C. pseudotuberculosis isolation",
+      "PCR for C. pseudotuberculosis",
+      "ELISA serology for herd-level screening",
+      "Ultrasound for detecting internal abscesses"
+    ],
+    "contagious": true,
+    "zoonotic": true,
+    "affected_age": "Primarily adult sheep (1+ years); rare in lambs",
+    "breed_risk": [],
+    "recovery_time": "Chronic infection; individual abscesses heal in 2-4 weeks with drainage; internal abscesses persist",
+    "references": [
+      "MSD Veterinary Manual: Caseous Lymphadenitis",
+      "WOAH: CLA technical factsheet",
+      "Australian Sheep Veterinary Society: CLA control guidelines"
+    ]
+  },
+  {
+    "id": 35,
+    "animal": "Sheep",
+    "disease_name": "Bluetongue in Sheep",
+    "aliases": [
+      "Bluetongue",
+      "BT",
+      "Orbivirus Infection"
+    ],
+    "description": "An insect-transmitted viral disease of sheep caused by bluetongue virus (BTV, Reoviridae). It is characterized by fever, oral lesions, facial edema, and cyanosis of the tongue. The disease is seasonally transmitted by Culicoides midges.",
+    "common_causes": [
+      "Bluetongue virus (BTV), 24+ serotypes",
+      "Bites from infected Culicoides midges (biting midges)",
+      "Transplacental transmission (some serotypes)",
+      "Contaminated semen from infected rams",
+      "Seasonal spread: late summer and autumn"
+    ],
+    "symptoms": [
+      "Sudden high fever (105-108F)",
+      "Facial edema: swelling of lips, face, and eyelids",
+      "Hyperemia and congestion of oral and nasal mucosa",
+      "Excessive salivation with foaming at the mouth",
+      "Ulceration and necrosis of the tongue and dental pad",
+      "Cyanosis (blue discoloration) of the tongue",
+      "Nasal discharge progressing to purulent",
+      "Coronary band inflammation with lameness",
+      "Abortions and stillbirths in pregnant ewes"
+    ],
+    "risk_factors": [
+      "Season with high Culicoides midge population",
+      "Low-lying, wet areas with midge breeding habitat",
+      "Proximity to livestock in neighboring farms",
+      "Imported sheep or germplasm from infected regions",
+      "Unvaccinated flock in high-risk area"
+    ],
+    "severity": "High",
+    "home_care": [
+      "Provide shade and shelter from sun and midges",
+      "Offer soft palatable feed for animals with oral pain",
+      "Keep shallow water source accessible for animals with mouth lesions",
+      "House animals indoors during peak midge activity (dusk to dawn)",
+      "Provide soft bedding for lame animals"
+    ],
+    "warning_signs": [
+      "Blue-black tongue protruding from mouth",
+      "Severe respiratory distress from pharyngeal edema",
+      "Complete refusal to eat or drink due to oral pain",
+      "Death within 6-8 days of onset"
+    ],
+    "when_to_visit_vet": "Any sheep with unexplained fever, oral lesions, and lameness should be evaluated immediately. BT is a notifiable disease in most countries.",
+    "prevention": [
+      "Vaccination with attenuated live or inactivated BTV vaccine",
+      "Culicoides control: insecticide treatment of animals and housing",
+      "Avoid grazing near midge breeding sites at peak activity times",
+      "Housing animals at night during midge season",
+      "Quarantine of imported animals",
+      "Vector-proof housing in endemic areas"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "RT-PCR on blood (virus detection)",
+      "ELISA serology (antibody detection)",
+      "Virus isolation from blood or tissues",
+      "Clinical examination: characteristic oral lesions"
+    ],
+    "contagious": true,
+    "zoonotic": false,
+    "affected_age": "All ages; young lambs 3-12 months most severely affected",
+    "breed_risk": [
+      "Merino (most susceptible to severe disease)"
+    ],
+    "recovery_time": "2-4 weeks; chronic cases may have persistent lameness and wool loss",
+    "references": [
+      "WOAH: Bluetongue technical guidelines",
+      "MSD Veterinary Manual: Bluetongue in Sheep",
+      "Veterinary Research: BTV pathogenesis"
+    ]
+  },
+  {
+    "id": 36,
+    "animal": "Horse",
+    "disease_name": "Equine Colic",
+    "aliases": [
+      "Colic",
+      "Equine Abdominal Pain",
+      "Intestinal Impaction Colic"
+    ],
+    "description": "A broad term for abdominal pain in horses, representing a clinical sign rather than a specific disease. Causes range from mild intestinal spasm to life-threatening conditions requiring surgical intervention. Colic is the leading cause of emergency veterinary calls in horses.",
+    "common_causes": [
+      "Gas accumulation in the large intestine (gas colic)",
+      "Impaction of feed material in the large colon",
+      "Displacement of the large colon (nephrosplenic entrapment)",
+      "Large colon volvulus (twisting)",
+      "Small intestinal strangulation (pedunculated lipoma)",
+      "Sand accumulation (sand colic)",
+      "Gastric ulcers",
+      "Spasmodic colic from intestinal hypermotility",
+      "Enteroliths (intestinal stones)"
+    ],
+    "symptoms": [
+      "Pawing at the ground repeatedly",
+      "Looking at the flank or kicking at the belly",
+      "Rolling or thrashing on the ground",
+      "Lying down frequently or stretched out posture",
+      "Loss of appetite (anorexia)",
+      "Decreased or absent manure passage",
+      "Excessive sweating",
+      "Elevated heart rate (over 60 beats per minute)",
+      "Reduced or absent gut sounds on auscultation"
+    ],
+    "risk_factors": [
+      "Dietary changes: sudden feed changes or poor quality hay",
+      "Inadequate water intake, especially in winter",
+      "High grain, low forage diet",
+      "Stall confinement with limited movement",
+      "Parasite burden (tapeworms, strongyles)",
+      "Age (older horses more prone to lipoma strangulation)",
+      "Sand ingestion from sandy pastures"
+    ],
+    "severity": "Emergency",
+    "home_care": [
+      "Remove all feed and water immediately",
+      "Gentle hand-walking if the horse is not in severe distress",
+      "Do not allow the horse to roll repeatedly (may cause twisting)",
+      "Monitor heart rate, respiratory rate, and manure passage",
+      "Keep the horse in a safe, well-bedded area",
+      "Call a veterinarian immediately"
+    ],
+    "warning_signs": [
+      "Heart rate over 60 beats per minute",
+      "Severe unrelenting pain with sweating and rolling",
+      "No manure passage for more than 12 hours",
+      "Distended or tympanic abdomen",
+      "Lack of gut sounds on auscultation",
+      "Pale or dark red mucous membranes",
+      "Prolonged capillary refill time (over 3 seconds)"
+    ],
+    "when_to_visit_vet": "Any episode of colic lasting more than 30 minutes, or any severe colic signs (rolling, heart rate >60), requires immediate veterinary evaluation.",
+    "prevention": [
+      "Consistent feeding schedule with high-quality forage",
+      "Limit grain to 0.5% of body weight per day",
+      "Provide ad libitum fresh, clean water",
+      "Regular dental care to ensure proper mastication",
+      "Consistent anthelmintic program targeted to fecal egg counts",
+      "Daily turnout or exercise to promote gut motility",
+      "Avoid sudden dietary changes"
+    ],
+    "vaccination_available": false,
+    "recommended_tests": [
+      "Nasogastric intubation for gastric reflux",
+      "Rectal palpation to assess intestinal position and contents",
+      "Abdominal ultrasound for fluid and wall thickness",
+      "Abdominocentesis (belly tap) for peritoneal fluid analysis",
+      "Complete blood count and blood chemistry"
+    ],
+    "contagious": false,
+    "zoonotic": false,
+    "affected_age": "All ages; specific causes vary by age",
+    "breed_risk": [
+      "Arabian (higher risk of colic)",
+      "Miniature horses (higher risk of hyperlipemia colic)"
+    ],
+    "recovery_time": "Mild medical colic: 12-48 hours. Surgical colic: 3-12 months for full recovery.",
+    "references": [
+      "American Association of Equine Practitioners (AAEP): Colic guidelines",
+      "MSD Veterinary Manual: Colic in Horses",
+      "Equine Veterinary Journal: colic epidemiology"
+    ]
+  },
+  {
+    "id": 37,
+    "animal": "Horse",
+    "disease_name": "Equine Strangles",
+    "aliases": [
+      "Strangles",
+      "Streptococcus equi infection",
+      "Equine Distemper"
+    ],
+    "description": "A highly contagious bacterial infection caused by Streptococcus equi subspecies equi, characterized by abscess formation in the lymph nodes of the head and neck. It is one of the most common infectious diseases of horses worldwide.",
+    "common_causes": [
+      "Streptococcus equi subsp. equi infection",
+      "Direct contact with infected horses",
+      "Contaminated feed and water buckets",
+      "Fomite transmission on grooming equipment, tack, and human hands",
+      "Subclinical carrier horses shedding bacteria",
+      "Aerosol transmission over short distances in barns"
+    ],
+    "symptoms": [
+      "Sudden high fever (103-106F)",
+      "Profuse thick yellow nasal discharge (initially clear, becoming purulent)",
+      "Enlarged, painful, and hot submandibular and retropharyngeal lymph nodes",
+      "Depression and loss of appetite",
+      "Difficulty swallowing (dysphagia)",
+      "Coughing with head extended",
+      "Lymph node abscess formation, rupture, and purulent drainage",
+      "Weight loss from difficulty eating"
+    ],
+    "risk_factors": [
+      "Young horses (weanlings and yearlings most susceptible)",
+      "Horses coming from sales or auctions",
+      "Recent travel to shows, events, or boarding facilities",
+      "Large breeding farms or training barns",
+      "Poor biosecurity between horses",
+      "Lack of prior exposure or vaccination"
+    ],
+    "severity": "Medium",
+    "home_care": [
+      "Immediate isolation of affected horses",
+      "Separate feeding and watering equipment",
+      "Warm compresses to encourage lymph node abscess maturation and drainage",
+      "Soft, palatable feed (soaked hay, mash) for horses with swallowing difficulty",
+      "Gently clean draining abscesses with antiseptic solution"
+    ],
+    "warning_signs": [
+      "Difficulty breathing due to enlarged lymph nodes obstructing airways",
+      "Inability to eat or drink due to pain or swelling",
+      "Spread of abscesses to other body parts (bastard strangles)",
+      "Persistent high fever over 105F not responding to NSAIDs"
+    ],
+    "when_to_visit_vet": "Any horse with fever, nasal discharge, and lymph node swelling should be tested. Respiratory difficulty from throat swelling is an emergency.",
+    "prevention": [
+      "Vaccination with S. equi M-protein vaccine",
+      "Quarantine new horses for 3 weeks",
+      "Separate feeding and watering for each horse",
+      "No shared equipment between horses without disinfection",
+      "Temperature monitoring of all exposed horses",
+      "Biosecurity protocols: footbaths, hand washing between horses"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "PCR on nasal swab or abscess pus",
+      "Bacterial culture from draining abscess",
+      "Serology (ELISA for S. equi-specific antibodies)",
+      "Endoscopy for guttural pouch carriers"
+    ],
+    "contagious": true,
+    "zoonotic": false,
+    "affected_age": "Primarily young horses 1-5 years; all ages susceptible",
+    "breed_risk": [],
+    "recovery_time": "3-6 weeks for full recovery; lifelong carrier status possible in guttural pouches (10% of cases)",
+    "references": [
+      "MSD Veterinary Manual: Strangles in Horses",
+      "AAEP: Strangles guidelines",
+      "Equine Veterinary Journal: S. equi epidemiology and control"
+    ]
+  },
+  {
+    "id": 38,
+    "animal": "Horse",
+    "disease_name": "Equine Laminitis",
+    "aliases": [
+      "Founder",
+      "Laminitis",
+      "Pedal Osteitis"
+    ],
+    "description": "A debilitating condition characterized by inflammation and structural failure of the laminae connecting the hoof wall to the pedal bone. Causes severe pain and can lead to rotation or sinking of the pedal bone within the hoof capsule.",
+    "common_causes": [
+      "Carbohydrate overload: excessive grain or lush pasture access",
+      "Equine metabolic syndrome (EMS)",
+      "Pituitary pars intermedia dysfunction (PPID/Cushing's disease)",
+      "Supporting limb laminitis due to contralateral limb injury",
+      "Retained placenta or metritis in mares",
+      "Colic or severe systemic illness"
+    ],
+    "symptoms": [
+      "Weight shifting between feet in front (classic rocking back)",
+      "Reluctance to move on hard surfaces",
+      "Increased digital pulse in the fetlock region",
+      "Heat emanating from the hoof wall and sole",
+      "Pain on hoof tester pressure over the sole",
+      "Standing with hind limbs positioned well under the body",
+      "Lameness progressing from subtle to non-weight-bearing",
+      "Radiographic rotation of the pedal bone"
+    ],
+    "risk_factors": [
+      "Obesity (body condition score 7+ out of 9)",
+      "Easy keeper breeds with efficient metabolism",
+      "Lush pasture access in spring and autumn",
+      "Grain feeding, especially high-starch concentrates",
+      "History of previous laminitis episodes",
+      "PPID (older horses, ponies)",
+      "Equine metabolic syndrome (insulin dysregulation)"
+    ],
+    "severity": "Emergency",
+    "home_care": [
+      "Immediately move the horse to a deep sand or soft bedding stall",
+      "Remove all grain and pasture access immediately",
+      "Provide only low-sugar grass hay",
+      "Cold therapy: standing in ice water (18C or cooler) for 48 hours",
+      "Limit movement: confine to a small deeply bedded stall",
+      "Do not force walking"
+    ],
+    "warning_signs": [
+      "Inability to stand or extreme reluctance to move",
+      "Palpable heat in the hooves with bounding digital pulses",
+      "Visible sinking or rotation of the pedal bone on radiographs",
+      "Cresty neck indicating metabolic syndrome",
+      "Refusal to lift the opposite front foot"
+    ],
+    "when_to_visit_vet": "Any lameness with increased digital pulses and hoof heat is a laminitis emergency. Immediate veterinary assessment improves the chance of successful recovery.",
+    "prevention": [
+      "Maintain lean body condition (BCS 5-6/9)",
+      "Limit lush pasture access with grazing muzzles or restricted turnout",
+      "Use slow feeders to mimic natural grazing patterns",
+      "Low-sugar, low-starch diet: grass hay, ration balancer",
+      "Regular exercise for non-laminitic horses",
+      "Monitor and manage PPID and EMS with veterinary guidance"
+    ],
+    "vaccination_available": false,
+    "recommended_tests": [
+      "Radiography: foot series for pedal bone position and rotation",
+      "Digital venography for vascular assessment",
+      "Blood insulin, glucose, ACTH (for PPID diagnosis)",
+      "Obesity scoring and cresty neck scoring"
+    ],
+    "contagious": false,
+    "zoonotic": false,
+    "affected_age": "All ages; highest risk in middle-aged to older horses and ponies (10+ years)",
+    "breed_risk": [
+      "Ponies",
+      "Miniature horses",
+      "Arabian",
+      "Morgans",
+      "American Quarter Horses"
+    ],
+    "recovery_time": "Acute phase: 2-7 days intensive care. Chronic phase: months to lifelong management.",
+    "references": [
+      "American Association of Equine Practitioners: Laminitis guidelines",
+      "MSD Veterinary Manual: Laminitis in Horses",
+      "Equine Veterinary Journal: laminitis pathophysiology"
+    ]
+  },
+  {
+    "id": 39,
+    "animal": "Horse",
+    "disease_name": "Equine Influenza",
+    "aliases": [
+      "Flu",
+      "Equine Flu",
+      "Equine influenza virus infection",
+      "EI"
+    ],
+    "description": "A highly contagious viral respiratory disease of horses caused by influenza A virus subtypes H7N7 and H3N8. Spreads rapidly through respiratory aerosols in horse populations, especially in congregated settings.",
+    "common_causes": [
+      "Equine influenza A virus (H3N8 currently endemic; H7N7 believed extinct)",
+      "Aerosol transmission through coughing",
+      "Direct contact with infected horses",
+      "Contaminated equipment, human hands, and vehicles",
+      "Airborne spread over several meters in stables"
+    ],
+    "symptoms": [
+      "Sudden high fever (up to 106F)",
+      "Deep, dry hacking cough that persists for weeks",
+      "Clear to purulent nasal discharge",
+      "Clear to purulent eye discharge",
+      "Depression and lethargy",
+      "Loss of appetite",
+      "Enlarged submandibular lymph nodes",
+      "Muscle soreness and stiffness"
+    ],
+    "risk_factors": [
+      "Young horses 1-4 years (most susceptible)",
+      "Horses attending shows, competitions, or race meetings",
+      "Horses in training barns with high turnover",
+      "Breeding farms with frequent visitor traffic",
+      "Lack of up-to-date influenza vaccination",
+      "Transport stress and overcrowding"
+    ],
+    "severity": "Medium",
+    "home_care": [
+      "Immediate isolation for 14 days",
+      "Complete rest in a well-ventilated stall for 1 week per day of fever",
+      "Provide soft, palatable feed and fresh water",
+      "Use fans or open windows for ventilation (dust-free environment)",
+      "Monitor temperature twice daily",
+      "Strict biosecurity: separate tack, buckets, and handlers"
+    ],
+    "warning_signs": [
+      "Difficulty breathing with extended neck",
+      "Refusal to eat for more than 24 hours",
+      "High fever persisting beyond 4 days",
+      "Thick purulent nasal discharge suggesting bacterial pneumonia",
+      "Collapse or extreme lethargy"
+    ],
+    "when_to_visit_vet": "Any horse with fever and cough should be isolated and tested. If fever persists beyond 48 hours or if respiratory distress develops, call a veterinarian.",
+    "prevention": [
+      "Vaccination with inactivated or modified-live equine influenza vaccine",
+      "Primary course: 2 doses 4-6 weeks apart",
+      "Boosters every 6-12 months depending on risk",
+      "Booster 2 weeks before planned exposure (shows, sales)",
+      "Quarantine new arrivals for 14 days",
+      "Restricting movement during known outbreaks"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "PCR on nasal swab (rapid diagnosis)",
+      "Virus isolation from nasopharyngeal swab",
+      "ELISA serology (paired samples for rising titers)",
+      "Complete blood count and acute phase proteins"
+    ],
+    "contagious": true,
+    "zoonotic": false,
+    "affected_age": "All ages; most severe in young horses (weanlings to 4 years)",
+    "breed_risk": [],
+    "recovery_time": "Acute illness 3-7 days; cough may persist 3-6 weeks; full recovery 3-4 weeks",
+    "references": [
+      "MSD Veterinary Manual: Equine Influenza",
+      "WOAH: Equine influenza",
+      "Equine Veterinary Journal: EI epidemiology and vaccination"
+    ]
+  },
+  {
+    "id": 40,
+    "animal": "Horse",
+    "disease_name": "Equine Gastric Ulcer Syndrome",
+    "aliases": [
+      "EGUS",
+      "Equine Glandular Gastric Disease",
+      "Stomach Ulcers",
+      "Equine Squamous Gastric Disease",
+      "ESGD"
+    ],
+    "description": "A syndrome of ulceration and inflammation of the equine stomach lining, broadly classified into squamous (ESGD) and glandular (EGGD) forms. Extremely common in performance horses, affecting up to 90% of racehorses.",
+    "common_causes": [
+      "Prolonged gastric acid exposure due to infrequent feeding",
+      "High concentrate/low forage diet",
+      "Intense exercise reducing gastric blood flow and increasing acid exposure",
+      "Stress of training, transport, and competition",
+      "Non-steroidal anti-inflammatory drugs (NSAIDs) overuse",
+      "Fasting or meal-feeding with long intervals between meals"
+    ],
+    "symptoms": [
+      "Poor appetite or selective eating (hay over grain)",
+      "Weight loss or failure to maintain weight",
+      "Mild intermittent colic, especially after eating",
+      "Poor performance and reluctance to work",
+      "Behavioral changes: irritability, teeth grinding",
+      "Dull coat and poor body condition",
+      "Excessive salivation or yawning"
+    ],
+    "risk_factors": [
+      "Intensive training (racehorses, endurance, dressage)",
+      "Intermittent feeding with long periods with empty stomach",
+      "High grain, low forage diet (less than 50% forage)",
+      "NSAID administration (especially more than 5 days)",
+      "Transport stress and frequent competition",
+      "Stall confinement with limited turnout"
+    ],
+    "severity": "Medium",
+    "home_care": [
+      "Provide free-choice forage (hay or pasture) 24 hours a day",
+      "Reduce or eliminate grain/concentrate feeding",
+      "Turn out to pasture as much as possible",
+      "Feed alfalfa hay to provide natural antacid (calcium and protein)",
+      "Divide concentrate ration into small frequent meals if necessary"
+    ],
+    "warning_signs": [
+      "Severe weight loss despite adequate feed",
+      "Repeated episodes of colic",
+      "Complete refusal to eat",
+      "Dull, depressed behavior persisting for days"
+    ],
+    "when_to_visit_vet": "Any performance horse showing poor appetite, colic after eating, or poor performance should be evaluated. Gastroscopy is the gold standard for diagnosis.",
+    "prevention": [
+      "Provide free-choice forage (hay or pasture) at all times",
+      "Feed a minimum of 1.5% body weight as forage daily",
+      "Reduce or eliminate grain, use balanced ration balancers instead",
+      "Maximize pasture turnout (24/7 ideally)",
+      "Avoid unnecessary NSAID use",
+      "Alfalfa hay supplementation for its buffering capacity"
+    ],
+    "vaccination_available": false,
+    "recommended_tests": [
+      "Gastroscopy (upper GI endoscopy) - gold standard",
+      "Response to therapeutic trial (omeprazole)",
+      "Fecal occult blood test (non-specific)"
+    ],
+    "contagious": false,
+    "zoonotic": false,
+    "affected_age": "All ages; highest prevalence in performance horses 2-10 years",
+    "breed_risk": [
+      "Thoroughbred (highest prevalence)",
+      "Standardbred",
+      "Arabian",
+      "Warmblood sport horses"
+    ],
+    "recovery_time": "ESGD: 2-4 weeks with treatment. EGGD: variable, may require extended therapy.",
+    "references": [
+      "Equine Gastric Ulcer Syndrome Consensus Statement (ACVIM)",
+      "MSD Veterinary Manual: Gastric Ulcers in Horses",
+      "Equine Veterinary Journal: EGUS prevalence and management"
+    ]
+  },
+  {
+    "id": 41,
+    "animal": "Horse",
+    "disease_name": "Equine Tetanus",
+    "aliases": [
+      "Lockjaw",
+      "Tetanus",
+      "Clostridium tetani infection"
+    ],
+    "description": "A toxemic neurological disease caused by Clostridium tetani, a soil-borne bacterium. Horses are the most susceptible domestic species to tetanus, with a mortality rate exceeding 50% even with intensive treatment.",
+    "common_causes": [
+      "Clostridium tetani spore contamination of wounds",
+      "Puncture wounds (especially deep, contaminated wounds)",
+      "Surgical wounds, particularly umbilical hernia repairs",
+      "Hoof puncture wounds (nails, screws)",
+      "Decubitus ulcers",
+      "Retained placenta or postpartum infection in mares"
+    ],
+    "symptoms": [
+      "Stiffness progressing to rigidity of the head and neck (lockjaw)",
+      "Erect ears and flared nostrils due to facial muscle spasm",
+      "Prolapsed third eyelid when the head is raised",
+      "Stiff, stilted gait with difficulty turning",
+      "Exaggerated response to sudden noise or touch (hyperesthesia)",
+      "Sawhorse stance due to extensor rigidity",
+      "Sweating, increased heart rate and respiratory rate",
+      "Difficulty eating and drinking due to trismus"
+    ],
+    "risk_factors": [
+      "Unvaccinated or inadequately vaccinated horses",
+      "Deep puncture wounds contaminated with soil or manure",
+      "Wounds on the lower limbs or hoof",
+      "Surgical wounds without adequate tetanus prophylaxis",
+      "Foals born to unvaccinated mares (no passive immunity)"
+    ],
+    "severity": "Emergency",
+    "home_care": [
+      "Immediate veterinary attention at first suspicion",
+      "Minimal stimulation: quiet, dark, padded stall",
+      "Soft deep bedding to prevent pressure sores",
+      "Assisted feeding with slings if recumbent",
+      "Keep fresh water within easy reach"
+    ],
+    "warning_signs": [
+      "Rapid progression of muscle stiffness within hours",
+      "Inability to open the mouth or eat",
+      "Difficulty breathing due to laryngeal or thoracic muscle spasm",
+      "Collapse and inability to stand",
+      "Seizures or severe hyperesthesia"
+    ],
+    "when_to_visit_vet": "At the first sign of stiffness or hypersensitivity. Every hour counts: early antitoxin administration significantly improves survival odds.",
+    "prevention": [
+      "Core tetanus toxoid vaccination: primary course of 2 doses 4 weeks apart",
+      "Annual booster",
+      "Pregnant mares: booster 4-6 weeks before foaling",
+      "Tetanus antitoxin for unvaccinated horses with wounds",
+      "Thorough wound cleaning and debridement",
+      "Surgical asepsis for all procedures"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "Clinical diagnosis is characteristic",
+      "Wound culture for Clostridium tetani",
+      "Serology for tetanus antibody levels"
+    ],
+    "contagious": false,
+    "zoonotic": true,
+    "affected_age": "All ages; most severe in young horses with no vaccination history",
+    "breed_risk": [],
+    "recovery_time": "Protracted: 4-8 weeks in surviving horses; mortality rate 50-75% despite treatment",
+    "references": [
+      "MSD Veterinary Manual: Tetanus in Horses",
+      "American Association of Equine Practitioners: Tetanus vaccination guidelines",
+      "Equine Veterinary Education: tetanus management"
+    ]
+  },
+  {
+    "id": 42,
+    "animal": "Rabbit",
+    "disease_name": "Rabbit Hemorrhagic Disease",
+    "aliases": [
+      "RHD",
+      "Viral Hemorrhagic Disease",
+      "RHDV",
+      "Rabbit Calicivirus Disease"
+    ],
+    "description": "A highly contagious and fatal viral disease of rabbits caused by Rabbit Hemorrhagic Disease Virus (RHDV, a calicivirus). It causes acute hepatic necrosis and internal hemorrhaging with mortality rates exceeding 90% in naive populations.",
+    "common_causes": [
+      "Rabbit Hemorrhagic Disease Virus (RHDV, genus Lagovirus)",
+      "RHDV2 (variant): affects both domestic and wild rabbits",
+      "Direct contact with infected rabbits or their excretions",
+      "Contaminated feed, water, and bedding",
+      "Fomites: clothing, footwear, and equipment",
+      "Insect vectors: flies and mosquitoes"
+    ],
+    "symptoms": [
+      "Sudden death without any preceding signs (peracute form)",
+      "Fever over 104F",
+      "Lethargy and depression",
+      "Complete loss of appetite",
+      "Difficulty breathing (dyspnea)",
+      "Blood-tinged nasal discharge",
+      "Cyanosis of mucous membranes",
+      "Neurological signs: ataxia, paddling, convulsions",
+      "Jaundice in subacute cases"
+    ],
+    "risk_factors": [
+      "Outdoor or partially outdoor rabbit housing",
+      "Contact with wild rabbit populations",
+      "Introduction of new rabbits without quarantine",
+      "Areas with known RHDV outbreaks in wild rabbits",
+      "Flies and insect exposure",
+      "Shows, exhibitions, and rabbit sales"
+    ],
+    "severity": "Emergency",
+    "home_care": [
+      "No home care possible; prognosis is grave",
+      "Immediate quarantine of all rabbits on the premises",
+      "Do not move rabbits on or off the premises",
+      "Contact a veterinarian for confirmation and reporting",
+      "Strict biosecurity: separate clothing and equipment",
+      "Bury or incinerate dead rabbits"
+    ],
+    "warning_signs": [
+      "Sudden death of multiple rabbits within days",
+      "Blood from nose or mouth in deceased rabbits",
+      "Acute lethargy with rapid deterioration in hours",
+      "Difficulty breathing in previously healthy rabbits"
+    ],
+    "when_to_visit_vet": "Any sudden illness or death in unvaccinated rabbits requires immediate veterinary evaluation. Report suspected RHD to animal health authorities.",
+    "prevention": [
+      "Vaccination with RHDV/RHDV2 vaccine",
+      "Revaccination every 6-12 months depending on vaccine type",
+      "Indoor housing or insect-proof outdoor housing",
+      "Quarantine new rabbits for 14 days",
+      "Footbaths and hand hygiene between rabbit enclosures",
+      "Control flies and insects in rabbit housing"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "Post-mortem examination",
+      "Liver tissue PCR for RHDV",
+      "ELISA for antibody detection",
+      "Histopathology: acute hepatic necrosis"
+    ],
+    "contagious": true,
+    "zoonotic": false,
+    "affected_age": "Rabbits over 8 weeks; younger rabbits may be resistant to classical RHDV",
+    "breed_risk": [],
+    "recovery_time": "Peracute death within 12-48 hours; rare survivors take 1-3 weeks to recover",
+    "references": [
+      "MSD Veterinary Manual: Rabbit Hemorrhagic Disease",
+      "WOAH: RHD technical card",
+      "Journal of Veterinary Diagnostic Investigation: RHDV2 emergence"
+    ]
+  },
+  {
+    "id": 43,
+    "animal": "Rabbit",
+    "disease_name": "Myxomatosis",
+    "aliases": [
+      "Myxo",
+      "Myxoma Virus Infection",
+      "Rabbit Pox"
+    ],
+    "description": "A severe viral disease of rabbits caused by Myxoma virus (a poxvirus). Characterized by swelling of the eyelids, ears, and face, progressing to skin tumors (myxomas) and severe immunosuppression. Mortality approaches 100% in domestic rabbits.",
+    "common_causes": [
+      "Myxoma virus (Leporipoxvirus genus)",
+      "Transmission by biting insects: mosquitoes, fleas, flies",
+      "Direct contact with infected rabbits",
+      "Contaminated equipment and hutches",
+      "Mechanical transmission via fleas and ticks"
+    ],
+    "symptoms": [
+      "Swelling and edema of the eyelids (blepharoconjunctivitis)",
+      "Swollen, drooping ears with secondary infections",
+      "Facial and perineal edema",
+      "Multiple skin nodules (myxomas) on the body",
+      "Purulent conjunctivitis with eye discharge",
+      "Fever up to 107F",
+      "Lethargy and loss of appetite",
+      "Difficulty eating due to facial swelling"
+    ],
+    "risk_factors": [
+      "Outdoor rabbit housing with insect exposure",
+      "Living in areas with wild rabbit reservoirs",
+      "Mosquito and flea season (summer, autumn)",
+      "Lack of vaccination (in countries where available)",
+      "Introduction of rabbits from flea-endemic areas"
+    ],
+    "severity": "Emergency",
+    "home_care": [
+      "Supportive care: warmth, soft food, assisted feeding",
+      "Gently clean eyes and nose with saline",
+      "Keep in a quiet, insect-proof indoor environment",
+      "Provide soft, palatable food if the rabbit is eating",
+      "Ensure fresh water is accessible",
+      "Insect control in the immediate environment"
+    ],
+    "warning_signs": [
+      "Blepharoconjunctivitis with inability to open eyes",
+      "Complete loss of appetite with facial swelling",
+      "Difficulty breathing from nasal obstruction",
+      "Neurological signs: seizures, head tilt"
+    ],
+    "when_to_visit_vet": "Any rabbit with eyelid swelling, skin nodules, and fever requires immediate veterinary assessment.",
+    "prevention": [
+      "Vaccination (Shope fibroma virus vaccine) in endemic regions",
+      "Indoor housing with insect-proof screens",
+      "Mosquito and flea control on pet rabbits",
+      "Avoid contact with wild rabbit populations",
+      "Quarantine and insect-proofing of new rabbits"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "Clinical diagnosis based on characteristic signs",
+      "PCR on skin lesions or swabs",
+      "Histopathology of myxoma nodules",
+      "Virus isolation in cell culture"
+    ],
+    "contagious": true,
+    "zoonotic": false,
+    "affected_age": "All ages; most severe in young and immunocompromised rabbits",
+    "breed_risk": [
+      "Domestic European rabbits (Oryctolagus cuniculus) most susceptible"
+    ],
+    "recovery_time": "10-20 days; mortality 99%+ in domestic rabbits without vaccination",
+    "references": [
+      "MSD Veterinary Manual: Myxomatosis in Rabbits",
+      "World Rabbit Science: myxomatosis epidemiology",
+      "Veterinary Record: myxomatosis in pet rabbits"
+    ]
+  },
+  {
+    "id": 44,
+    "animal": "Rabbit",
+    "disease_name": "Rabbit Pasteurellosis",
+    "aliases": [
+      "Snuffles",
+      "Pasteurella multocida infection",
+      "Nasal Catarrh",
+      "Rabbit Respiratory Disease"
+    ],
+    "description": "A common bacterial disease of rabbits caused primarily by Pasteurella multocida. It manifests in numerous forms including respiratory, abscess, genital, and systemic disease.",
+    "common_causes": [
+      "Pasteurella multocida (primary pathogen, several capsular serotypes)",
+      "Stress-induced proliferation of carrier state bacteria",
+      "Poor ventilation and high ammonia levels in housing",
+      "Immunosuppression from overcrowding or poor nutrition",
+      "Dental disease predisposing to nasal cavity infection"
+    ],
+    "symptoms": [
+      "Sneezing with clear to thick white nasal discharge",
+      "Mucopurulent discharge that mats fur on forepaws",
+      "Noisy breathing with rattling or snuffling sounds",
+      "Red and swollen conjunctiva with eye discharge",
+      "Subcutaneous abscesses (especially on face and neck)",
+      "Head tilt and circling (otitis media/interna)",
+      "Weight loss and reduced appetite",
+      "Genital infections: uterine pus accumulation (pyometra)"
+    ],
+    "risk_factors": [
+      "Poor ventilation and high humidity",
+      "High ammonia from poor litter management",
+      "Overcrowded rabbit housing",
+      "Stress from transport, weaning, or showing",
+      "Concurrent dental disease (malocclusion)",
+      "Age: older rabbits more susceptible to chronic forms"
+    ],
+    "severity": "Medium",
+    "home_care": [
+      "Gently clean nose and eyes with warm damp cloth daily",
+      "Provide dust-free hay and bedding (avoid shavings)",
+      "Ensure good ventilation without drafts",
+      "Offer soft, palatable food if the rabbit is not eating well",
+      "Reduce stress: quiet environment, routine handling",
+      "Keep the rabbit warm and comfortable"
+    ],
+    "warning_signs": [
+      "Open-mouth breathing with respiratory distress",
+      "Complete refusal to eat for more than 12 hours",
+      "Severe head tilt with inability to stand or eat",
+      "Rapidly growing abscesses on the face",
+      "Weight loss despite eating"
+    ],
+    "when_to_visit_vet": "Any rabbit with nasal discharge, sneezing, or eye discharge persisting beyond 48 hours should be examined.",
+    "prevention": [
+      "Good ventilation and low ammonia in rabbit housing",
+      "Clean, dry bedding changed regularly",
+      "Reduce overcrowding and stress",
+      "Dust-free hay and pelleted feed",
+      "Quarantine new rabbits for 2 weeks",
+      "Regular dental checks to prevent malocclusion"
+    ],
+    "vaccination_available": false,
+    "recommended_tests": [
+      "Nasal swab culture and sensitivity",
+      "PCR for Pasteurella multocida",
+      "Radiography of skull for dental disease",
+      "Endoscopy for nasal cavity examination"
+    ],
+    "contagious": true,
+    "zoonotic": true,
+    "affected_age": "All ages; chronic form more common in adult rabbits over 2 years",
+    "breed_risk": [
+      "Brachycephalic breeds (Netherland Dwarf, Lionhead) more prone to respiratory signs"
+    ],
+    "recovery_time": "2-6 weeks with treatment; chronic cases require ongoing management",
+    "references": [
+      "MSD Veterinary Manual: Pasteurellosis in Rabbits",
+      "Journal of Exotic Pet Medicine: rabbit respiratory disease",
+      "Veterinary Clinics of North America: exotic pet medicine"
+    ]
+  },
+  {
+    "id": 45,
+    "animal": "Rabbit",
+    "disease_name": "Rabbit Coccidiosis",
+    "aliases": [
+      "Hepatic Coccidiosis",
+      "Intestinal Coccidiosis",
+      "Eimeria infection"
+    ],
+    "description": "A parasitic disease caused by Eimeria species, affecting either the liver (E. stiedae) or intestines (E. magna, E. media, E. irresidua). It is a major cause of morbidity and mortality in young rabbits, especially under poor sanitation.",
+    "common_causes": [
+      "Eimeria stiedae (hepatic form)",
+      "Eimeria magna, E. media, E. irresidua (intestinal forms)",
+      "Ingestion of sporulated oocysts from contaminated environment",
+      "Fecal-oral transmission in soiled bedding",
+      "Contaminated feed and water",
+      "Poor sanitation and overcrowding"
+    ],
+    "symptoms": [
+      "Hepatic form: enlarged liver, jaundice, weight loss",
+      "Intestinal form: diarrhea (mucoid to watery)",
+      "Bloating and abdominal distension",
+      "Poor growth or weight loss",
+      "Rough coat and dull appearance",
+      "Lethargy and weakness",
+      "Reduced appetite",
+      "Death in severe cases"
+    ],
+    "risk_factors": [
+      "Young rabbits 4-16 weeks most susceptible",
+      "Overcrowded and unsanitary housing",
+      "Stress from weaning and diet changes",
+      "Poor ventilation and wet bedding",
+      "Mixing rabbits of different ages"
+    ],
+    "severity": "Medium",
+    "home_care": [
+      "Clean and dry housing with frequent bedding changes",
+      "Raise feed and water containers to avoid fecal contamination",
+      "Provide clean, fresh water at all times",
+      "Feed high-quality, palatable diet",
+      "Isolate affected rabbits",
+      "Separate age groups"
+    ],
+    "warning_signs": [
+      "Severe watery diarrhea with dehydration",
+      "Jaundice (yellowing of eyes, gums) in hepatic form",
+      "Complete loss of appetite",
+      "Severe weight loss and emaciation",
+      "Death within days in severe outbreaks"
+    ],
+    "when_to_visit_vet": "If diarrhea persists beyond 48 hours, if jaundice develops, or if multiple young rabbits are affected simultaneously.",
+    "prevention": [
+      "Good sanitation: clean, dry bedding changed regularly",
+      "Elevated feed and water stations to prevent contamination",
+      "Age-segregated housing",
+      "Avoid overcrowding",
+      "Coccidiostat in feed for high-risk groups",
+      "Regular cleaning and disinfection of hutches"
+    ],
+    "vaccination_available": false,
+    "recommended_tests": [
+      "Fecal floatation and oocyst count (OPG)",
+      "McMaster counting chamber for quantitative assessment",
+      "Necropsy with liver and intestinal histopathology",
+      "ELISA for hepatic coccidiosis"
+    ],
+    "contagious": false,
+    "zoonotic": false,
+    "affected_age": "Primarily young rabbits 4-16 weeks; adults develop immunity",
+    "breed_risk": [],
+    "recovery_time": "7-14 days with appropriate treatment; chronic cases may have permanent liver damage",
+    "references": [
+      "MSD Veterinary Manual: Coccidiosis in Rabbits",
+      "Veterinary Parasitology: rabbit coccidiosis",
+      "World Rabbit Science: Eimeria species in rabbits"
+    ]
+  },
+  {
+    "id": 46,
+    "animal": "Poultry",
+    "disease_name": "Avian Influenza",
+    "aliases": [
+      "Bird Flu",
+      "AI",
+      "Highly Pathogenic Avian Influenza",
+      "HPAI",
+      "Fowl Plague"
+    ],
+    "description": "A highly contagious viral respiratory disease of birds caused by Influenza A virus. Highly pathogenic strains (H5N1, H7N9) cause severe systemic disease with high mortality. It is a significant zoonotic disease with pandemic potential.",
+    "common_causes": [
+      "Influenza A virus (multiple subtypes: H5N1, H5N8, H7N9, H9N2)",
+      "Direct contact with infected birds",
+      "Contaminated equipment, vehicles, and clothing",
+      "Wild waterfowl as natural reservoirs",
+      "Live bird markets with poor biosecurity",
+      "Fecal-oral transmission via contaminated feed and water"
+    ],
+    "symptoms": [
+      "Sudden death with high mortality (up to 100% in HPAI strains)",
+      "Severe respiratory distress: gasping, coughing, sneezing",
+      "Swollen head, comb, and wattles (cyanosis)",
+      "Purplish discoloration of comb and wattles",
+      "Nasal and ocular discharge",
+      "Watery diarrhea",
+      "Sharp drop in egg production (up to 90%)",
+      "Soft-shelled or misshapen eggs",
+      "Neurological signs: tremors, paralysis, twisted neck",
+      "Hemorrhages on legs and internal organs"
+    ],
+    "risk_factors": [
+      "Outdoor or free-range poultry with wild bird contact",
+      "Proximity to waterfowl habitat (ponds, lakes)",
+      "Live bird markets and trading networks",
+      "Introduction of new birds without quarantine",
+      "Poor biosecurity and disinfection protocols",
+      "Areas with ongoing HPAI outbreaks in wild birds"
+    ],
+    "severity": "Emergency",
+    "home_care": [
+      "No home care possible: this is a notifiable disease",
+      "Immediately report suspected cases to veterinary authorities",
+      "Strict quarantine of affected premises",
+      "Do not move birds, eggs, or equipment off the premises",
+      "Human protective equipment for all handlers",
+      "Follow official depopulation and disinfection protocols"
+    ],
+    "warning_signs": [
+      "Sudden death of multiple birds within 24-48 hours",
+      "Respiratory distress with swollen head and comb discoloration",
+      "Severe drop in egg production with misshapen eggs",
+      "Neurological signs in multiple birds",
+      "Hemorrhages on legs or internal organs visible on post-mortem"
+    ],
+    "when_to_visit_vet": "Any suspicion of avian influenza is a veterinary emergency and must be reported to animal health authorities immediately. Do not wait for laboratory confirmation.",
+    "prevention": [
+      "Strict biosecurity: dedicated clothing, footbaths, restricted access",
+      "Limit contact between domestic poultry and wild waterfowl",
+      "All-in-all-out management with thorough cleaning between flocks",
+      "Vaccination in endemic areas (requires government approval)",
+      "Regular surveillance testing in high-risk regions",
+      "Proper disposal of dead birds"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "RT-PCR on tracheal or cloacal swabs",
+      "Virus isolation in embryonated eggs",
+      "Serology (AGID, ELISA) for antibody detection",
+      "Post-mortem examination with histopathology"
+    ],
+    "contagious": true,
+    "zoonotic": true,
+    "affected_age": "All ages; severity varies by strain and bird species",
+    "breed_risk": [
+      "Turkeys more susceptible to severe disease than chickens"
+    ],
+    "recovery_time": "Peracute death within 24-48 hours (HPAI); low pathogenicity strains: 1-3 weeks recovery",
+    "references": [
+      "WOAH: Avian Influenza technical guidelines",
+      "MSD Veterinary Manual: Avian Influenza",
+      "CDC: Avian Influenza transmission",
+      "FAO: AI prevention and control"
+    ]
+  },
+  {
+    "id": 47,
+    "animal": "Poultry",
+    "disease_name": "Newcastle Disease",
+    "aliases": [
+      "ND",
+      "NDV",
+      "Avian Paramyxovirus Type 1",
+      "Fowl Pest"
+    ],
+    "description": "A highly contagious viral disease affecting many bird species, caused by Newcastle disease virus (NDV, paramyxovirus). Virulent strains cause severe respiratory, nervous, and digestive disease with high mortality. It is a notifiable disease worldwide.",
+    "common_causes": [
+      "Newcastle disease virus (APMV-1, genus Avulavirus)",
+      "Direct contact with infected birds",
+      "Aerosol transmission over short distances",
+      "Contaminated feed, water, and equipment",
+      "Infected wild birds and waterfowl as reservoirs",
+      "Live bird markets and trade networks",
+      "Contaminated vaccines or improper vaccination"
+    ],
+    "symptoms": [
+      "Sudden death with high mortality in unvaccinated flocks",
+      "Respiratory distress: gasping, coughing, rattling",
+      "Nasal and ocular discharge",
+      "Swollen head and conjunctivitis",
+      "Greenish watery diarrhea",
+      "Sharp drop in egg production",
+      "Thin-shelled or misshapen eggs",
+      "Neurological signs: tremors, twisted neck, paralysis, circling",
+      "Depression and loss of appetite"
+    ],
+    "risk_factors": [
+      "Unvaccinated or incompletely vaccinated flocks",
+      "Introduction of new birds without quarantine",
+      "Proximity to other poultry operations",
+      "Live bird market exposure",
+      "Poor biosecurity and disinfection",
+      "Areas with endemic NDV circulation"
+    ],
+    "severity": "Emergency",
+    "home_care": [
+      "No home care possible: this is a notifiable disease",
+      "Immediately report suspected cases to veterinary authorities",
+      "Strict quarantine of affected premises",
+      "Do not move birds, eggs, or equipment off the premises",
+      "Human protective equipment for all handlers",
+      "Follow official control protocols including depopulation if required"
+    ],
+    "warning_signs": [
+      "Sudden death of multiple birds within 24-72 hours",
+      "Severe respiratory distress with neurological signs",
+      "Complete egg production drop across the flock",
+      "Twisted neck and paralysis in multiple birds",
+      "Greenish diarrhea with dehydration"
+    ],
+    "when_to_visit_vet": "Any suspicion of Newcastle disease requires immediate reporting to veterinary authorities. ND is a notifiable disease with mandatory control measures.",
+    "prevention": [
+      "Vaccination with live attenuated or inactivated NDV vaccine",
+      "Strict biosecurity: dedicated clothing, footbaths, restricted access",
+      "All-in-all-out management with thorough cleaning and disinfection",
+      "Quarantine new birds for 30 days",
+      "Limit contact with wild birds",
+      "Regular serological monitoring of flock immunity"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "RT-PCR on tracheal or cloacal swabs",
+      "Virus isolation and pathotyping",
+      "Serology (HI test, ELISA) for antibody detection",
+      "Post-mortem examination with histopathology"
+    ],
+    "contagious": true,
+    "zoonotic": false,
+    "affected_age": "All ages; severity higher in young birds",
+    "breed_risk": [],
+    "recovery_time": "2-6 weeks depending on strain virulence; mortality 10-90% in unvaccinated flocks",
+    "references": [
+      "WOAH: Newcastle Disease technical guidelines",
+      "MSD Veterinary Manual: Newcastle Disease",
+      "FAO: ND prevention and control"
+    ]
+  },
+  {
+    "id": 48,
+    "animal": "Poultry",
+    "disease_name": "Infectious Bursal Disease",
+    "aliases": [
+      "IBD",
+      "Gumboro Disease",
+      "Bursal Disease"
+    ],
+    "description": "A highly contagious viral disease of young chickens caused by Infectious Bursal Disease Virus (IBDV, Birnaviridae). The virus destroys the bursa of Fabricius, the primary immune organ, causing immunosuppression and increased susceptibility to other diseases.",
+    "common_causes": [
+      "Infectious Bursal Disease Virus (IBDV)",
+      "Direct contact with infected birds",
+      "Fecal-oral transmission",
+      "Contaminated litter, feed, and water",
+      "Fomite spread via equipment, clothing, and vehicles",
+      "Vertical transmission through eggs (rare)"
+    ],
+    "symptoms": [
+      "Sudden onset depression and lethargy",
+      "Ruffled feathers and drooping wings",
+      "Watery diarrhea and pasty vent",
+      "Dehydration with sunken eyes",
+      "Loss of appetite",
+      "Trembling and incoordination",
+      "Swollen and inflamed bursa of Fabricius (on post-mortem)",
+      "Immunosuppression leading to secondary infections",
+      "High morbidity (80-100%) with variable mortality"
+    ],
+    "risk_factors": [
+      "Young chickens 3-6 weeks most susceptible",
+      "Flocks with no maternal antibodies",
+      "Lack of vaccination in parent flocks",
+      "Poor biosecurity and disinfection",
+      "High stocking density",
+      "Persistent virus in contaminated poultry houses"
+    ],
+    "severity": "Medium",
+    "home_care": [
+      "Provide warmth and deep, dry, clean litter",
+      "Ensure easy access to fresh water and feed",
+      "Reduce stress: avoid unnecessary handling",
+      "Isolate affected birds",
+      "Improve ventilation",
+      "Supportive care with electrolytes in water"
+    ],
+    "warning_signs": [
+      "Sudden onset of depression in 3-6 week old chicks",
+      "High morbidity affecting 80-100% of the flock",
+      "Severe immunosuppression leading to secondary infections",
+      "Pasty vent with watery diarrhea",
+      "Dehydration and death"
+    ],
+    "when_to_visit_vet": "Any sudden illness in young chickens with high morbidity requires veterinary evaluation. Diagnosis is important for preventing immunosuppression.",
+    "prevention": [
+      "Vaccination of parent flocks to provide maternal antibodies",
+      "Vaccination of chicks at 2-4 weeks with intermediate or intermediate-plus vaccines",
+      "Strict biosecurity and disinfection",
+      "All-in-all-out management",
+      "Thorough cleaning and disinfection between flocks",
+      "Long downtime (at least 3 weeks) between flocks"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "Post-mortem examination: bursal swelling and hemorrhage",
+      "RT-PCR for IBDV detection",
+      "Serology (ELISA) for antibody monitoring",
+      "Histopathology of bursa",
+      "Virus isolation for strain typing"
+    ],
+    "contagious": true,
+    "zoonotic": false,
+    "affected_age": "Primarily chickens 3-6 weeks of age; older birds may have subclinical infection",
+    "breed_risk": [],
+    "recovery_time": "5-14 days; mortality 0-30% depending on strain virulence and flock immunity",
+    "references": [
+      "MSD Veterinary Manual: Infectious Bursal Disease",
+      "WOAH: IBD technical card",
+      "Avian Pathology: IBDV control in poultry"
+    ]
+  },
+  {
+    "id": 49,
+    "animal": "Poultry",
+    "disease_name": "Fowl Pox",
+    "aliases": [
+      "Avian Pox",
+      "FP",
+      "Bird Pox",
+      "Diphtheritic Form",
+      "Cutaneous Form"
+    ],
+    "description": "A slow-spreading viral disease of birds caused by Avipoxvirus, characterized by wart-like skin lesions on unfeathered parts (cutaneous form) and/or diphtheritic lesions in the mouth and respiratory tract (diphtheritic form). It causes production losses rather than high mortality.",
+    "common_causes": [
+      "Fowl poxvirus (Avipoxvirus genus)",
+      "Mechanical transmission by biting insects (mosquitoes)",
+      "Direct contact with infected birds",
+      "Contaminated equipment and housing",
+      "Inhalation of aerosolized virus from scabs",
+      "Contaminated feed and water"
+    ],
+    "symptoms": [
+      "Cutaneous form: wart-like nodules on comb, wattles, eyelids, legs",
+      "Nodules that progress to scabs and heal within 2-4 weeks",
+      "Diphtheritic form: yellow-white plaques in mouth, pharynx, trachea",
+      "Difficulty breathing if lesions obstruct airways",
+      "Reduced feed and water intake",
+      "Drop in egg production",
+      "Weight loss and poor growth",
+      "High morbidity but typically low mortality"
+    ],
+    "risk_factors": [
+      "Mosquito season (summer and autumn)",
+      "Free-range or outdoor poultry with insect exposure",
+      "Poor biosecurity and sanitation",
+      "Introduction of infected birds",
+      "High insect populations in poultry housing",
+      "Young birds (more susceptible than adults)"
+    ],
+    "severity": "Low",
+    "home_care": [
+      "No specific treatment; supportive care and hygiene",
+      "Remove scabs gently if they interfere with vision or eating",
+      "Apply iodine or antiseptic to skin lesions",
+      "Provide soft feed if mouth lesions are present",
+      "Ensure easy access to water",
+      "Control mosquitoes in and around poultry housing"
+    ],
+    "warning_signs": [
+      "Lesions obstructing vision, eating, or breathing",
+      "Secondary bacterial infections of lesions",
+      "Rapid spread through the flock in the diphtheritic form",
+      "Loss of appetite with refusal to eat or drink",
+      "Respiratory distress in diphtheritic form"
+    ],
+    "when_to_visit_vet": "If lesions are severe, if the diphtheritic form affects breathing, or if production losses are significant. Vaccination advice is needed for future flock protection.",
+    "prevention": [
+      "Vaccination with fowl pox vaccine (live, attenuated)",
+      "Routine vaccination in endemic areas (wing web method)",
+      "Mosquito control: screens, insecticide spraying, remove standing water",
+      "Biosecurity: quarantine new birds, disinfect equipment",
+      "All-in-all-out management with thorough cleaning"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "Clinical diagnosis is characteristic",
+      "Histopathology of lesions (intracytoplasmic inclusion bodies)",
+      "PCR for fowl poxvirus",
+      "Virus isolation on chorioallantoic membrane"
+    ],
+    "contagious": true,
+    "zoonotic": false,
+    "affected_age": "All ages; more severe in young birds and during mosquito season",
+    "breed_risk": [],
+    "recovery_time": "Cutaneous form: 2-4 weeks. Diphtheritic form: 3-6 weeks for full recovery.",
+    "references": [
+      "MSD Veterinary Manual: Fowl Pox",
+      "Avian Diseases: fowl pox management",
+      "WOAH: Fowl Pox technical card"
+    ]
+  },
+  {
+    "id": 50,
+    "animal": "Poultry",
+    "disease_name": "Avian Coccidiosis",
+    "aliases": [
+      "Coccidiosis",
+      "Eimeriosis",
+      "Intestinal Coccidiosis"
+    ],
+    "description": "An intestinal parasitic disease of poultry caused by Eimeria species (E. tenella, E. necatrix, E. acervulina, E. maxima). It is one of the most economically significant diseases of poultry worldwide, causing poor growth, reduced feed conversion, and mortality.",
+    "common_causes": [
+      "Eimeria tenella (cecal coccidiosis, most pathogenic)",
+      "Eimeria necatrix (intestinal, highly pathogenic)",
+      "Eimeria acervulina (duodenal, common)",
+      "Eimeria maxima (jejunal, common)",
+      "Eimeria brunetti (lower intestinal)",
+      "Ingestion of sporulated oocysts from contaminated litter",
+      "Poor litter management and high humidity"
+    ],
+    "symptoms": [
+      "Bloody diarrhea (E. tenella, E. necatrix)",
+      "Mucoid or watery diarrhea (other species)",
+      "Ruffled feathers and depression",
+      "Decreased feed intake and poor growth",
+      "Pale comb and wattles (anemia)",
+      "Reduced egg production in layers",
+      "Pasty vent with fecal staining",
+      "Dehydration and weight loss",
+      "Sudden death in severe cases"
+    ],
+    "risk_factors": [
+      "Young chickens 3-6 weeks most susceptible",
+      "High stocking density and overcrowding",
+      "Wet, caked litter with high moisture content",
+      "Poor litter management and infrequent cleaning",
+      "Stress from environmental changes or transport",
+      "Repeated use of same poultry house without thorough cleaning",
+      "Anticoccidial resistance in the flock"
+    ],
+    "severity": "Medium",
+    "home_care": [
+      "Maintain dry, clean litter (moisture below 25%)",
+      "Ensure good ventilation to reduce litter moisture",
+      "Provide adequate feeder and waterer space to reduce competition",
+      "Remove wet spots and caked litter promptly",
+      "Reduce stress: maintain consistent environment",
+      "Consider coccidiostat in feed during high-risk periods"
+    ],
+    "warning_signs": [
+      "Bloody diarrhea in young chickens",
+      "Severe dehydration and weight loss",
+      "Pale comb and wattles indicating significant blood loss",
+      "High morbidity affecting multiple birds simultaneously",
+      "Sudden death in apparently healthy birds"
+    ],
+    "when_to_visit_vet": "If bloody diarrhea is observed, if feed conversion drops significantly, or if mortality increases. Diagnosis and sensitivity testing help guide control programs.",
+    "prevention": [
+      "Good litter management: maintain dry, clean litter",
+      "Avoid overcrowding and ensure adequate feeder/waterer space",
+      "All-in-all-out management with thorough cleaning between flocks",
+      "Coccidiostat in starter and grower feeds",
+      "Rotational use of anticoccidials to prevent resistance",
+      "Vaccination with live oocyst vaccines where appropriate"
+    ],
+    "vaccination_available": true,
+    "recommended_tests": [
+      "Fecal floatation and oocyst count (OPG)",
+      "McMaster counting chamber for quantitative assessment",
+      "Species identification by oocyst morphology",
+      "Post-mortem examination (intestinal lesions and cecal cores)",
+      "Lesion scoring at necropsy for severity assessment"
+    ],
+    "contagious": false,
+    "zoonotic": false,
+    "affected_age": "Primarily young chickens 3-6 weeks; adults develop immunity but are carriers",
+    "breed_risk": [],
+    "recovery_time": "5-14 days with treatment; chronic cases may have permanent growth impairment and reduced feed efficiency",
+    "references": [
+      "MSD Veterinary Manual: Coccidiosis in Poultry",
+      "Avian Diseases: coccidiosis control",
+      "World Poultry Science: Eimeria species and pathogenesis"
+    ]
+  }
+]
