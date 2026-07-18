@@ -82,6 +82,8 @@ export default function NearbyServices() {
 
   useEffect(() => {
     requestGeolocation();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- run once on mount only
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- geolocation prompt is an external-system call
   }, []);
 
   const fetchNearby = useCallback(
@@ -130,6 +132,11 @@ export default function NearbyServices() {
     if (hasSearched && locationState === "ready") {
       fetchNearby(center[0], center[1]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- intentionally narrow: only
+    // re-fetch on radius/placeType change. `center` changes are already handled by
+    // handleMapClick/handleLocationSelect calling fetchNearby directly — adding it here
+    // would cause duplicate fetches on every map interaction.
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- data refetch on filter change, not a state-mirroring effect
   }, [radius, placeType]);
 
   const showInitialLoading = locationState === "loading" && !geoError;

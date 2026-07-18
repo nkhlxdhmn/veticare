@@ -72,6 +72,10 @@ function useAuthState() {
   }, [clearAuth, navigate]);
 
   useEffect(() => {
+    // Intentional: validates the stored token against the API on mount.
+    // This is a genuine external-system sync (auth state), not a local
+    // state-mirroring effect — the lint rule's target case doesn't apply here.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     restoreSession();
   }, [restoreSession]);
 

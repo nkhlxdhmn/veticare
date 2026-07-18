@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { LogOut, Menu, Settings, UserRound, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -49,11 +49,16 @@ function NavLink({ name, path, active }: { name: string; path: string; active: b
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [exiting, setExiting] = useState(false);
+  const [prevPathname, setPrevPathname] = useState<string | null>(null);
   const location = useLocation();
   const { user, logout } = useAuth();
   const reduced = useReducedMotion();
 
-  useEffect(() => { setIsMobileMenuOpen(false); setExiting(false); }, [location.pathname, setIsMobileMenuOpen]);
+  if (location.pathname !== prevPathname) {
+    setPrevPathname(location.pathname);
+    setIsMobileMenuOpen(false);
+    setExiting(false);
+  }
 
   const closeMobile = useCallback(() => {
     setExiting(true);

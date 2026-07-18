@@ -50,9 +50,10 @@ const userIcon = L.divIcon({
 
 function SetViewOnChange({ center }: { center: [number, number] }) {
   const map = useMap();
+  const [lat, lng] = center;
   useEffect(() => {
-    map.setView(center, map.getZoom(), { animate: true });
-  }, [center[0], center[1]]);
+    map.setView([lat, lng], map.getZoom(), { animate: true });
+  }, [lat, lng, map]);
   return null;
 }
 

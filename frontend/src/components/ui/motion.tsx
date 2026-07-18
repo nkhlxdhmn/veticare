@@ -149,25 +149,14 @@ function StaggerGroup({ children, className }: { children: ReactNode; className?
 
 function SuccessCheckmark({ className, size = 48 }: { className?: string; size?: number }) {
   const reduced = useReducedMotion();
-  const [shown, setShown] = useState(false);
-
-  useEffect(() => { setShown(true); }, []);
 
   if (reduced) {
     return <CheckCircle2 className={cn("text-emerald-500", className)} size={size} />;
   }
 
   return (
-    <div className={cn("relative", className)} style={{ width: size, height: size }}>
-      <CheckCircle2
-        className="text-emerald-500"
-        size={size}
-        style={{
-          opacity: shown ? 1 : 0,
-          transform: shown ? "scale(1)" : "scale(0)",
-          transition: "opacity 200ms ease-out, transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1)",
-        }}
-      />
+    <div className={cn("relative animate-fade-scale-in", className)} style={{ width: size, height: size }}>
+      <CheckCircle2 className="text-emerald-500" size={size} />
     </div>
   );
 }
